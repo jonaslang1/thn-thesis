@@ -11,3 +11,5 @@
 *.out
 *.fdb_latexmk
 *.fls
+
+.idea/
