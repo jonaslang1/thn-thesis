@@ -3,7 +3,8 @@
     a4paper,
     sfdefaults=false,
     toc=chapterentrywithdots,
-    twoside,openright,
+    oneside, % or twoside for printing
+    openany, % or openright for printing
     titlepage,
     parskip=half,
     headings=normal,  % reduces heading size
@@ -13,6 +14,7 @@
     captions=tableheading,  % caption below table
     chapterprefix,
     listof=flat,
+    numbers= noendperiod, % for omitting the trailing dot after chapter and section numbers
     final
 ]{scrbook}
 
@@ -33,9 +35,7 @@
 \pagestyle{scrheadings}
 \ihead{\headmark}
 \chead{}
-\ohead{\pagemark}
-\renewcommand*\chaptermarkformat{\chapappifchapterprefix{\ }% 
-  \thechapter.\enskip}
+%\ohead{\pagemark}
 
 \RedeclareSectionCommand[tocindent=0pt]{section}
 \RedeclareSectionCommand[tocindent=0pt]{subsection}
@@ -47,7 +47,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,relsize,textcomp,csquotes}
-\usepackage{amsmath,amsfonts}
+\usepackage{amsmath,amsfonts} % math formulas
 \usepackage[english, ngerman]{babel}  % flip for German thesis
 \usepackage[final]{graphicx}
 \usepackage{setspace,geometry,xcolor}
@@ -56,7 +56,6 @@
 \usepackage{url}
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
-\usepackage{amsmath} %formulas
 
 % table setup
 \usepackage{longtable}
@@ -76,7 +75,7 @@
     pdfsubject={\titel},
     pdfkeywords={\keywords},
     pdfpagelabels=true,
-    colorlinks=true,
+    colorlinks=false,
     linkcolor=red,
     urlcolor=magenta,
     anchorcolor=black,
@@ -102,7 +101,7 @@
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
-\geometry{paper=a4paper,left=2.5cm,top=3.0cm,bindingoffset=.8cm}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=3.0cm,} % bindingoffset=.8cm for printing
 \onehalfspacing
 \frenchspacing
 \clubpenalty = 10000
