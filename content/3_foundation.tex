@@ -1,15 +1,27 @@
 \chapter{Theoretische Grundlagen}\label{ch:foundation}
 
-In this chapter, we're actually using some code!
+Zunächst wird die algebraische Struktur endlicher Körper, auch Galois-Felder genannt, erläutert, welche die Basis für die Encodierung und Decodierung vieler Fehlerkorrekturverfahren bildet.
 
-\begin{lstlisting}[language=Python,caption={This is an example of inline listing},captionpos=b]
-x = 1
-if x == 1:
-    # indented four spaces
-    print("x is 1.")
+\section{Endliche Körper}\label{sec:galois}
 
-\end{lstlisting}
+Endliche Körper sind algebraische Strukturen mit einer endlichen Anzahl von Elementen, die sowohl Addition als auch Multiplikation unterstützen. 
+Ein endlicher Körper \(GF(q)\) besteht aus \(q\) Elementen, wobei \(q\) eine Potenz einer Primzahl \(p\) ist.
+\[
+\makebox[\linewidth]{%
+	\hfill
+	$q=p^{m}$\hfill
+	\llap{($p\in\mathbb{P}, m\in\mathbb{N}$)}%
+}
+\]
+Die Konstruktion eines endlichen Körpers beginnt mit der Auswahl eines irreduziblen Polynoms $p(x)$ über einem Grundkörper $GF(p)$. 
+Dieses irreduzible Polynom hat die Eigenschaft, dass es nicht in Produkte niedrigergradiger Polynome zerlegt werden kann. 
+Die Elemente des endlichen Körpers $GF(p^{m})$ sind die Restklassen der Polynome über $GF(p)\mod p(x)$.
 
-You can also include listings from a file directly:
+Im endlichen Körper $GF(2^{m})$ beispielsweise sind die Elemente Polynome vom Grad $m-1$ mit Koeffizienten aus ${0,1}$.
+Die Addition erfolgt koeffizientenweise modulo 2, während die Multiplikation durch die Multiplikation der Polynome und anschließendes Reduzieren modulo $p(x)$ bestimmt wird.
 
-\lstinputlisting[language=Python,caption={This is an example of included listing},captionpos=b]{listings/example.py}
+Ein entscheidendes Merkmal endlicher Körper ist das Vorhandensein eines multiplikativen Inversen für jedes nicht-null Element. 
+Dies bedeutet, dass für jedes Element $a$ in $GF(q)$ ein Element $b$ existiert, sodass $a\cdot b=1$. 
+
+Diese Eigenschaft ist wesentlich für die Implementierung der Fehlerkorrekturmechanismen der Reed-Solomon-Codes, da die Berechnungen auf endlichen Systemen durchgeführt werden.
+Die Struktur dieser Felder ermöglicht die effiziente Durchführung der mathematischen Operationen, die zur Erkennung und Korrektur von Fehlern in den Daten erforderlich sind. 
