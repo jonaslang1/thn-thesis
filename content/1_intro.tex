@@ -4,26 +4,24 @@
 
 In der heutigen digitalen Welt ist die Zuverlässigkeit und Integrität von Daten von zentraler Bedeutung. 
 Täglich werden riesige Mengen an Informationen über verschiedene Kommunikationskanäle übertragen und auf unterschiedlichsten Medien gespeichert. 
-Dabei ist es unvermeidlich, dass Daten durch Rauschen, physische Beschädigungen oder andere Störfaktoren verfälscht werden. 
-Dies stellt eine ernsthafte Herausforderung dar, insbesondere in Bereichen wie Telekommunikation, Datenarchivierung und digitaler Medien, wo die Genauigkeit und Verfügbarkeit von Informationen entscheidend sind.
-Fehlerkorrekturverfahren sind daher unverzichtbare Werkzeuge, um die Qualität und Zuverlässigkeit der übermittelten oder gespeicherten Daten sicherzustellen.
+Dabei ist es unvermeidlich, dass einige Daten durch Rauschen, physische Beschädigungen oder andere Störfaktoren verfälscht werden. 
+Die Gewährleistung der Genauigkeit und Verfügbarkeit von Informationen ist insbesondere in Bereichen der Telekommunikation, Datenarchivierung und digitalen Medien von entscheidender Bedeutung. 
+Die Sicherstellung dieser Faktoren stellt jedoch eine ernsthafte Herausforderung dar. 
+Fehlererkennungs- und -korrekturverfahren sind daher unverzichtbare Werkzeuge, um die Qualität und Zuverlässigkeit der übermittelten oder gespeicherten Daten sicherzustellen.
 
-Sie reichern die zu speichernden oder zu übertragenden Daten durch den Encodierungsprozess mit Redundanz an, also zusätzliche Informationen, die zur Fehlererkennung und -korrektur dienen. Beim Decodierungsprozess wird anschließend überprüft, ob Fehler aufgetreten sind und ob diese korrigiert werden können, bevor die ursprünglichen Daten wieder verwendet werden können.
+Um das zu erreichen, werden bei der Kanalcodierung die zu speichernden oder zu übertragenden Daten beim Encodierungsprozess mit Redundanz, also zusätzlichen Informationen, die zur Fehlererkennung und -korrektur dienen, angereichert. 
+Im Decodierungsprozess wird an Hand der Redundanz überprüft, ob Fehler aufgetreten sind und ob diese korrigiert werden können. 
+Dadurch kann die Integrität der empfangenen Daten bewertet werden.
 
-Eine besonders effektive Methode zur Fehlerkorrektur sind die Reed-Solomon-Codes.
-Diese wurden 1960 von den Mathematikern Irving S. Reed und Gustave Solomon entwickelt und haben sich seither als effektive Methode zur Fehlerkorrektur etabliert. 
-Reed-Solomon-Codes zeichnen sich durch ihre Fähigkeit aus, eine beträchtliche Anzahl von Fehlern zu erkennen und zu korrigieren, wodurch sie die Zuverlässigkeit von Datenübertragungen und -speicherungen erheblich verbessern.
+Eine besonders effektive Methode zur Fehlerkorrektur\todo{} sind die Reed-Solomon-Codes, also das ursprüngliche Verfahren und alle Weiterentwicklungen.
+Die ursprüngliche Version wurde 1960 von den Mathematikern Irving S. Reed und Gustave Solomon entwickelt. 
+Reed-Solomon-Codes zeichnen sich durch ihre Fähigkeit aus, so viele Fehler wie die Anzahl der hinzugefügten redundanten Informationen zu erkennen und sogar die Hälfte dieser zu korrigieren.
+In dieser Arbeit liegt der Fokus auf der Fehlerkorrektur.
 
 \section{Zielsetzung der Arbeit}\label{sec:objective}
 
-Ziel dieser Arbeit ist es, ein Verständnis der Reed-Solomon-Codes zu vermitteln. 
-Obwohl diese Codes in vielen alltäglichen Technologien weit verbreitet sind, bleibt die zugrundeliegende Mathematik und konkrete Implementierung oft ein komplexes Thema. 
-Diese Arbeit soll die theoretischen Grundlagen und Mechanismen hinter den Reed-Solomon-Codes systematisch darlegen und ihre praktischen Anwendungen beleuchten. 
-Durch die Untersuchung der mathematischen Prinzipien und der praktischen Implementierungen soll ein tieferes Verständnis dieser wichtigen Technologie gefördert werden.
-
-\section{Aufbau der Arbeit}\label{sec:stucture}
-
-Nach dieser Einleitung folgt im zweiten Kapitel eine Betrachtung der Entwicklung der Reed-Solomon-Codes, die die wesentlichen Meilensteine und Durchbrüche sowie die Einordung in das Gebiet der Fehlerkorrektur-Codes darstellt. 
-Kapitel drei behandelt die theoretischen Grundlagen und die Funktionsweise der Reed-Solomon-Codes, wobei die mathematischen Strukturen, Codierungs- und Decodierungsprozesse sowie spezifische Algorithmen wie der Berlekamp-Welch-Algorithmus beschrieben werden. 
-Das vierte Kapitel vergleicht die Reed-Solomon-Codes mit anderen gängigen Fehlerkorrektur-Codes und beleuchtet ihre vielfältigen Anwendungsgebiete. 
-Im fünften Kapitel werden die wichtigsten Erkenntnisse zusammengefasst und ein Ausblick auf zukünftige Entwicklungen gegeben.
+Obwohl diese Codes in vielen alltäglichen Technologien wie CDs oder QR-Codes weit verbreitet sind, ist die zugrundeliegende Mathematik und konkrete Implementierung eher unbekannt. 
+Ziel dieser Arbeit ist es, die Reed-Solomon-Codes vorzustellen und deren Funktionsweise zu erklären. 
+Dazu wird nach einer kurzen historischen Betrachtung die der Kanalcodierung zu Grunde liegenden Mathematik beschrieben.
+Anschließend wird die Funktionsweise des ursprünglichen Ansatzes der beiden Mathematikern und eine Weiterentwicklung, der Berlekamp-Welch-Algorithmus, erläutert.
+Des Weiteren wird beleuchtet, wie diese Verfahren in der Praxis Anwendung finden. 

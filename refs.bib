@@ -162,7 +162,7 @@
   doi = {10.1007/3-540-46796-3_23},
   urldate = {2024-06-20},
   abstract = {After a brief introduction to both quantum computation and quantum error correction, we show how to construct quantum error-correcting codes based on classical BCH codes. With these codes, decoding can exploit additional information about the position of errors. This error model - the quantum erasure channel - is discussed. Finally, parameters of quantum BCH codes are provided.},
-  archiveprefix = {arxiv},
+  archiveprefix = {arXiv},
   keywords = {Quantum Physics},
   file = {/Users/jonaslang/Zotero/storage/C4R23DQB/Grassl et al. - 1999 - Quantum Reed-Solomon Codes.pdf;/Users/jonaslang/Zotero/storage/BIR37U3G/9910059.html}
 }
@@ -221,6 +221,14 @@
   urldate = {2024-06-14},
   abstract = {It is shown in this paper that the iterative algorithm introduced by Berlekamp for decoding BCH codes actually provides a general solution to the problem of synthesizing the shortest linear feedback shift register capable of generating a prescribed finite sequence of digits. The shift-register approach leads to a simple proof of the validity of the algorithm as well as providing additional insight into its properties. The equivalence of the decoding problem for BCH codes to a shift-register synthesis problem is demonstrated, and other applications for the algorithm are suggested.},
   file = {/Users/jonaslang/Zotero/storage/VYB8DN5L/Massey - 1969 - Shift-register synthesis and BCH decoding.pdf}
+}
+
+@misc{neuhoffDigitalCommunicationsSignals,
+  title = {Digital {{Communications Signals}} and {{Systems}}},
+  author = {Neuhoff, David L.},
+  urldate = {2024-06-24},
+  langid = {english},
+  file = {/Users/jonaslang/Zotero/storage/VM6MZDA7/BCH_codes.pdf}
 }
 
 @book{petersonErrorcorrectingCodes1972,
@@ -308,6 +316,21 @@
   file = {/Users/jonaslang/Zotero/storage/B433KYHX/Sathiamoorthy et al. - 2013 - XORing Elephants Novel Erasure Codes for Big Data.pdf}
 }
 
+@phdthesis{schulz-hankeBCHCodesCombined2023,
+  title = {{BCH codes with combined error correction and detectionBCH Codes mit kombinierter Korrektur und Erkennung}},
+  author = {{Schulz-Hanke}, Christian},
+  year = {2023},
+  pages = {5094 KB, ii, 191 pages},
+  doi = {10.25932/PUBLISHUP-61794},
+  urldate = {2024-06-24},
+  abstract = {Based on the BCH code, this thesis investigates how an BCH error correction approach can be combined with an additional detection of higher numbers of errors.  With the method of 1-bit correction with additional detection of higher errors, an approach is developed that performs the additional detection of higher errors by solving simple equations of the form s\_x = s\_1{\textasciicircum}x in parallel.  The number of these equations is in a linear relationship to the number of higher errors to be checked.  In this thesis, a generalization for such an approach is presented for up to 4-bit correction with additional detection of higher errors.  Therefore, a speculative error correction is carried out in parallel fashion for each correctable error count.  For each of the generated speculative error positions, a speculative syndrome is generated, which can be used to confirm the error positions and exclude detectable errors of higher number.  The presented approach differs from the approach developed in [Pet60], in which the number of errors is determined by calculating specific determinants in descending order until the first determinant is 0.  In the well-known method, the calculation of the determinants involves performing a factorial number of calculations in relation to the number of errors to be checked.  Compared to the well-known sequential method according to Berlekamp Massey [Ber68][Mas69], the calculations in the presented approach can be performed by solving simple equations and can be carried out in parallel.  In the well-known method for parallel correction of 4-bit errors, an equation of fourth degree in the GF(2{\textasciicircum}m) has to be solved.  This is done by solving a third-degree auxiliary equation and four second-degree equations in parallel.  In the present thesis it was shown that a second-degree equation can be saved, resulting in a simplification of the hardware for a parallel realization of the 4-bit correction.  The results obtained were verified by extensive simulations in software and hardware implementations.},
+  copyright = {Creative Commons Attribution 4.0 International},
+  langid = {ngerman},
+  school = {Universit{\"a}t Potsdam},
+  keywords = {004 Datenverarbeitung; Informatik},
+  file = {/Users/jonaslang/Zotero/storage/CCUCCLRY/Schulz-Hanke - 2023 - BCH codes with combined error correction and detec.pdf}
+}
+
 @inproceedings{sippelReedSolomonCodes2019,
   title = {Reed--{{Solomon Codes}} over {{Fields}} of {{Characteristic Zero}}},
   booktitle = {2019 {{IEEE International Symposium}} on {{Information Theory}} ({{ISIT}})},
@@ -347,7 +370,8 @@
   issn = {0368-4245},
   doi = {10.1137/0111005},
   urldate = {2024-06-13},
-  abstract = {This paper considers the problem of simultaneous error-correction and burst-error detection using binary linear cyclic codes. For certain types of teletype channels, it pays to correct random errors and to detect bursts. It is shown that the burst-error detecting capability drops by one more than the length of the largest gap in the recursion polynomial when a binary linear cyclic code is used to correct single errors. Only special cases of this result are obtained for multiple-error-correction. The single-error result is applied to develop a new criterion for primitivity of polynomials over the two-element field. The criterion depends on the largest gap in the recursion polynomial corresponding to the polynomial to be tested for primitivity.}
+  abstract = {This paper considers the problem of simultaneous error-correction and burst-error detection using binary linear cyclic codes. For certain types of teletype channels, it pays to correct random errors and to detect bursts. It is shown that the burst-error detecting capability drops by one more than the length of the largest gap in the recursion polynomial when a binary linear cyclic code is used to correct single errors. Only special cases of this result are obtained for multiple-error-correction. The single-error result is applied to develop a new criterion for primitivity of polynomials over the two-element field. The criterion depends on the largest gap in the recursion polynomial corresponding to the polynomial to be tested for primitivity.},
+  file = {/Users/jonaslang/Library/CloudStorage/OneDrive-TechnischeHochschuleNürnbergGeorgSimonOhm/Dokumente/Data/Studium/Semester6/CompDesign/Material/ErrorCorrectionBCHStone.pdf}
 }
 
 @misc{verbeureReedSolomonErrorCorrecting2022,
@@ -362,14 +386,14 @@
   file = {/Users/jonaslang/Zotero/storage/II9GVSB9/Reed-Solomon.html}
 }
 
-@book{vermillionEndtoendDSLArchitectures2003,
-  title = {End-to-End {{DSL}} Architectures},
+@book{vermillionEndtoEndDSLArchitectures,
+  title = {End-to-{{End DSL Architectures}}},
   author = {Vermillion, Wayne C.},
-  year = {2003},
-  publisher = {Cisco Press},
-  address = {Indianapolis, Ind},
+  urldate = {2024-06-24},
+  abstract = {Implement DSL end-to-end solutions for all six current DSL architectures Coverage includes: All DSL varieties: U.S. and international varieties include ANSI and ITU standards as well as legacy and...},
   isbn = {978-1-58705-087-9},
-  langid = {english}
+  langid = {english},
+  file = {/Users/jonaslang/Zotero/storage/JXGR5NMU/1587050870.html;/Users/jonaslang/Zotero/storage/SAU5JW9Q/singleHit.html}
 }
 
 @misc{WasIstReedSolomonVerfahren2022,
@@ -382,6 +406,22 @@
   howpublished = {https://www.egovernment.de/was-ist-das-reed-solomon-verfahren-a-cbb3a5d0b405888012d37555a7ef5225/},
   langid = {ngerman},
   file = {/Users/jonaslang/Zotero/storage/2INYGGGN/was-ist-das-reed-solomon-verfahren-a-cbb3a5d0b405888012d37555a7ef5225.html}
+}
+
+@book{weitzKonkreteMathematikNicht2021,
+  title = {{Konkrete Mathematik (nicht nur) f{\"u}r Informatiker: Mit vielen Grafiken und Algorithmen in Python}},
+  shorttitle = {{Konkrete Mathematik (nicht nur) f{\"u}r Informatiker}},
+  author = {Weitz, Edmund},
+  year = {2021},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-662-62618-4},
+  urldate = {2024-06-22},
+  copyright = {http://www.springer.com/tdm},
+  isbn = {978-3-662-62617-7 978-3-662-62618-4},
+  langid = {ngerman},
+  keywords = {Algorithmen,Analysis,Computeralgebra,Computergrafik,computerunterstutzte Mathematik,Diskrete Strukturen,Edmund Weitz,interaktiv,Kodierungstheorie,Komplexitatstheorie,Konkrete Mathematik (nicht nur) fur Informatiker,Kryptographie,Lineare Algebra,Mathematik fur Informatiker,Mathematik Video,numerische Methoden,Python,Stochastik,Visualisierung,Zahlen},
+  file = {/Users/jonaslang/Zotero/storage/N53W8BPX/Weitz - 2021 - Konkrete Mathematik (nicht nur) für Informatiker .pdf;/Users/jonaslang/Zotero/storage/Z7PHRCDQ/Weitz - 2021 - Konkrete Mathematik (nicht nur) für Informatiker .pdf}
 }
 
 @misc{wendlingIntroductionReedSolomon2017,
@@ -405,4 +445,17 @@
   address = {Piscataway, NJ},
   isbn = {978-0-7803-5391-6},
   langid = {english}
+}
+
+@misc{williamsHammingCodeFehlererkennungUnd2024,
+  title = {{Hamming-Code: Fehlererkennung und -korrektur mit Beispielen}},
+  shorttitle = {{Hamming-Code}},
+  author = {Williams, Lawrence},
+  year = {2024},
+  month = feb,
+  urldate = {2024-06-24},
+  abstract = {In diesem Hamming-Code-Tutorial erfahren Sie, was Hamming-Code ist, seine Geschichte, Vor- und Nachteile, Fehlerarten, Fehlererkennung und Fehlerkorrektur.},
+  howpublished = {https://www.guru99.com/de/hamming-code-error-correction-example.html},
+  langid = {ngerman},
+  file = {/Users/jonaslang/Zotero/storage/CK8MH6PN/hamming-code-error-correction-example.html}
 }

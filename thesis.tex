@@ -14,13 +14,14 @@
     captions=tableheading,  % caption below table
     chapterprefix,
     listof=flat,
-    numbers= noendperiod, % for omitting the trailing dot after chapter and section numbers
+    numbers=noendperiod, % for omitting the trailing dot after chapter and section numbers
     final
 ]{scrbook}
 
+% !TeX spellcheck = de_DE 
 
 % details about your thesis
-\newcommand{\titel}{Fehlerkorrektur mit Reed Solomon}
+\newcommand{\titel}{Fehlertoleranz mit Reed Solomon}
 \newcommand{\artderarbeit}{Schriftlicher Bericht}  % {Bachelorarbeit,Masterarbeit}
 \newcommand{\autor}{Jonas Lang}
 \newcommand{\course}{Aktuelle Entwicklungen im Computer Design}  
@@ -57,12 +58,14 @@
 \usepackage{url}
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
+\usepackage{enumitem} % for list and enumerations
 
 % table setup
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage{lscape}
+\usepackage{booktabs} % for advanced tables
 
 % pdf hyperref
 \usepackage[
@@ -156,11 +159,11 @@
 \listoffigures
 \cleardoublepage
 
-\listoftables
-\cleardoublepage
+%\listoftables
+%\cleardoublepage
 
-\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
-\lstlistoflistings
+%\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
+%\lstlistoflistings
 \cleardoublepage
 
 \bibliographystyle{IEEEtran}
