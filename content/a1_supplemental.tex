@@ -8,10 +8,10 @@ Um das Codewort zu erzeugen, wird dieses Nachrichtenpolynom $p(x)$ mit einem Gen
 \[
 c(x)=p(x)g(x)
 \]
-Dieses Generatorpolynom wird bei der Spezifizierung der Ausprägung des eingesetzen Verfahrens festgelegt und ist somit beim En- und Decodieren bekannt.
+Dieses Generatorpolynom wird bei der Spezifizierung der Ausprägung des eingesetzen Verfahrens festgelegt und ist somit beim En- und Decodieren bekannt \cite{deepak2018WhatReedSolomon2022}.
 
 Das Codepolynom $c(x)$ wird durch dessen Koeffizienten an den Empfänger übertragen oder auf ein Medium gespeichert.
-Zum Decodieren wird die Encodierungsgleichung nach $p(x)$ aufgelöst und dann $p(x)=\frac{c(x)}{g(x)}$ mit Hilfe von Polynomdivision bestimmt.
+Zum Decodieren wird die Encodierungsgleichung nach $p(x)$ aufgelöst und dann $p(x)=\frac{c(x)}{g(x)}$ mit Hilfe von Polynomdivision bestimmt \cite{geiselTutorialReedSolomonError1990}.
 
 \section{Beweis des Hamming-Abstands von Reed-Solomon-Codes}\label{app:hammingDistanceRS}
 
@@ -19,7 +19,7 @@ Wie schon in Abschnitt \ref{sec:decoding} erwähnt sind zum Decodieren eines Cod
 Davon führen $\binom{n-t}{k}$ Gleichungssysteme zur richtigen Lösung.
 $\binom{t+k-1}{k}$ Gleichungssysteme, welche mindestens eine fehlerbehaftete Gleichung enthalten, ergeben jeweils eine gleiche falsche Lösung.
 Von diesen Lösungen wird diejenige ausgewählt, welche am häufigsten aufgetreten ist.
-Damit diese Entscheidung erfolgreich die richte Lösung auswählt, muss also $\binom{n-t}{k} > \binom{t+k-1}{k}$ sein.
+Damit diese Entscheidung erfolgreich die richte Lösung auswählt, muss also $\binom{n-t}{k} > \binom{t+k-1}{k}$ sein \cite{reedPolynomialCodesCertain1960}.
 Durch Umformung entsteht folgende Ungleichung die für $n$, $k$ und $t$ erfüllt sein muss, damit das Reed-Solomon-Verfahren funktioniert.
 \begin{align}
 \binom{n-t}{k} &> \binom{t+k-1}{k} \nonumber\\
@@ -52,7 +52,7 @@ Die erste Teil der Tabelle zeigt die Parameter beispielhaft für Nachrichten der
 Dazu wurde die Codelänge so gewählt, damit alle drei Verfahren die gleiche Anzahl an Fehlern korrigieren \bzw erkennen können.
 Dieses Beispiel ist nicht repräsentativ, da typischer Weise längere Nachrichten verwendet werden. 
 Es verdeutlicht aber mit wie viel Redundanz der gleiche Effekt bewirkt werden kann.
-Bei Reed-Solomon werden lediglich zwei Redundanzsymbole benötigt, beim Hamming-Code sechs und bei BCH sieben, also etwas mehr als beim Reed-Solomon-Verfahren.
+Bei Reed-Solomon werden lediglich zwei Redundanzsymbole benötigt, beim Hamming-Code sechs und bei BCH sieben \cite{BCHCode2023}, also etwas mehr als beim Reed-Solomon-Verfahren.
 
 Der zweite Teil der Tabelle zeigt die Parameter für längere Codelängen und zwar $n=255$.
 Beim Hamming-Code ergibt sich daraus die Nachrichtenläneg von 247.
@@ -63,7 +63,7 @@ Dieser eignet sich daher nur für Anwendungsfälle mit geringer Fehleranfälligk
 Bei den anderen beiden Verfahren ist die Anzahl der Fehler, die korrigiert bzw. erkannt werden können, wesentlich höher.
 Der Reed-Solomon-Code ist am effektivsten \cite{neuhoffDigitalCommunicationsSignals}.
 
-Die Wahl des Codierungsverfahrens hängt daher von den spezifischen Anforderungen der Anwendung ab, insbesondere von der benötigten Fehlerkorrekturfähigkeit und den aufzuwendenden Kosten.
+Die Wahl des Codierungsverfahrens hängt daher von den spezifischen Anforderungen der Anwendung ab, insbesondere von der benötigten Fehlerkorrekturfähigkeit und den aufzuwendenden Kosten \cite{abrhaComparisonHammingBCH2019}.
 
 \section{Beispielhafte Durchführung des Reed-Solomon-Verfahrens}\label{app:example}
 
@@ -120,3 +120,87 @@ Man erkennt, dass viele verschiedene Lösungen herauskommen.
 Jedoch die Lösung $(m_0=2; m_1=4; m_2=3)$ vier mal.
 Alle anderen Ergebnisse kommen jeweils nur einmal vor.
 So weiß man, dass $m=[2,4,3]$ die ursprüngliche Nachricht war.
+
+\section{Umsetztungsparameter der verschieden Anwendungsfälle}\label{app:parameter}
+
+\textbf{Umsetzungsparameter Voyager \cite{ludwigVoyagerTelecommunications2002}:}
+
+Code-Wort-Länge: 255 Symbole;
+Daten-Symbole: 223;
+Redundanz-Symbole: 32
+
+\textbf{Umsetzungsparameter DVB-H \cite{DVBH2024}:}
+
+Code-Wort-Länge: 255 Symbole;
+Daten-Symbole: 191;
+Redundanz-Symbole: 64
+
+\textbf{Umsetzungsparameter für CDs \cite{wickerReedSolomonCodes1994}:}
+
+Code-Wort-Länge: 32 Symbole;
+Daten-Symbole: 28;
+Redundanz-Symbole: 4
+
+\textbf{Umsetzungsparameter für DVD und Blu-Ray \cite{changReedSolomonProductCodeRSPC1998}:}
+
+Doppeltes En- bzw. Decoding
+
+Innerer Code:
+Code-Wort-Länge: 182 Symbole;
+Daten-Symbole: 172;
+Redundanz-Symbole: 10
+
+Äußerer Code:
+Code-Wort-Länge: 208 Symbole;
+Daten-Symbole: 192;
+Redundanz-Symbole: 16
+
+\textbf{Umsetzungsparameter für RAID6-Systeme \cite{RAIDStorageTechnology2021}:}
+
+Code-Wort-Länge: Abhängig von der Konfiguration
+Typische Redundanz: 3 Datenlaufwerke und 2 Redundanzlaufwerke
+
+\textbf{Umsetzungsparameter für QR-Codes \cite{QRCode2024}:}
+
+Verschiedene Fehlerkorrekturstufen: \\ L (7\% der Daten kann korrigiert werden), M (15\%), Q (25\%), H (30\%)
+
+\textbf{Umsetzungsparameter für QR-Codes Stufe Low \cite{QRCode2024}:}
+
+Code-Wort-Länge: 26 Symbole;
+Daten-Symbole: 19;
+Redundanz-Symbole: 7
+
+\section{Fehlertoleranz bei QR-Codes}\label{app:qr-code}
+
+\acrlong{qrcode}s sind zweidimensionale Barcodes, die eine hohe Fehlertoleranz aufweisen, dank der Integration von Reed-Solomon-Codes.
+Diese Fehlerkorrekturmethoden ermöglichen das Auslesen von QR-Codes selbst bei teilweise beschädigten oder verschmutzten Codes. 
+
+\acrshort{qrcode} bieten vier verschiedene Stufen der Fehlerkorrektur, die zu Codierender Datenmenge ausgewählt werden können. 
+Die vier Stufen sind: L (Low); M (Medium); Q (Quartile); H (High)
+So können je nach Stufe von 7\% bis zu 30\% der Daten wiederhergestellt werden \cite{tiwariIntroductionQRCode2016}.
+
+Anhand der Stufe L wird nun die konkrete Umsetzung dargestellt.
+Die Struktur von QR-Codes ist so aufgebaut, dass die Quadrate, auch Module genannt, nach einem festgelegtem Schema angeordnet sind.
+Jedes Modul repräsentiert ein Bit (Weiß entspricht 0; Schwarz entspricht 1).
+Einige sind in jedem QR-Code gleich. Andere stellen die Metadaten zur Verfügung.
+Die Übrigen codieren die eigentlichen Nutzdaten \cite{tiwariIntroductionQRCode2016}.
+Die Metadaten beinhalten auch die Informationen zur Fehlerkorrektur (siehe Abbildung \ref{fig:qrschema}).
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=0.4\textwidth]{figures/QR_Format_Information.pdf}
+	\caption{Metadaten eines QR-Codes (Stufe L) \cite{QRCode2024}}
+	\label{fig:qrschema}
+\end{figure}
+Die Nutzdaten sind wie in Abbildung \ref{fig:qrdata} als Symbole mit je acht Modulen codiert.
+Es können insgesamt 26 Symbole im QR-Code platziert werden.
+Bei dem eingesetzten Reed-Solomon-Code $RS(255,248)$ gekürzt auf $RS(26,19)$ sind 19 Symbole für die Nutzdaten und die sieben Symbole E1 bis E7 für die Fehlertoleranz.
+Da aber zur Überprüfung nochmals zwei Symbole der Nachricht als Metadaten gebraucht werden, nur 17 Symbole für die eigentliche Nachricht \cite{pillazoHowDecodeQR2013}.
+Damit können bis zu 2 Symbole also 16 Module korrigiert werden \cite{QRCode2024}.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=0.4\textwidth]{figures/QR_Character_Placement.pdf}
+	\caption{Datensymbole in einem QR-Code (Stufe L) \cite{QRCode2024}}
+	\label{fig:qrdata}
+\end{figure}
+
+Diese Fehlerkorrekturmechanismen ermöglichen QR-Codes Robustheit gegenüber physischen Beschädigungen wie Rissen, Kratzern oder Verunreinigungen. Die Fähigkeit, selbst in solch herausfordernden Bedingungen die gespeicherten Daten korrekt wiederherzustellen, hat zur weitverbreiteten Nutzung von QR-Codes in verschiedenen Bereichen geführt, darunter Marketing, Logistik und Zugangskontrollen \cite{QRCode2024}.

@@ -1,22 +1,18 @@
 \chapter{Anwendungen}\label{ch:application}
 
-Reed-Solomon-Codes haben sich als äußerst vielseitig und effektiv in einer Vielzahl von Anwendungen erwiesen, insbesondere in Bereichen, die eine hohe Zuverlässigkeit und Robustheit bei der Datenübertragung und -speicherung erfordern. 
+Reed-Solomon-Codes haben sich als äußerst vielseitig und effektiv in einer Vielzahl von Anwendungen erwiesen, insbesondere in Bereichen, die eine hohe Zuverlässigkeit und Robustheit bei der Datenübertragung und -speicherung erfordern \cite{WasIstReedSolomonVerfahren2022}. 
 Im Folgenden werden einige der wichtigsten Anwendungsgebiete dieses Fehlerkorrekturverfahren beschrieben.
+Die konkreten Umsetzungsparameter finden sich im Anhang \ref{app:parameter}, sofern sie verfügbar sind.
 
 \section{Satelliten- und Weltraumkommunikation}
 
 Eine der frühesten Anwendungen der Reed-Solomon-Codes war im Bereich der Satelliten- und Weltraumkommunikation. 
 Ein bemerkenswertes Beispiel ist das Voyager-Programm der NASA. Seit 1977 werden Reed-Solomon-Codes verwendet, um die Kommunikation zwischen den Voyager-Raumfahrzeugen und der Erde zu sichern. 
 Andere Projekte mit Reed-Solomon im Einsatz sind zum Beispiel der Mars Pathfinder und die Raumsonde Galileo \cite{wickerReedSolomonCodes1994}.
+Durch die 
 
 Die enorme Entfernung der Raumfahrzeuge von der Erde stellt eine besondere Herausforderung an die Datenintegrität. 
 Reed-Solomon-Codes ermöglichen die Korrektur von Übertragungsfehlern, die durch kosmische Strahlung und andere Störeinflüsse verursacht werden, und tragen so zur erfolgreichen Übermittlung von wissenschaftlichen Daten über große Distanzen bei \cite{ludwigVoyagerTelecommunications2002}.
-
-\textbf{Umsetzungsparameter:}
-
-Code-Wort-Länge: 255 Symbole;
-Daten-Symbole: 223;
-Redundanz-Symbole: 32
 
 \section{Broadcasting und digitale Fernsehtechnik}
 
@@ -27,12 +23,6 @@ Genutzt wird das Reed-Solomon-Verfahren beispiles weise von dem amerikanischen S
 DVB beinhaltet verschiedene Standards, welche mittlerweile andere Verfahren, wie zum Beispiel \acrshort{bch}-Codes verwenden. 
 Beispielhaft für ein auf Reed-Solomon basierendes Protokoll wäre DVB-H \cite{DVBH2024}. 
 
-\textbf{Umsetzungsparameter DVB-H:}
-
-Code-Wort-Länge: 255 Symbole;
-Daten-Symbole: 191;
-Redundanz-Symbole: 64
-
 \section{Speichergeräte und optische Datenträger}
 
 Reed-Solomon-Codes sind bei der Sicherstellung der Datenintegrität beim Speichern von Daten essentiell. 
@@ -42,31 +32,6 @@ Diese Codes können Fehler erkennen und korrigieren, die durch Kratzer, Staub od
 In RAID-Systemen (Redundant Array of Independent Disks), zum Beispiel verwendet für die Aufbewahrung von Backups, ermöglichen sie die Korrektur von Fehlern, wobei ein Ausfall eines physischen Laufwerks nicht zum Verlust der darauf gespeicherten Daten führt.
 Diese bieten verschiedene Modi zur redundanten Datenspeicherung.
 Eine davon ist RAID6, welches auf Reed-Solomon-Codes basiert \cite{RAIDStorageTechnology2021}.
-
-\textbf{Umsetzungsparameter für CDs:}
-
-Code-Wort-Länge: 32 Symbole;
-Daten-Symbole: 28;
-Redundanz-Symbole: 4
-
-\textbf{Umsetzungsparameter für DVD und Blu-Ray:}
-
-Doppeltes En- bzw. Decoding
-
-Innerer Code:
-Code-Wort-Länge: 182 Symbole;
-Daten-Symbole: 172;
-Redundanz-Symbole: 10
-
-Äußerer Code:
-Code-Wort-Länge: 208 Symbole;
-Daten-Symbole: 192;
-Redundanz-Symbole: 16
-
-\textbf{Umsetzungsparameter für RAID6-Systeme:}
-
-Code-Wort-Länge: Abhängig von der Konfiguration
-Typische Redundanz: 3 Datenlaufwerke und 2 Redundanzlaufwerke
 
 \section{Datenübertragung und digitale Kommunikation}
 
@@ -81,13 +46,4 @@ Reed-Solomon-Codes sind auch in der Optoelektronik weit verbreitet. Beispiele hi
 Diese Codes nutzen die Fehlerkorrekturfähigkeiten von Reed-Solomon, um sicherzustellen, dass die gespeicherten Informationen auch dann korrekt ausgelesen werden können, wenn Teile des Codes beschädigt oder verdeckt sind. 
 Dies ist besonders wichtig in Anwendungen, bei denen die Zuverlässigkeit der Datenlesung entscheidend ist, wie z.B. in der Logistik und im Einzelhandel.
 Bei QR-Codes gibt es verschiedenen Varianten von \textquote{Low} bis \textquote{High}, welche unterschiedlich viel Fehlertoleranz besitzen \cite{QRCode2024}.
-
-\textbf{Umsetzungsparameter für QR-Codes:}
-
-Verschiedene Fehlerkorrekturstufen: \\ L (7\% der Daten kann korrigiert werden), M (15\%), Q (25\%), H (30\%)
-
-\textbf{Umsetzungsparameter für QR-Codes Stufe Low:}
-
-Code-Wort-Länge: 26 Symbole;
-Daten-Symbole: 19;
-Redundanz-Symbole: 7;
+Wie QR-Codes diese Fehlertoleranz umsetzten, ist in Anhang \ref{app:qr-code} beschreiben.
