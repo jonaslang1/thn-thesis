@@ -59,6 +59,7 @@
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
 \usepackage{enumitem} % for list and enumerations
+\usepackage{svg}
 
 % table setup
 \usepackage{longtable}
@@ -144,6 +145,12 @@
 
 \tableofcontents
 
+\listoffigures
+\cleardoublepage
+
+\listoftables
+\cleardoublepage
+
 \mainmatter
 \include{content/1_intro}
 \include{content/2_development}
@@ -157,19 +164,14 @@
 \include{content/a1_supplemental}
 
 \backmatter
-\listoffigures
-\cleardoublepage
-
-%\listoftables
-%\cleardoublepage
 
 %\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
 %\lstlistoflistings
 \cleardoublepage
 
+\printnoidxglossaries
+
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
-
-\printnoidxglossaries
 
 \end{document}
