@@ -2,48 +2,47 @@
 
 Reed-Solomon-Codes haben sich als äußerst vielseitig und effektiv in einer Vielzahl von Anwendungen erwiesen, insbesondere in Bereichen, die eine hohe Zuverlässigkeit und Robustheit bei der Datenübertragung und -speicherung erfordern \cite{WasIstReedSolomonVerfahren2022}. 
 Im Folgenden werden einige der wichtigsten Anwendungsgebiete dieses Fehlerkorrekturverfahren beschrieben.
-Die konkreten Umsetzungsparameter finden sich im Anhang \ref{app:parameter}, sofern sie verfügbar sind.
+Die konkreten Umsetzungsparameter finden sich im Anhang \ref{app:parameter} auf Seite \pageref{app:parameter}, sofern sie verfügbar sind.
 
 \section{Satelliten- und Weltraumkommunikation}
 
 Eine der frühesten Anwendungen der Reed-Solomon-Codes war im Bereich der Satelliten- und Weltraumkommunikation. 
-Ein bemerkenswertes Beispiel ist das Voyager-Programm der NASA. Seit 1977 werden Reed-Solomon-Codes verwendet, um die Kommunikation zwischen den Voyager-Raumfahrzeugen und der Erde zu sichern. 
-Andere Projekte mit Reed-Solomon im Einsatz sind zum Beispiel der Mars Pathfinder und die Raumsonde Galileo \cite{wickerReedSolomonCodes1994}.
-Durch die 
+Ein bemerkenswertes Beispiel ist das Voyager-Programm der \mbox{NASA}. Seit 1977 werden Reed-Solomon-Codes verwendet, um die Kommunikation zwischen den Voyager-Raumfahrzeugen und der Erde zu sichern. 
+Andere Projekte mit Reed-Solomon-Codes im Einsatz sind zum Beispiel der \textit{Mars Pathfinder} und die Raumsonde \textit{Galileo} \cite{wickerReedSolomonCodes1994}.
 
-Die enorme Entfernung der Raumfahrzeuge von der Erde stellt eine besondere Herausforderung an die Datenintegrität. 
-Reed-Solomon-Codes ermöglichen die Korrektur von Übertragungsfehlern, die durch kosmische Strahlung und andere Störeinflüsse verursacht werden, und tragen so zur erfolgreichen Übermittlung von wissenschaftlichen Daten über große Distanzen bei \cite{ludwigVoyagerTelecommunications2002}.
+Die enorme Entfernung der Raumfahrzeuge zur Erde stellt eine besondere Herausforderung an die Datenintegrität. 
+Durch kosmische Strahlung und andere Störeinflüsse werden Übertragungsfehlern verursacht, die Reed-Solomon-Codes korrigieren können und  so zur erfolgreichen Übermittlung von wissenschaftlichen Daten über große Distanzen beitragen \cite{ludwigVoyagerTelecommunications2002}.
 
 \section{Broadcasting und digitale Fernsehtechnik}
 
 Im Bereich des Broadcasting, insbesondere bei der digitalen Fernsehtechnik, spielen Reed-Solomon-Codes eine entscheidende Rolle. 
 Sie werden verwendet, um die Qualität und Zuverlässigkeit von digitalen TV-Signalen zu verbessern. 
 Durch die Implementierung von Reed-Solomon-Codes können Übertragungsfehler, die durch atmosphärische Störungen oder andere Übertragungsprobleme entstehen, effektiv korrigiert werden, was zu einer stabileren und hochwertigeren Signalübertragung führt.
-Genutzt wird das Reed-Solomon-Verfahren beispiles weise von dem amerikanischen Standard ATSC und dem europäischen Pendant DVB (Digital Video Broadcasting) \cite{ilievAnalysisEvaluationReedSolomon2008}.
+Genutzt wird das Reed-Solomon-Verfahren beispielsweise von dem amerikanischen Standard \acrfull{atsc} und dem europäischen Pendant \acrfull{dvb} \cite{ilievAnalysisEvaluationReedSolomon2008}.
 DVB beinhaltet verschiedene Standards, welche mittlerweile andere Verfahren, wie zum Beispiel \acrshort{bch}-Codes verwenden. 
-Beispielhaft für ein auf Reed-Solomon basierendes Protokoll wäre DVB-H \cite{DVBH2024}. 
+Beispielhaft für ein auf Reed-Solomon basierendes Protokoll ist \acrshort{dvb-h} \cite{DVBH2024}. 
 
 \section{Speichergeräte und optische Datenträger}
 
 Reed-Solomon-Codes sind bei der Sicherstellung der Datenintegrität beim Speichern von Daten essentiell. 
-Bei optischen Datenträgern, die seit der Einführung der \acrfull{cd} im Jahr 1982 weit verbreitet sind, werden Reed-Solomon-Codes zur Fehlerkorrektur bei der Speicherung und Wiedergabe von digitalen Audio- und Videodaten verwendet. Dazu zählen neben den \acrshort{cd} auch die DVD und die Blu-Ray-Disc. 
+Bei optischen Datenträgern, die seit der Einführung der \acrfull{cd} im Jahr 1982 weit verbreitet sind, werden Reed-Solomon-Codes zur Fehlerkorrektur bei der Speicherung und Wiedergabe von digitalen Audio- und Videodaten verwendet. Dazu zählen neben den \acrshort{cd} auch die \acrfull{dvd} und die Blu-Ray-Disc. 
 Diese Codes können Fehler erkennen und korrigieren, die durch Kratzer, Staub oder andere physische Beschädigungen an den Discs verursacht werden \cite{changReedSolomonProductCodeRSPC1998}. 
 
-In RAID-Systemen (Redundant Array of Independent Disks), zum Beispiel verwendet für die Aufbewahrung von Backups, ermöglichen sie die Korrektur von Fehlern, wobei ein Ausfall eines physischen Laufwerks nicht zum Verlust der darauf gespeicherten Daten führt.
-Diese bieten verschiedene Modi zur redundanten Datenspeicherung.
+In \acrshort{raid}-Systemen (\acrlong{raid}), zum Beispiel verwendet für die Aufbewahrung von Backups, ermöglichen sie die Korrektur von Fehlern, wodurch ein Ausfall eines physischen Laufwerks nicht zum Verlust der auf dem System gespeicherten Daten führt.
+Diese \acrshort{raid}-Systeme bieten verschiedene Modi zur redundanten Datenspeicherung.
 Eine davon ist RAID6, welches auf Reed-Solomon-Codes basiert \cite{RAIDStorageTechnology2021}.
 
 \section{Datenübertragung und digitale Kommunikation}
 
 Reed-Solomon-Codes finden auch breite Anwendung in der digitalen Kommunikation, einschließlich der Datenübertragung über das Internet und in Mobilfunknetzen. 
 Sie werden eingesetzt, um die Integrität von Datenpaketen zu gewährleisten, die über potenziell fehleranfällige Kanäle übertragen werden. 
-Reed-Solomon-Codes verwendende Standards sind z.B. WiMAX und DSL.
+Reed-Solomon-Codes verwendende Standards sind z.B. \acrshort{wimax} und \acrshort{dsl}.
 Allerdings ist die genaue Umsetzung dieser Protokolle nicht öffentlich \cite{vermillionEndtoEndDSLArchitectures}.
 
 \section{Zweidimensionale Barcodes}
 
 Reed-Solomon-Codes sind auch in der Optoelektronik weit verbreitet. Beispiele hierfür sind MaxiCode, Datamatrix, AztecCode und QR-Code. 
 Diese Codes nutzen die Fehlerkorrekturfähigkeiten von Reed-Solomon, um sicherzustellen, dass die gespeicherten Informationen auch dann korrekt ausgelesen werden können, wenn Teile des Codes beschädigt oder verdeckt sind. 
-Dies ist besonders wichtig in Anwendungen, bei denen die Zuverlässigkeit der Datenlesung entscheidend ist, wie z.B. in der Logistik und im Einzelhandel.
+Dies ist besonders wichtig in Anwendungen, bei denen die Zuverlässigkeit der Datenlesung entscheidend ist, wie z.B. in der Logistik, im Einzelhandel und in Fragen der Sicherheit \cite{tiwariIntroductionQRCode2016}.
 Bei QR-Codes gibt es verschiedenen Varianten von \textquote{Low} bis \textquote{High}, welche unterschiedlich viel Fehlertoleranz besitzen \cite{QRCode2024}.
-Wie QR-Codes diese Fehlertoleranz umsetzten, ist in Anhang \ref{app:qr-code} beschreiben.
+Wie QR-Codes diese Fehlertoleranz umsetzten, ist ausführlich in Anhang \ref{app:qr-code} auf Seite \pageref{app:qr-code} beschrieben.

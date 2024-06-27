@@ -6,18 +6,18 @@ Ein Polynom ist ein Ausdruck der Form
 \[
 p(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0,
 \]
-wobei die Koeffizienten \( a_0, a_1, \ldots, a_n \) reelle oder komplexe Zahlen und \( x \) eine Variable ist. 
+wobei die Koeffizienten \( a_0, a_1, \ldots, a_n \) reelle oder komplexe Zahlen und \( x \) eine Variable sind. 
 Der höchste Exponent \( n \), bei dem der Koeffizient \( a_n \neq 0 \) ist, wird als der Grad des Polynoms $deg(p)$ bezeichnet.
 
 Es gibt neben dieser Standardform verschiedene Möglichkeiten, Polynome darzustellen. 
-In dieser Arbeit wird auch die faktorisierte Form benötigt.
+In dieser Arbeit wird auch die faktorisierte Form eines Polynoms benötigt.
 
-Ein Polynom kann oft in ein Produkt von Linearfaktoren zerlegt werden, wenn seine Wurzeln bekannt sind. Wenn \( r_1, r_2, \ldots, r_n \) die Wurzeln des Polynoms sind, dann kann es wie folgt geschrieben werden:
+Ein Polynom kann oft in ein Produkt von Linearfaktoren zerlegt werden, wenn seine Wurzeln (auch Nullstellen genannt) bekannt sind. Wenn \( r_1, r_2, \ldots, r_n \) die Wurzeln des Polynoms sind, dann kann es wie folgt geschrieben werden:
 \[
 p(x) = a_n (x - r_1)(x - r_2) \cdots (x - r_n),
 \]
 wobei \( a_n \) der führende Koeffizient ist.
-Diese Form wird häufig auch als Nullstellenform bezeichnet.
+Diese Form wird häufig auch als Nullstellenform bezeichnet \cite{weitzKonkreteMathematikNicht2021}.
 
 
 Durch die verschiedenen Darstellungsformen können Polynome je nach Anwendung und Problemstellung unterschiedlich analysiert und interpretiert werden.
@@ -30,16 +30,17 @@ Eine lineare Gleichung in \( n \) Variablen hat die Form:
 \[
 a_0 + a_1 x + a_2 x_2 + \cdots + a_n x_n = b,
 \]
-wobei \( a_1, a_2, \ldots, a_n \) die Koeffizienten, \( x_1, x_2, \ldots, x_n \) die Variablen und \( b \) eine Konstante ist. 
+wobei \( a_1, a_2, \ldots, a_n \) die Koeffizienten, \( x_1, x_2, \ldots, x_n \) die Variablen und \( b \) eine Konstante sind. 
+Die Variablen \( x_1, x_2, \ldots, x_n \) haben alle die Potenz 1.
 
 Zum Lösen dieser Gleichungssysteme gibt es verschiedene Lösungsverfahren, die hier nicht näher erläutert werden.
 Die Lösungen von Gleichungssystemen können wie folgt klassifiziert werden:
 \begin{enumerate}[noitemsep]
 	\item Eindeutige Lösung: Es gibt genau eine Lösung.
-	\item Unendlich viele Lösungen: Es gibt mehr als eine Lösung, oft dargestellt als eine Lösungsmenge $L$.
+	\item Mehrere Lösungen: Es gibt mehr als eine Lösung, oft dargestellt als Elemente einer Lösungsmenge $L$.
 	\item Keine Lösung: Es gibt keine Kombination von Werten, die alle Gleichungen gleichzeitig erfüllt.
 \end{enumerate}
-Ein lineares Gleichungssystem ist genau dann eindeutig Lösbar, wenn die Anzahl der Unbekannten gleich der Anzahl der Gleichungen ist.
+Ein lineares Gleichungssystem ist genau dann eindeutig lösbar, wenn die Anzahl der Unbekannten gleich der Anzahl der Gleichungen ist.
 
 Gleichungssysteme sind grundlegende Werkzeuge in der Mathematik und angewandten Wissenschaften, die eine Vielzahl von Problemen modellieren und lösen können.
 
@@ -49,15 +50,15 @@ Endliche Körper spielen eine wichtige Rolle in der Kryptographie und der Codier
 Ein endlicher Körper oder Galois-Körper ist eine Menge mit einer endlichen Anzahl von Elementen, auf der die Grundoperationen Addition, Subtraktion, Multiplikation und Division definiert sind.
 
 Für jede Primzahl $p$ ist der Restklassenring $\mathbb{Z}/p\mathbb{Z}$  ein Körper und wird mit $\mathbb{Z}_p$ oder $GF(p)$ (vom englischen Galois field) bezeichnet.
-Jeder endliche Körper enthält $\mathbb{Z}_p$ als ein Unterkörper.
+Jeder endliche Körper enthält $\mathbb{Z}_p$ als einen Unterkörper.
 Er ist damit insbesondere ein Vektorraum über $\mathbb{Z}_p$ und als solcher isomorph zu ${\mathbb{Z}_p}^r$ für $r\in\mathbb{N}$.
 Er hat genau $p^n$ Elemente.
 
-Man kann zeigen, dass es bis auf Isomorphie genau eine Körper mit $q=p^r$ Elementen, dieser heißt $GF(q)=GF(p^r)$.
-Dieser ist eine einfache Erweiterung von $\mathbb{Z}_p$, \dahe es gibt ein irreduzibles Polynom $f\in\mathbb{Z}_p[x]$ vom Grad $r$, so dass $GF(p^r)\cong\mathbb{Z}_p[x]/(f)$.
+Man kann zeigen, dass es bis auf Isomorphie genau einen Körper mit $q=p^r$ Elementen gibt, dieser heißt $GF(q)=GF(p^r)$.
+Er ist eine einfache Erweiterung von $\mathbb{Z}_p$, \dahe es gibt ein irreduzibles Polynom $f\in\mathbb{Z}_p[x]$ vom Grad $r$, so dass $GF(p^r)\cong\mathbb{Z}_p[x]/(f)$.
 
-Im endlichen Körper $GF(2^r)$, auf dem die Reed-Solomon-Codes basieren, beispielsweise sind die Elemente Polynome vom Grad $r-1$ mit Koeffizienten aus $\mathbb{Z}_2=\{0,1\}$.
-Die Addition erfolgt koeffizientenweise modulo 2, während die Multiplikation durch die Multiplikation der Polynome und anschließendes Reduzieren modulo $p(x)$ bestimmt wird \cite{schulz-hankeBCHCodesCombined2023}.
+Im endlichen Körper $GF(2^r)$ beispielsweise, auf dem die Reed-Solomon-Codes basieren, sind die Elemente Polynome vom Grad $r-1$ mit Koeffizienten aus $\mathbb{Z}_2=\{0,1\}$.
+Die Addition erfolgt koeffizientenweise modulo 2, während die Multiplikation durch die Multiplikation der Polynome mit anschließendem Reduzieren modulo $p(x)$ durchgeführt wird \cite{schulz-hankeBCHCodesCombined2023}.
 
 Diese Eigenschaften sind wesentlich für die Implementierung der Fehlerkorrekturmechanismen der Reed-Solomon-Codes, da die Berechnungen auf endlichen Systemen durchgeführt werden.
 Die Struktur dieser Felder ermöglicht die effiziente Durchführung der mathematischen Operationen, die zur Erkennung und Korrektur von Fehlern in den Daten erforderlich sind. 
