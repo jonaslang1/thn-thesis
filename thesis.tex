@@ -48,7 +48,12 @@
 \usepackage[style=ieee, backend=biber, dashed=false]{biblatex}
 \addbibresource{refs.bib}
 \AtEveryBibitem{\clearfield{language}}
-\AtEveryBibitem{\clearfield{language}}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+% to force "et al." instead of "u.a.":
+\DefineBibliographyStrings{german}{
+	andothers = {{et\,al\adddot}},
+}
 
 % other packages
 \usepackage[utf8]{inputenc}
@@ -174,6 +179,7 @@
 %\lstlistoflistings
 \cleardoublepage
 
+\sloppy
 \printnoidxglossaries
 
 \printbibliography
