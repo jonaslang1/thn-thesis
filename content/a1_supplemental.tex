@@ -11,7 +11,7 @@ c(x)=p(x)g(x)
 Dieses Generatorpolynom wird bei der Spezifizierung der Ausprägung des eingesetzen Verfahrens festgelegt und ist somit beim En- und Decodieren bekannt \cite{deepak2018WhatReedSolomon2022}.
 
 Das Codepolynom $c(x)$ wird durch dessen Koeffizienten an den Empfänger übertragen oder auf ein Medium gespeichert.
-Zum Decodieren wird die Encodierungsgleichung nach $p(x)$ aufgelöst und dann wird $p(x)=\frac{c(x)}{g(x)}$ mit Hilfe von Polynomdivision bestimmt \cite{geiselTutorialReedSolomonError1990}.
+Zum Decodieren wird die Encodierungsgleichung nach $p(x)$ aufgelöst und dann wird $p(x)=\frac{c(x)}{g(x)}$ mit Hilfe von Polynomdivision bestimmt \cite[Kapitel 1.4]{geiselTutorialReedSolomonError1990}.
 
 \section{Beweis des Hamming-Abstands von Reed-Solomon-Codes}\label{app:hammingDistanceRS}
 
@@ -46,22 +46,22 @@ Das entspricht dem Hamming-Abstand, der genau diese Obergrenze für \acrshort{ec
 	\label{tab:comparison}
 \end{table}
 
-In Tabelle \ref{tab:comparison} werden drei gängige Codierungsverfahren - Hamming, Reed-Solomon und BCH - hinsichtlich ihrer Parameter Codelänge $n$, Nachrichtenlänge $k$, Fehlererkennung $2t$ und Fehlerkorrektur $t$ verglichen. 
+In Tabelle \ref{tab:comparison} werden drei gängige Codierungsverfahren - Hamming, Reed-Solomon und \acrshort{bch} - hinsichtlich ihrer Parameter Codelänge $n$, Nachrichtenlänge $k$, Fehlererkennung $2t$ und Fehlerkorrektur $t$ verglichen. 
 
 Der erste Teil der Tabelle zeigt die Parameter beispielhaft für Nachrichten der Länge $k=3$. 
 Dazu wurde die Codelänge so gewählt, dass alle drei Verfahren die gleiche Anzahl an Fehlern korrigieren \bzw erkennen können.
 Dieses Beispiel ist nicht repräsentativ, da typischerweise längere Nachrichten verwendet werden. 
 Es verdeutlicht aber mit wie viel Redundanz der gleiche Effekt bewirkt werden kann.
-Bei Reed-Solomon werden lediglich zwei Redundanzsymbole benötigt, beim Hamming-Code drei und bei BCH vier \cite{BCHCode2023}, also etwas mehr als beim Reed-Solomon-Verfahren.
+Bei Reed-Solomon werden lediglich zwei Redundanzsymbole benötigt, beim Hamming-Code drei und bei \acrshort{bch} vier \cite{BCHCode2023}, also etwas mehr als beim Reed-Solomon-Verfahren.
 
 Der zweite Teil der Tabelle zeigt die Parameter für längere Codelängen und zwar $n=255$.
 Beim Hamming-Code ergibt sich daraus eine Nachrichtenlänge von 247.
-Bei den beiden anderen Verfahren wurde je eine in der Praxis typische Nachrichtenlänge gewählt \cite{ludwigVoyagerTelecommunications2002}.
+Bei den beiden anderen Verfahren wurde je eine in der Praxis typische Nachrichtenlänge gewählt \cite[Kapitel 6.2]{ludwigVoyagerTelecommunications2002}.
 Die Anzahl der Fehler ergibt sich durch Berechnung.
 Beim Hamming-Code gilt das Prinzip \acrfull{secded} und dadurch wird die Effektivität bei längeren Codes nicht besser.
 Dieser eignet sich daher nur für Anwendungsfälle mit geringer Fehleranfälligkeit \cite{williamsHammingCodeFehlererkennungUnd2024}.
-Bei den anderen beiden Verfahren ist die Anzahl der Fehler, die korrigiert bzw. erkannt werden können, wesentlich höher.
-Der Reed-Solomon-Code ist am effektivsten \cite{neuhoffDigitalCommunicationsSignals}.
+Bei den anderen beiden Verfahren ist die Anzahl der Fehler, die korrigiert bzw. erkannt werden können, wesentlich höher \cite{neuhoffDigitalCommunicationsSignals}.
+Der Reed-Solomon-Code ist am effektivsten.
 
 Die Wahl des Codierungsverfahrens hängt daher von den spezifischen Anforderungen der Anwendung ab, insbesondere von der benötigten Fehlerkorrekturfähigkeit und den aufzuwendenden Kosten \cite{abrhaComparisonHammingBCH2019}.
 
@@ -124,26 +124,26 @@ So weiß man, dass $m=[2,4,3]$ die ursprüngliche Nachricht war.
 
 \section{Umsetztungsparameter der verschieden Anwendungsfälle}\label{app:parameter}
 
-\textbf{Umsetzungsparameter Voyager \cite{ludwigVoyagerTelecommunications2002}:}
+\textbf{Umsetzungsparameter Voyager \cite[Kapitel 5]{ludwigVoyagerTelecommunications2002}:}
 
 Code-Wort-Länge: 255 Symbole;
 Daten-Symbole: 223;
 Redundanz-Symbole: 32
 
-\textbf{Umsetzungsparameter DVB-H \cite{DVBH2024}:}
+\textbf{Umsetzungsparameter \acrshort{dvb-h} \cite{DVBH2024}:}
 
 Code-Wort-Länge: 255 Symbole;
 Daten-Symbole: 191;
 Redundanz-Symbole: 64
 
-\textbf{Umsetzungsparameter für CDs \cite{wickerReedSolomonCodes1994}:}
+\textbf{Umsetzungsparameter für \acrshort{cd}s \cite[Kapitel 4]{wickerReedSolomonCodes1994}:}
 \nopagebreak
 
 Code-Wort-Länge: 32 Symbole;
 Daten-Symbole: 28;
 Redundanz-Symbole: 4
 
-\textbf{Umsetzungsparameter für DVD und Blu-Ray \cite{changReedSolomonProductCodeRSPC1998}:}
+\textbf{Umsetzungsparameter für \acrshort{dvd} und Blu-Ray \cite{changReedSolomonProductCodeRSPC1998}:}
 
 Doppeltes En- bzw. Decoding
 
@@ -157,7 +157,7 @@ Code-Wort-Länge: 208 Symbole;
 Daten-Symbole: 192;
 Redundanz-Symbole: 16
 
-\textbf{Umsetzungsparameter für RAID6-Systeme \cite{RAIDStorageTechnology2021}:}
+\textbf{Umsetzungsparameter für \acrshort{raid}6-Systeme \cite{RAIDStorageTechnology2021}:}
 
 Code-Wort-Länge: Abhängig von der Konfiguration;
 Typische Redundanz: 3 Datenlaufwerke und 2 Redundanzlaufwerke
@@ -179,13 +179,13 @@ Diese Fehlerkorrekturmethoden ermöglichen das Auslesen von QR-Codes selbst bei 
 
 Für \acrshort{qrcode}s existieren vier verschiedene Stufen der Fehlerkorrektur, die abhängig von der zu codierenden Datenmenge ausgewählt werden können. 
 Die vier Stufen sind: L (Low); M (Medium); Q (Quartile); H (High)
-So können je nach Stufe 7\% bis 30\% der Daten wiederhergestellt werden \cite{tiwariIntroductionQRCode2016}.
+So können je nach Stufe 7\% bis 30\% der Daten wiederhergestellt werden \cite[Kapitel 3]{tiwariIntroductionQRCode2016}.
 
 Anhand der Stufe L wird nun die konkrete Umsetzung dargestellt.
 Die Struktur von QR-Codes ist so aufgebaut, dass die Quadrate, auch Module genannt, nach einem festgelegtem Schema angeordnet sind.
 Jedes Modul repräsentiert ein Bit (Weiß entspricht 0; Schwarz entspricht 1).
 Einige sind in jedem QR-Code gleich. Andere stellen die Metadaten zur Verfügung.
-Die Übrigen codieren die eigentlichen Nutzdaten \cite{tiwariIntroductionQRCode2016}.
+Die Übrigen codieren die eigentlichen Nutzdaten \cite[Kapitel 3]{tiwariIntroductionQRCode2016}.
 Die Metadaten beinhalten die Umsetzungsparameter zur Fehlerkorrektur (siehe Abbildung \ref{fig:qrschema} auf Seite \pageref{fig:qrschema}).
 \begin{figure}[ht]
 	\centering
@@ -194,7 +194,7 @@ Die Metadaten beinhalten die Umsetzungsparameter zur Fehlerkorrektur (siehe Abbi
 	\label{fig:qrschema}
 \end{figure}
 Die Nutzdaten sind, wie in Abbildung \ref{fig:qrdata} auf Seite \pageref{fig:qrdata} zu sehen, als Symbole mit je acht Modulen codiert.
-Es können insgesamt 26 Symbole im QR-Code platziert werden.
+Es können insgesamt 26 Symbole im \acrshort{qrcode} platziert werden.
 Bei dem eingesetzten Reed-Solomon-Code $RS(255,248)$ gekürzt auf $RS(26,19)$ sind 19 Symbole für die Nutzdaten und sieben Symbole \textit{E1} bis \textit{E7} für die Fehlertoleranz.
 Da zur Überprüfung nochmals zwei Symbole der Nachricht als Metadaten gebraucht werden, bleiben nur 17 der 19 Symbole für die eigentliche Nachricht \cite{pillazoHowDecodeQR2013}.
 Damit können bis zu 2 Symbole also 16 Module korrigiert werden \cite{QRCode2024}.
@@ -205,4 +205,4 @@ Damit können bis zu 2 Symbole also 16 Module korrigiert werden \cite{QRCode2024
 	\label{fig:qrdata}
 \end{figure}
 
-Diese Fehlerkorrekturmechanismen verleihen QR-Codes Robustheit gegenüber physischen Beschädigungen wie Rissen, Kratzern oder Verunreinigungen. Die Fähigkeit, selbst unter solch herausfordernden Bedingungen die gespeicherten Daten korrekt wiederherzustellen, hat zur weitverbreiteten Nutzung von QR-Codes in verschiedenen Bereichen geführt, darunter Einzelhandel, Logistik und Zugangskontrollen \cite{QRCode2024}.
+Diese Fehlerkorrekturmechanismen verleihen \acrshort{qrcode}s Robustheit gegenüber physischen Beschädigungen wie Rissen, Kratzern oder Verunreinigungen. Die Fähigkeit, selbst unter solch herausfordernden Bedingungen die gespeicherten Daten korrekt wiederherzustellen, hat zur weitverbreiteten Nutzung von \acrshort{qrcode}s in verschiedenen Bereichen geführt, darunter Einzelhandel, Logistik und Zugangskontrollen \cite{QRCode2024}.

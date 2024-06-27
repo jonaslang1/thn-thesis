@@ -19,7 +19,7 @@ Dieser Ablauf ist in der Abbildung \ref{fig:channelcoding} dargestellt.
 \end{figure}
 
 Die Berechnungen erfolgen dabei in dem endlichen Körper $GF(2^r)$ über $\mathbb{Z}_2$, dem Lieblingsring im Computer, der genau $2^r=n$ Elemente hat.
-Diese Elemente lassen sich als Potenzen einer primitiven Einheitswurzel über einem geeigneten irreduziblen Polynom generieren \cite{weitzKonkreteMathematikNicht2021}.
+Diese Elemente lassen sich als Potenzen einer primitiven Einheitswurzel über einem geeigneten irreduziblen Polynom generieren \cite[Kapitel 3]{weitzKonkreteMathematikNicht2021}.
 Diese mathematischen Grundlagen gelten für alle Reed-Solomon Varianten.
  
 Eine Erklärung des auf dem \acrshort{bch}-Schema basierenden Reed-Solomon-Codes findet sich in Anhang \ref{app:bch-rs} auf Seite \pageref{app:bch-rs}.
@@ -41,7 +41,7 @@ Das Codewort entsteht durch das Einsetzten von $n$ festen Werten in das Nachrich
 	\llap{($i\in\{1;\dots;n-2\}$)}%
 }
 \]
-Diese Werte $[0\,\alpha^0 \alpha^1 \alpha^2...\alpha^{n-2}]$ sind die Potenzen einer primitiven Einheitswurzel des endlichen Körpers $GF(2^r)=GF(n)$ zuzüglich der 0, also alle Elemente des Körpers \cite{weitzKonkreteMathematikNicht2021}.
+Diese Werte $[0\,\alpha^0 \alpha^1 \alpha^2...\alpha^{n-2}]$ sind die Potenzen einer primitiven Einheitswurzel des endlichen Körpers $GF(2^r)=GF(n)$ zuzüglich der 0, also alle Elemente des Körpers \cite[Kapitel 3]{weitzKonkreteMathematikNicht2021}.
 Dieses Codewort wird dann gespeichert oder übertragen.
 Allerdings können im Kanal vor dem Decodieren Störungen das Codewort verfälschen.
 
@@ -82,12 +82,12 @@ Unter dem Hamming-Abstand eines Codes versteht man das Minimum aller Abstände z
 Bei Codes mit Hamming-Abstand $h$ können alle $(h-1)$-Bit-Fehler erkannt werden, also bei Reed-Solomon $n-k=2t$.
 Ein ausführlicher Beweis dazu findet sich in Anhang \ref{app:hammingDistanceRS} auf Seite \pageref{app:hammingDistanceRS}.
 Das Verfahren schafft demnach den optimalen Kompromiss zwischen der Länge der hinzugefügten Redundanz und der Fähigkeit, Fehler zu erkennen und zu korrigieren.
-Die Singleton-Schranke ist die Obergrenze für den Hamming-Abstand und beträgt $n-k+1$ \cite{friedrichsKanalcodierung1996}.
+Die Singleton-Schranke ist die Obergrenze für den Hamming-Abstand und beträgt $n-k+1$ \cite[Kapitel 3.3]{friedrichsKanalcodierung1996}.
 Also kann kein Verfahren effektiver agieren als die Reed-Solomon-Codes.
 
 Im Anhang \ref{app:comparison} auf Seite \pageref{app:comparison} findet sich eine Vergleichstabelle, in der der Reed-Solomon-Code mit dem Hamming-Code und dem \acrshort{bch}-Code hinsichtlich ihrer Effektivität anhand von Werten verglichen wird.
 Der Hamming-Code ist zwar ineffektiver, aber bei Einzelbitfehlern benutzerfreundlicher \cite{williamsHammingCodeFehlererkennungUnd2024}.
-Der \acrshort{bch}-Code wird, obwohl er im Verhältnis von Redundanz zu Fehlern nicht so effektvoll ist, bei einigen Anwendungen eingesetzt, da er kostengünstiger zu implementieren ist \cite{schulz-hankeBCHCodesCombined2023}. 
+Der \acrshort{bch}-Code wird, obwohl er im Verhältnis von Redundanz zu Fehlern nicht so effektvoll ist, bei einigen Anwendungen eingesetzt, da er kostengünstiger zu implementieren ist \cite[Kapitel 3]{schulz-hankeBCHCodesCombined2023}. 
 
 In den 1960ern war dieses effektive Verfahren leider noch nicht effizient einsetzbar, da das Lösen der Gleichungssysteme für größere Werte für $n$ und $k$ lange dauert \cite{verbeureReedSolomonErrorCorrecting2022}. 
 Wenn man beispielsweise eine typische Konfiguration $RS(255,223)$ aus dem Voyager-Programm annimmt, folgen daraus $\binom{255}{223}\approx5\cdot 10^{40}$ Gleichungssysteme, die gelöst werden müssen.
@@ -132,7 +132,7 @@ So können die sich noch in den Registern befindlichen Reste ohne weitere Berech
 Die Schaltung in der Abbildung ist der Übersichtlichkeit halber nur für einen Divisor mit einem Polynom aus drei Summanden dargestellt.
 In der Realität müssten, auf das konkrete Verfahren angepasst, entsprechend mehr Komponenten verbaut sein.
 
-Durch das Verwenden von Galois-Multiplizierern und -Addierern entsteht ein Vorteil gegenüber der klassischen Arithmetik, denn die Ergebnisse bleiben innerhalb dieses Körpers und benötigen also immer die gleiche Anzahl an Speicherplatz \cite{weitzKonkreteMathematikNicht2021}.
+Durch das Verwenden von Galois-Multiplizierern und -Addierern entsteht ein Vorteil gegenüber der klassischen Arithmetik, denn die Ergebnisse bleiben innerhalb dieses Körpers und benötigen also immer die gleiche Anzahl an Speicherplatz \cite[Kapitel 3]{weitzKonkreteMathematikNicht2021}.
 Dadurch können die Komponenten wie Register und verbindende Busleitungen auf eine konkrete Bit-Anzahl angepasst werden mit dem Effekt, dass keine kostspielige Hardware verbaut sein muss und die Komponenten optimal ausgenutzt wird.
 Außerdem können diese Schaltungen mit einfachen logischen Gattern umgesetzt werden \cite{biernatHardwareImplementationReedSolomon2010, southwellIntroductionErrorDetection}.
 Ein Galois-Addierer wird zum Beispiel durch ein XOR-Gatter implementiert.

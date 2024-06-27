@@ -8,10 +8,10 @@ Die konkreten Umsetzungsparameter finden sich im Anhang \ref{app:parameter} auf 
 
 Eine der frühesten Anwendungen der Reed-Solomon-Codes war im Bereich der Satelliten- und Weltraumkommunikation. 
 Ein bemerkenswertes Beispiel ist das Voyager-Programm der \mbox{NASA}. Seit 1977 werden Reed-Solomon-Codes verwendet, um die Kommunikation zwischen den Voyager-Raumfahrzeugen und der Erde zu sichern. 
-Andere Projekte mit Reed-Solomon-Codes im Einsatz sind zum Beispiel der \textit{Mars Pathfinder} und die Raumsonde \textit{Galileo} \cite{wickerReedSolomonCodes1994}.
+Andere Projekte mit Reed-Solomon-Codes im Einsatz sind zum Beispiel der \textit{Mars Pathfinder} und die Raumsonde \textit{Galileo} \cite[Kapitel 3]{wickerReedSolomonCodes1994}.
 
 Die enorme Entfernung der Raumfahrzeuge zur Erde stellt eine besondere Herausforderung an die Datenintegrität. 
-Durch kosmische Strahlung und andere Störeinflüsse werden Übertragungsfehlern verursacht, die Reed-Solomon-Codes korrigieren können und  so zur erfolgreichen Übermittlung von wissenschaftlichen Daten über große Distanzen beitragen \cite{ludwigVoyagerTelecommunications2002}.
+Durch kosmische Strahlung und andere Störeinflüsse werden Übertragungsfehlern verursacht, die Reed-Solomon-Codes korrigieren können und  so zur erfolgreichen Übermittlung von wissenschaftlichen Daten über große Distanzen beitragen \cite[Kapitel 5]{ludwigVoyagerTelecommunications2002}.
 
 \section{Broadcasting und digitale Fernsehtechnik}
 
@@ -37,12 +37,12 @@ Eine davon ist RAID6, welches auf Reed-Solomon-Codes basiert \cite{RAIDStorageTe
 Reed-Solomon-Codes finden auch breite Anwendung in der digitalen Kommunikation, einschließlich der Datenübertragung über das Internet und in Mobilfunknetzen. 
 Sie werden eingesetzt, um die Integrität von Datenpaketen zu gewährleisten, die über potenziell fehleranfällige Kanäle übertragen werden. 
 Reed-Solomon-Codes verwendende Standards sind z.B. \acrshort{wimax} und \acrshort{dsl}.
-Allerdings ist die genaue Umsetzung dieser Protokolle nicht öffentlich \cite{vermillionEndtoEndDSLArchitectures2003}.
+Allerdings ist die genaue Umsetzung dieser Protokolle nicht öffentlich \cite[Kapitel 2]{vermillionEndtoEndDSLArchitectures2003}.
 
 \section{Zweidimensionale Barcodes}
 
-Reed-Solomon-Codes sind auch in der Optoelektronik weit verbreitet. Beispiele hierfür sind MaxiCode, Datamatrix, AztecCode und QR-Code. 
+Reed-Solomon-Codes sind auch in der Optoelektronik weit verbreitet. Beispiele hierfür sind Maxi\-Code, Datamatrix, AztecCode und \acrshort{qrcode}. 
 Diese Codes nutzen die Fehlerkorrekturfähigkeiten von Reed-Solomon, um sicherzustellen, dass die gespeicherten Informationen auch dann korrekt ausgelesen werden können, wenn Teile des Codes beschädigt oder verdeckt sind. 
-Dies ist besonders wichtig in Anwendungen, bei denen die Zuverlässigkeit der Datenlesung entscheidend ist, wie z.B. in der Logistik, im Einzelhandel und in Fragen der Sicherheit \cite{tiwariIntroductionQRCode2016}.
-Bei QR-Codes gibt es verschiedenen Varianten von \textquote{Low} bis \textquote{High}, welche unterschiedlich viel Fehlertoleranz besitzen \cite{QRCode2024}.
-Wie QR-Codes diese Fehlertoleranz umsetzten, ist ausführlich in Anhang \ref{app:qr-code} auf Seite \pageref{app:qr-code} beschrieben.
+Dies ist besonders wichtig in Anwendungen, bei denen die Zuverlässigkeit der Datenlesung entscheidend ist, wie z.B. in der Logistik, im Einzelhandel und in Fragen der Sicherheit \cite[Kapitel 3]{tiwariIntroductionQRCode2016}.
+Bei \acrshort{qrcode}s gibt es verschiedenen Varianten von \textquote{Low} bis \textquote{High}, welche unterschiedlich viel Fehlertoleranz besitzen \cite{QRCode2024}.
+Wie \acrshort{qrcode}s diese Fehlertoleranz umsetzten, ist ausführlich in Anhang \ref{app:qr-code} auf Seite \pageref{app:qr-code} beschrieben.
