@@ -69,7 +69,6 @@
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
 \usepackage{enumitem} % for list and enumerations
-\usepackage{svg}
 
 % table setup
 \usepackage{longtable}
@@ -135,9 +134,9 @@
 \newcommand{\wrt}{\mbox{w.\,r.\,t.\ }}
 \newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
 
-% load glossary entries
-\makenoidxglossaries
+% load glossary 
 \loadglsentries{glossary}
+\makenoidxglossaries
 
 \begin{document}
 
@@ -179,9 +178,9 @@
 %\lstlistoflistings
 \cleardoublepage
 
-\sloppy
 \printnoidxglossaries
 
+\sloppy
 \printbibliography
 
 \end{document}
