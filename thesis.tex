@@ -3,7 +3,8 @@
     a4paper,
     sfdefaults=false,
     toc=chapterentrywithdots,
-    twoside,openright,
+    oneside, % or twoside for printing
+    openany, % or openright for printing
     titlepage,
     parskip=half,
     headings=normal,  % reduces heading size
@@ -13,32 +14,30 @@
     captions=tableheading,  % caption below table
     chapterprefix,
     listof=flat,
+    numbers=noendperiod, % for omitting the trailing dot after chapter and section numbers
     final
 ]{scrbook}
 
+% !TeX spellcheck = de_DE 
 
 % details about your thesis
-\newcommand{\titel}{My very fancy thesis title.}
-\newcommand{\artderarbeit}{Bachelorarbeit}  % {Bachelorarbeit,Masterarbeit}
-\newcommand{\autor}{Georg Simon Ohm}
-\newcommand{\studiengang}{Informatik}  % {Informatik,Wirtschaftsinformatik,Medieninformatik}
-\newcommand{\matrikelnr}{123\,4567}
+\newcommand{\titel}{Fehlertoleranz mit Reed-Solomon}
+\newcommand{\artderarbeit}{Schriftlicher Bericht}  % {Bachelorarbeit,Masterarbeit}
+\newcommand{\autor}{Jonas Lang}
+\newcommand{\studiengang}{Informatik}
+\newcommand{\matrikelnr}{363\,0314}
 \newcommand{\erstgutachter}{Prof.\,Dr.~Korbinian Riedhammer}
 \newcommand{\zweitgutachter}{Prof.\,Dr.~Bartosz von\,Rymon\,Lipinski}
-\newcommand{\betreuer}{M.Sc.\,~Martina Schmidt}
-\newcommand{\unternehmen}{Musterfirma GmbH}
+\newcommand{\betreuer}{Prof.\,Dr.~Axel Hein}
 \newcommand{\logo}{figures/TH-Nuernberg-RGB.png}
-\newcommand{\keywords}{hot, fuzz}
- 
+\newcommand{\keywords}{error correction, reed solomon, encoding, decoding}
 
 % custom head and foot
 \usepackage[automark]{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \ihead{\headmark}
 \chead{}
-\ohead{\pagemark}
-\renewcommand*\chaptermarkformat{\chapappifchapterprefix{\ }% 
-  \thechapter.\enskip}
+%\ohead{\pagemark}
 
 \RedeclareSectionCommand[tocindent=0pt]{section}
 \RedeclareSectionCommand[tocindent=0pt]{subsection}
@@ -46,12 +45,23 @@
 
 \usepackage{scrhack}
 
+% Bibliography
+\usepackage[style=ieee, backend=biber, dashed=false]{biblatex}
+\addbibresource{refs.bib}
+\AtEveryBibitem{\clearfield{language}}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+% to force "et al." instead of "u.a.":
+\DefineBibliographyStrings{german}{
+	andothers = {{et\,al\adddot}},
+}
+
 % other packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,relsize,textcomp,csquotes}
-\usepackage{amsmath,amsfonts}
-\usepackage[ngerman,english]{babel}  % flip for German thesis
+\usepackage{amsmath,amsfonts} % math formulas
+\usepackage[english, ngerman]{babel}  % flip for German thesis
 \usepackage[final]{graphicx}
 \usepackage{setspace,geometry,xcolor}
 \usepackage{makeidx}
@@ -59,12 +69,14 @@
 \usepackage{url}
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
+\usepackage{enumitem} % for list and enumerations
 
 % table setup
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage{lscape}
+\usepackage{booktabs} % for advanced tables
 
 % pdf hyperref
 \usepackage[
@@ -78,7 +90,8 @@
     pdfsubject={\titel},
     pdfkeywords={\keywords},
     pdfpagelabels=true,
-    colorlinks=true,
+    hidelinks,
+    colorlinks=false,
     linkcolor=red,
     urlcolor=magenta,
     anchorcolor=black,
@@ -104,7 +117,7 @@
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
-\geometry{paper=a4paper,left=2.5cm,top=3.0cm,bindingoffset=.8cm}
+\geometry{a4paper,left=2.5cm,right=2.5cm,top=3.0cm,} % bindingoffset=.8cm for printing
 \onehalfspacing
 \frenchspacing
 \clubpenalty = 10000
@@ -122,13 +135,9 @@
 \newcommand{\wrt}{\mbox{w.\,r.\,t.\ }}
 \newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
 
-
-% TODO remove if not needed...
-\usepackage{blindtext}
-
-% load glossary entries
-\makenoidxglossaries
+% load glossary 
 \loadglsentries{glossary}
+\makenoidxglossaries
 
 \begin{document}
 
@@ -142,16 +151,22 @@
 % https://intern.ohmportal.de/fileadmin/Public_Docs/SB/SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf
 %\includepdf{SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf}\cleardoublepage
 
-\include{content/0_abstract}\cleardoublepage
+% \include{content/0_abstract}\cleardoublepage
 
 \tableofcontents
 
+\listoffigures
+\cleardoublepage
+
+\listoftables
+\cleardoublepage
+
 \mainmatter
 \include{content/1_intro}
-\include{content/2_data}
-\include{content/3_method}
-\include{content/4_experiments}
-\include{content/5_outlook}
+\include{content/2_development}
+\include{content/3_foundation}
+\include{content/4_operatingPrinciple}
+\include{content/5_application}
 \include{content/6_summary}
 
 % remove if not needed
@@ -159,19 +174,14 @@
 \include{content/a1_supplemental}
 
 \backmatter
-\listoffigures
-\cleardoublepage
 
-\listoftables
+%\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
+%\lstlistoflistings
 \cleardoublepage
-
-\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
-\lstlistoflistings
-\cleardoublepage
-
-\bibliographystyle{wmaainf}
-\bibliography{refs}
 
 \printnoidxglossaries
+
+\sloppy
+\printbibliography
 
 \end{document}

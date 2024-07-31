@@ -24,3 +24,11 @@ It will be included in the final `thesis.pdf`.
 
 - [Informationen und Vorlagen](https://intern.ohmportal.de/institutionen/fakultaeten/informatik/studierende/infos-zum-studium/abschlussarbeiten/informationen-und-vorlagen/page.html) (German, Ohm intranet)
 - [Wie schreibe ich eine Abschlussarbeit](https://www.in.th-nuernberg.de/Professors/Weber/Abschlussarbeit%20Methodik.pdf) by Prof. Dr. Rainer Weber (German, Ohm intranet).
+
+## Additional Notes
+
+- Nicht referenzierte Bibliografie-Einträge auflisten
+```bash
+checkcites thesis.aux
+```
+- Tabellen gernerieren mit [Tables Genarator](https://www.tablesgenerator.com/latex_tables)

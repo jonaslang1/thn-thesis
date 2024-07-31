@@ -13,3 +13,7 @@
 *.fls
 
 .idea/
+.DS_Store
+*.gz
+*.ist
+
