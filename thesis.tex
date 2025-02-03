@@ -24,9 +24,12 @@
 \newcommand{\titel}{Fehlertoleranz mit Reed-Solomon}
 \newcommand{\artderarbeit}{Schriftlicher Bericht}  % {Bachelorarbeit,Masterarbeit}
 \newcommand{\autor}{Jonas Lang}
-\newcommand{\course}{Aktuelle Entwicklungen im Computer Design}  
+\newcommand{\studiengang}{Informatik}
 \newcommand{\matrikelnr}{363\,0314}
+\newcommand{\erstgutachter}{Prof.\,Dr.~Korbinian Riedhammer}
+\newcommand{\zweitgutachter}{Prof.\,Dr.~Bartosz von\,Rymon\,Lipinski}
 \newcommand{\betreuer}{Prof.\,Dr.~Axel Hein}
+\newcommand{\unternehmen}{Musterfirma GmbH}
 \newcommand{\logo}{figures/TH-Nuernberg-RGB.png}
 \newcommand{\keywords}{error correction, reed solomon, encoding, decoding}
 \newcommand{\submissionDate}{25. Juni 2024}
@@ -116,7 +119,7 @@
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
-\geometry{a4paper,left=2.5cm,right=2.5cm,top=3.0cm,} % bindingoffset=.8cm for printing
+\geometry{paper=a4paper,left=2.5cm,top=3.0cm,} % bindingoffset=.8cm for printing
 \onehalfspacing
 \frenchspacing
 \clubpenalty = 10000
@@ -150,7 +153,7 @@
 % https://intern.ohmportal.de/fileadmin/Public_Docs/SB/SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf
 %\includepdf{SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf}\cleardoublepage
 
-% \include{content/0_abstract}\cleardoublepage
+\include{content/0_abstract}\cleardoublepage
 
 \tableofcontents
 
@@ -173,9 +176,14 @@
 \include{content/a1_supplemental}
 
 \backmatter
+\listoffigures
+\cleardoublepage
 
-%\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
-%\lstlistoflistings
+\listoftables
+\cleardoublepage
+
+\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
+\lstlistoflistings
 \cleardoublepage
 
 \printnoidxglossaries
