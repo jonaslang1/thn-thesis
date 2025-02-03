@@ -1,27 +1,17 @@
-\chapter{Einleitung}\label{ch:intro}
+\chapter{Problemstellung}\label{ch:intro}
 
-\section{Motivation}\label{sec:motivation}
 
-In der heutigen digitalen Welt ist die Zuverlässigkeit und Integrität von Daten von zentraler Bedeutung. 
-Täglich werden riesige Mengen an Informationen über verschiedene Kommunika\-tions\-kanäle übertragen und auf unterschiedlichsten Medien gespeichert. 
-Dabei ist es unvermeidlich, dass einige Daten durch Rauschen, physische Beschädigungen oder andere Störfaktoren verfälscht werden. 
-Die Gewährleistung der Genauigkeit und Verfügbarkeit von Informationen ist insbesondere in Bereichen der Telekommunikation, Datenarchivierung und digitalen Medien von entscheidender Bedeutung. 
-Die Sicherstellung dieser Faktoren stellt jedoch eine ernsthafte Herausforderung an IT-Systeme dar. 
-Fehlererkennungs- und -korrekturverfahren sind daher unverzichtbare Werkzeuge, um die Qualität und Zuverlässigkeit der übermittelten oder gespeicherten Daten sicherzustellen \cite[Kapitel 1]{petersonErrorcorrectingCodes1972}.
+Microservice-Architekturen werden zunehmend für moderne Softwareanwendungen eingesetzt und bieten eine flexible Alternative zu monolithischen Systemen.
+Sie bieten zahlreiche Vorteile, darunter eine höhere Skalierbarkeit, Flexibilität und eine verbesserte Modularität, indem sie einzelne Services unabhängig voneinander bereitstellen und aktualisieren lassen.
+Trotz dieser Vorteile ergeben sich jedoch erhebliche Herausforderungen in Bezug auf die Qualitätssicherung, insbesondere im Hinblick auf die Interoperabilität zwischen den verschiedenen Services.
 
-Um das zu erreichen, werden bei der Kanalcodierung die zu speichernden oder zu übertragenden Daten beim Encodierungsprozess mit Redundanz, also zusätzlichen Informationen, die zur Fehlererkennung und -korrektur dienen, angereichert. 
-Im Decodierungsprozess wird an Hand der Redundanz überprüft, ob Fehler aufgetreten sind und ob diese korrigiert werden können. 
-Dadurch kann die Integrität der empfangenen Daten bewertet werden \cite[Kapitel 1]{friedrichsKanalcodierung1996}.
+Eine zentrale Herausforderung liegt darin, dass Änderungen an einzelnen Microservices potenziell unerwartete Seiteneffekte auf abhängige Services haben können.
+Klassische Testmethoden wie End-to-End-Tests und Integrationstests sind zwar in der Lage, solche Probleme aufzudecken, jedoch sind sie oft mit hohen Kosten, langen Ausführungszeiten und einer erhöhten Komplexität in der Wartung verbunden.
+Dies macht sie insbesondere in Continuous Integration (CI)-Pipelines schwer handhabbar und ineffizient.
 
-Eine besonders effektive Methode zur Fehlerkorrektur sind die Reed-Solomon-Codes, also das ursprüngliche Verfahren und alle Weiterentwicklungen.
-Die ursprüngliche Version wurde 1960 von den Mathematikern Irving S. Reed und Gustave Solomon entwickelt \cite{reedPolynomialCodesCertain1960}. 
-Reed-Solomon-Codes zeichnen sich durch ihre Fähigkeit aus, so viele Fehler wie die Anzahl der hinzugefügten redundanten Informationen zu erkennen und sogar die Hälfte dieser zu korrigieren.
-In dieser Arbeit liegt der Fokus auf der Fehlerkorrektur.
+Contract Testing hat sich als eine potenziell leistungsfähige Alternative herausgestellt.
+Es ermöglicht eine gezielte Validierung von Service-Schnittstellen, indem Verträge (Contracts) zwischen Consumer- und Provider-Services definiert und automatisch überprüft werden.
+Allerdings gibt es bisher nur begrenzte wissenschaftliche Untersuchungen zur praktischen Umsetzung und Wirksamkeit dieser Methodik in CI/CD-Umgebungen.
 
-\section{Zielsetzung der Arbeit}\label{sec:objective}
+Daher ist es essenziell, eine detaillierte Untersuchung zur Anwendung von Contract Testing in Continuous Integration Pipelines durchzuführen, um herauszufinden, ob und inwieweit diese Testmethode eine nachhaltige Verbesserung der Interoperabilität in einer Microservice-Architektur gewährleisten kann.
 
-Obwohl die Reed-Solomon-Codes in vielen alltäglichen Technologien wie \acrshort{cd}s oder \acrshort{qrcode}s weit verbreitet sind, ist die zugrundeliegende Mathematik und konkrete Implementierung eher unbekannt \cite[Kapitel 1.5]{wickerReedSolomonCodes1994}. 
-Ziel dieser Arbeit ist es, die Reed-Solomon-Codes vorzustellen und deren Funktionsweise zu erklären. 
-Dazu wird nach einer kurzen historischen Betrachtung die der Kanalcodierung zu Grunde liegende Mathematik beschrieben.
-Anschließend wird die Funktionsweise des ursprünglichen Ansatzes der beiden Mathematiker und eine Weiterentwicklung, der Berlekamp-Welch-Algorithmus, erläutert.
-Des Weiteren wird beleuchtet, wie diese Verfahren in der Praxis Anwendung finden. 
