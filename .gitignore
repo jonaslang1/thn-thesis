@@ -11,5 +11,7 @@
 *.out
 *.fdb_latexmk
 *.fls
+*.ist
+*.synctex.gz
 
 .idea/

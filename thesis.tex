@@ -3,7 +3,8 @@
     a4paper,
     sfdefaults=false,
     toc=chapterentrywithdots,
-    twoside,openright,
+    oneside, % or twoside for printing
+    openany, % or openright for printing
     titlepage,
     parskip=half,
     headings=normal,  % reduces heading size
@@ -13,23 +14,22 @@
     captions=tableheading,  % caption below table
     chapterprefix,
     listof=flat,
+    numbers=noendperiod, % for omitting the trailing dot after chapter and section numbers
     final
 ]{scrbook}
 
 
 % details about your thesis
-\newcommand{\titel}{My very fancy thesis title.}
-\newcommand{\artderarbeit}{Bachelorarbeit}  % {Bachelorarbeit,Masterarbeit}
-\newcommand{\autor}{Georg Simon Ohm}
+\newcommand{\titel}{Fehlertoleranz mit Reed-Solomon}
+\newcommand{\artderarbeit}{Schreibaufgabe}  % {Bachelorarbeit,Masterarbeit}
+\newcommand{\autor}{Jonas Lang}
 \newcommand{\studiengang}{Informatik}  % {Informatik,Wirtschaftsinformatik,Medieninformatik}
-\newcommand{\matrikelnr}{123\,4567}
-\newcommand{\erstgutachter}{Prof.\,Dr.~Korbinian Riedhammer}
+\newcommand{\matrikelnr}{363\,0314}
+\newcommand{\erstgutachter}{Prof.\,Dr.-Ing.\,Dipl.-Inf.~Axel Hein}
 \newcommand{\zweitgutachter}{Prof.\,Dr.~Bartosz von\,Rymon\,Lipinski}
-\newcommand{\betreuer}{M.Sc.\,~Martina Schmidt}
-\newcommand{\unternehmen}{Musterfirma GmbH}
 \newcommand{\logo}{figures/TH-Nuernberg-RGB.png}
 \newcommand{\keywords}{hot, fuzz}
- 
+
 
 % custom head and foot
 \usepackage[automark]{scrlayer-scrpage}
@@ -49,9 +49,60 @@
 % other packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+% Biblatex mit Biber Backend
+\usepackage[style=ieee, backend=biber, dashed=false]{biblatex}
+
+\DeclareFieldFormat{title}{\mkbibquote{#1}}
+\DeclareFieldFormat[article]{title}{\mkbibquote{#1}}
+\DeclareFieldFormat[inproceedings]{title}{\mkbibquote{#1}}
+\DeclareFieldFormat{booktitle}{#1}
+\DeclareFieldFormat{journaltitle}{#1}
+\DeclareFieldFormat{issuetitle}{#1}
+\DeclareFieldFormat{maintitle}{#1}
+\DeclareFieldFormat{subtitle}{#1}
+\DeclareFieldFormat{titleaddon}{#1}
+
+\renewbibmacro*{journal}{%
+  \ifboolexpr{
+    test {\iffieldundef{journaltitle}}
+    and
+    test {\iffieldundef{journalsubtitle}}
+  }
+    {}
+    {\printtext{%
+       \printfield{journaltitle}%
+       \setunit{\subtitlepunct}%
+       \printfield{journalsubtitle}}}}
+
+
+% Treiber für @online modifizieren, um das Format korrekt zu setzen
+\DeclareFieldFormat{url}{Verfügbar unter:\space\url{#1}} % "Verfügbar unter:" vor der URL setzen
+\DeclareFieldFormat{urldate}{\mkbibparens{Zugriff am: #1}} % "Zugriff am:" mit Datum in Klammern
+
+
+% Anpassung für den Online-Bibliographietreiber
+\DeclareBibliographyDriver{online}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \printfield{title}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \printfield{url}%
+  \newunit\newblock
+  \usebibmacro{urldate}%
+  \usebibmacro{finentry}%
+}
+
+\addbibresource{refs2.bib}
+\AtEveryBibitem{\clearfield{language}}
+\AtEveryBibitem{\clearfield{language}}
+
 \usepackage{lmodern,relsize,textcomp,csquotes}
 \usepackage{amsmath,amsfonts}
-\usepackage[ngerman,english]{babel}  % flip for German thesis
+\usepackage[english,ngerman]{babel}  % flip for English thesis
 \usepackage[final]{graphicx}
 \usepackage{setspace,geometry,xcolor}
 \usepackage{makeidx}
@@ -59,6 +110,8 @@
 \usepackage{url}
 \usepackage[toc]{glossaries}
 \usepackage{pdfpages}
+
+\AtBeginBibliography{\normalfont}
 
 % table setup
 \usepackage{longtable}
@@ -78,8 +131,9 @@
     pdfsubject={\titel},
     pdfkeywords={\keywords},
     pdfpagelabels=true,
-    colorlinks=true,
-    linkcolor=red,
+    hidelinks,
+    colorlinks=false,
+    linkcolor=magenta,
     urlcolor=magenta,
     anchorcolor=black,
     citecolor=cyan,
@@ -89,6 +143,8 @@
     hypertexnames=true,
     linktocpage=true,
 ]{hyperref}
+
+
 
 % configure your listings style
 \usepackage{listings}
@@ -104,12 +160,13 @@
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
-\geometry{paper=a4paper,left=2.5cm,top=3.0cm,bindingoffset=.8cm}
+\geometry{a4paper,left=2.5cm,top=3.0cm,bindingoffset=.8cm}
 \onehalfspacing
 \frenchspacing
 \clubpenalty = 10000
 \widowpenalty = 10000 
 \displaywidowpenalty = 10000
+\emergencystretch 5em
 
 % some commands
 \newcommand{\ua}{\mbox{u.\,a.\ }}
@@ -120,15 +177,16 @@
 \newcommand{\eg}{\mbox{e.\,g.\ }}
 \newcommand{\ie}{\mbox{i.\,e.\ }}
 \newcommand{\wrt}{\mbox{w.\,r.\,t.\ }}
-\newcommand{\etal}{\mbox{\emph{et.\,al.\ }}}
-
+\newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
+\newcommand{\ca}{\mbox{ca.\ }}
 
 % TODO remove if not needed...
 \usepackage{blindtext}
 
 % load glossary entries
-\makenoidxglossaries
-\loadglsentries{glossary}
+%\makenoidxglossaries
+%\loadglsentries{glossary.tex}
+
 
 \begin{document}
 
@@ -136,42 +194,39 @@
 \setcounter{tocdepth}{2}  % ...but don't include them in toc
 
 \frontmatter
-\include{cover}\cleardoublepage
+\include{cover}
 
 % download the following form and complete it (hit save in your editor)
 % https://intern.ohmportal.de/fileadmin/Gelenkte_Doks/Abt/SZS/SB/SB_0050_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf
 %\includepdf{SB_0050_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf}\cleardoublepage
 
-\include{content/0_abstract}\cleardoublepage
-
+%\include{content/0_abstract}\cleardoublepage
 \tableofcontents
-
+\nocite{*}
 \mainmatter
 \include{content/1_intro}
-\include{content/2_data}
-\include{content/3_method}
-\include{content/4_experiments}
-\include{content/5_outlook}
-\include{content/6_summary}
-
-% remove if not needed
+\include{content/Priorisierung}
+\renewcommand{\thechapter}{}
+\printbibliography[title=Literaturverzeichnis]
 \appendix
-\include{content/a1_supplemental}
+\renewcommand{\thechapter}{} % Remove numbering
+\include{content/Anhang}
 
 \backmatter
-\listoffigures
-\cleardoublepage
+%\listoffigures
+%\cleardoublepage
 
-\listoftables
-\cleardoublepage
+%\listoftables
+%\cleardoublepage
 
-\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
-\lstlistoflistings
-\cleardoublepage
+%\renewcommand{\lstlistlistingname}{Abbildungsverzeichnis}  % change for German thesis
+%\lstlistoflistings
+%\cleardoublepage
 
-\bibliographystyle{wmaainf}
-\bibliography{refs}
 
-\printnoidxglossaries
+
+%\printnoidxglossary
+
+
 
 \end{document}
