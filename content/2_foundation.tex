@@ -1,0 +1,53 @@
+\chapter{Grundlagen}\label{ch:foundation}
+
+\section{Microservice Architektur}\label{sec:microservice_architecture}
+
+Die Microservice-Architektur ist ein Architekturstil für die Softwareentwicklung, bei dem eine Anwendung als eine Sammlung unabhängiger, kleiner Dienste aufgebaut wird.
+Jeder dieser Dienste ist eigenständig und erfüllt eine spezifische Geschäftsanforderung.
+Diese Architektur hat sich als Alternative zur monolithischen Architektur etabliert, bei der alle Funktionalitäten einer Anwendung in einer einzigen, großen Codebasis zusammengefasst sind.
+
+Ein wesentliches Merkmal der Microservice-Architektur ist die Unabhängigkeit der Dienste.
+Jeder Microservice kann eigenständig entwickelt, getestet, bereitgestellt und skaliert werden.
+Die lose Kopplung zwischen den Diensten wird durch wohl definierte \glspl{API} sichergestellt, die häufig auf REST
+oder Messaging-Protokollen basieren~\cite{richardsonMicroservicesPatterns2018}.
+Zudem wird die funktionale Trennung betont, da jeder Service einen klar definierten Anwendungsteil abdeckt und von einem eigenen Entwicklungsteam verwaltet werden kann.
+Diese Struktur ermöglicht es, unterschiedliche Technologien oder Programmiersprachen für verschiedene Services einzusetzen, wodurch eine technologische Vielfalt innerhalb eines Systems entsteht.
+So entstehen mehrere kleine Anwendungen, die einfacher zu verstehen und zu warten sind als ein großer
+Technologie-Stack wie in einer monolithischen Architektur.
+
+Die Microservice-Architektur bietet zahlreiche Vorteile.
+Sie ermöglicht eine hohe Flexibilität, da Änderungen an einem Service unabhängig von anderen vorgenommen werden können.
+Die Fehlertoleranz wird verbessert, da ein Fehler in einem Microservice nicht zwangsläufig die gesamte Anwendung beeinträchtigt.
+Durch die gezielte Bereitstellung von Ressourcen für bestimmte Dienste kann die Skalierbarkeit optimiert werden.
+Zudem erleichtert die überschaubare Größe einzelner Microservices deren Wartung, da der Code besser verständlich und weniger komplex ist.
+
+Trotz ihrer Vorteile bringt die Microservice-Architektur auch Herausforderungen mit sich.
+Die Kommunikation zwischen den einzelnen Diensten erfordert robuste Schnittstellen und ein zuverlässiges \gls{API}-Management, um eine reibungslose Interaktion zu gewährleisten.
+Die Verwaltung von Daten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
+werden muss.
+Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten.
+
+Die Microservice-Architektur bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für
+Cloud-Umgebungen.
+Da bei dieser Architektur die Kommunikation zwischen den einzelnen Diensten im Vordergrund steht, ist eine zuverlässige Validierung der Schnittstellen essenziell.
+
+
+\section{Arten des Softwaretests}\label{sec:testing_types}
+
+Um die Qualität und Funktionsfähigkeit von Software sicherzustellen, kommen verschiedene Arten von Softwaretests zum Einsatz.
+Diese lassen sich nach ihrem Fokus und ihrer Testtiefe kategorisieren.
+
+Unit-Tests (Modultests) überprüfen einzelne Funktionseinheiten, wie Funktionen oder Methoden, isoliert von anderen Komponenten.
+Sie dienen dazu, die korrekte Implementierung kleinster funktionaler Einheiten sicherzustellen.
+Integrationstests hingegen testen das Zusammenspiel mehrerer Module oder Systeme.
+Sie prüfen, ob die verschiedenen Komponenten korrekt miteinander interagieren.
+Systemtests betrachten die Anwendung als Ganzes.
+Dabei wird überprüft, ob das gesamte System im Einklang mit den Anforderungen funktioniert.
+Akzeptanztests bilden die höchste Testebene und stellen sicher, dass die Anwendung aus Sicht der Endbenutzer den definierten Anforderungen entspricht.
+Diese Tests werden häufig in enger Abstimmung mit den Stakeholdern durchgeführt~\cite{singhSoftwareTesting2011}.
+
+Neben diesen klassischen Testarten gibt es auch spezialisierte Testmethoden wie Performance-Tests, Sicherheitstests und Usability-Tests.
+
+Im Kontext von Microservices gewinnen automatisierte Tests und insbesondere Contract Tests an Bedeutung, da sie die Kommunikation zwischen Diensten absichern und frühzeitig Fehler in der Interaktion erkennen lassen.
+
+\section{Testautomatisierung}\label{sec:test_automation}
