@@ -7,7 +7,6 @@
 *.toc
 *.bbl
 *.blg
-*.run.xml
 *.out
 *.fdb_latexmk
 *.fls
