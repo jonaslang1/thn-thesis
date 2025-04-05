@@ -96,8 +96,6 @@
 
 % configure your listings style
 \usepackage{listings}
-\usepackage{biblatex}
-\usepackage{blindtext}
 \lstset{
 	tabsize=3,
 	extendedchars=true,
@@ -127,6 +125,17 @@
 \newcommand{\ie}{\mbox{i.\,e.\ }}
 \newcommand{\wrt}{\mbox{w.\,r.\,t.\ }}
 \newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
+
+% Bibliography
+\usepackage[style=ieee, backend=biber, dashed=false]{biblatex}
+\addbibresource{refs.bib}
+\AtEveryBibitem{\clearfield{language}}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+% to force "et al." instead of "u.a.":
+\DefineBibliographyStrings{german}{
+    andothers = {{\etal}},
+}
 
 % load glossary 
 \loadglsentries{glossary.tex}
