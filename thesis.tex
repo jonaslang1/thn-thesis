@@ -21,18 +21,18 @@
 % !TeX spellcheck = de_DE 
 
 % details about your thesis
-\newcommand{\titel}{Fehlertoleranz mit Reed-Solomon}
-\newcommand{\artderarbeit}{Schriftlicher Bericht}  % {Bachelorarbeit,Masterarbeit}
+\newcommand{\titel}{Evaluation von Contract Testing in Continuous Integration Pipelines zur Sicherstellung der Interoperabilität in einer Microservice-Architektur}
+\newcommand{\artderarbeit}{Bachelorarbeit}  % {Bachelorarbeit,Masterarbeit}
 \newcommand{\autor}{Jonas Lang}
 \newcommand{\studiengang}{Informatik}
 \newcommand{\matrikelnr}{363\,0314}
-\newcommand{\erstgutachter}{Prof.\,Dr.~Korbinian Riedhammer}
-\newcommand{\zweitgutachter}{Prof.\,Dr.~Bartosz von\,Rymon\,Lipinski}
-\newcommand{\betreuer}{Prof.\,Dr.~Axel Hein}
-\newcommand{\unternehmen}{Musterfirma GmbH}
+\newcommand{\erstgutachter}{Prof.\,Dr.-Ing.~Matthias Meitner}
+\newcommand{\zweitgutachter}{Prof.\,Dr.~Ronald Petrlic}
+\newcommand{\betreuer}{Sebastian Foersch}
+\newcommand{\unternehmen}{msg systems ag}
 \newcommand{\logo}{figures/TH-Nuernberg-RGB.png}
-\newcommand{\keywords}{error correction, reed solomon, encoding, decoding}
-\newcommand{\submissionDate}{25. Juni 2024}
+\newcommand{\keywords}{continuous integration, ci/cd, contract testing, interoperability, microservices}
+\newcommand{\submissionDate}{01. Juli 2025}
 
 % custom head and foot
 \usepackage[automark]{scrlayer-scrpage}
@@ -47,17 +47,6 @@
 
 \usepackage{scrhack}
 
-% Bibliography
-\usepackage[style=ieee, backend=biber, dashed=false]{biblatex}
-\addbibresource{refs.bib}
-\AtEveryBibitem{\clearfield{language}}
-\setcounter{biburllcpenalty}{7000}
-\setcounter{biburlucpenalty}{8000}
-% to force "et al." instead of "u.a.":
-\DefineBibliographyStrings{german}{
-	andothers = {{et\,al\adddot}},
-}
-
 % other packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -69,7 +58,7 @@
 \usepackage{makeidx}
 \usepackage{paralist,ifthen,todonotes}
 \usepackage{url}
-\usepackage[toc]{glossaries}
+\usepackage[acronym,toc]{glossaries}
 \usepackage{pdfpages}
 \usepackage{enumitem} % for list and enumerations
 
@@ -107,6 +96,7 @@
 
 % configure your listings style
 \usepackage{listings}
+\usepackage{biblatex}
 \lstset{
 	tabsize=3,
 	extendedchars=true,
@@ -138,7 +128,7 @@
 \newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
 
 % load glossary 
-\loadglsentries{glossary}
+\loadglsentries{glossary.tex}
 \makenoidxglossaries
 
 \begin{document}
@@ -157,18 +147,12 @@
 
 \tableofcontents
 
-\listoffigures
-\cleardoublepage
-
-\listoftables
-\cleardoublepage
-
 \mainmatter
 \include{content/1_intro}
-\include{content/2_development}
-\include{content/3_foundation}
-\include{content/4_operatingPrinciple}
-\include{content/5_application}
+\include{content/2_foundation}
+\include{content/3_contract_testing}
+\include{content/4_frameworks}
+\include{content/5_implementation}
 \include{content/6_summary}
 
 % remove if not needed
@@ -182,7 +166,7 @@
 \listoftables
 \cleardoublepage
 
-\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
+\renewcommand{\lstlistlistingname}{Auflistungsliste}  % change for German thesis
 \lstlistoflistings
 \cleardoublepage
 
