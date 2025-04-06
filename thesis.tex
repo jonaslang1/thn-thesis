@@ -1,3 +1,4 @@
+\pdfminorversion=7
 \documentclass[
     11pt,
     a4paper,
@@ -18,7 +19,7 @@
     final
 ]{scrbook}
 
-% !TeX spellcheck = de_DE 
+% !TeX spellcheck = de_DE
 
 % details about your thesis
 \newcommand{\titel}{Evaluation von Contract Testing in Continuous Integration Pipelines zur Sicherstellung der Interoperabilität in einer Microservice-Architektur}
@@ -69,18 +70,20 @@
 \usepackage{lscape}
 \usepackage{booktabs} % for advanced tables
 
-% pdf hyperref
-\usepackage[
-    bookmarks=true,
+% PDF/A compliance
+\begin{filecontents*}{\jobname .xmpdata}
+\Title{\titel}
+\Author{\autor}
+\Subject{\titel}
+\Keywords{\keywords}
+\Creator{\autor}
+\end{filecontents*}
+
+\usepackage[a-3b,mathxmp]{pdfx}
+\hypersetup{
     bookmarksopen=true,
     bookmarksnumbered=true,
     bookmarksopenlevel=1,
-    pdftitle={\titel},
-    pdfauthor={\autor},
-    pdfcreator={\autor},
-    pdfsubject={\titel},
-    pdfkeywords={\keywords},
-    pdfpagelabels=true,
     hidelinks,
     colorlinks=false,
     linkcolor=red,
@@ -91,8 +94,8 @@
     menucolor=red,
     plainpages=false,
     hypertexnames=true,
-    linktocpage=true,
-]{hyperref}
+    linktocpage=true
+}
 
 % configure your listings style
 \usepackage{listings}
@@ -137,7 +140,7 @@
     andothers = {{\etal}},
 }
 
-% load glossary 
+% load glossary
 \loadglsentries{glossary.tex}
 \makenoidxglossaries
 
