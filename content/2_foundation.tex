@@ -1,6 +1,6 @@
 \chapter{Grundlagen}\label{ch:foundation}
 
-\section{Microservice Architektur}\label{sec:microservice_architecture}
+\section{Microservice Architektur}\label{sec:foundation_microservices}
 
 Die Microservice-Architektur ist ein Architekturstil für die Softwareentwicklung, bei dem eine Anwendung als eine Sammlung unabhängiger, kleiner Dienste aufgebaut wird.
 Jeder dieser Dienste ist eigenständig und erfüllt eine spezifische Geschäftsanforderung.
@@ -27,27 +27,86 @@ Die Verwaltung von Daten kann komplex sein, da die Konsistenz zwischen verschied
 werden muss.
 Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten.
 
-Die Microservice-Architektur bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für
-Cloud-Umgebungen.
+Die Microservice-Architektur bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen.
 Da bei dieser Architektur die Kommunikation zwischen den einzelnen Diensten im Vordergrund steht, ist eine zuverlässige Validierung der Schnittstellen essenziell.
 
 
-\section{Arten des Softwaretests}\label{sec:testing_types}
+\section{Arten des Softwaretests}\label{sec:foundation_testing}
 
 Um die Qualität und Funktionsfähigkeit von Software sicherzustellen, kommen verschiedene Arten von Softwaretests zum Einsatz.
 Diese lassen sich nach ihrem Fokus und ihrer Testtiefe kategorisieren.
 
 Unit-Tests (Modultests) überprüfen einzelne Funktionseinheiten, wie Funktionen oder Methoden, isoliert von anderen Komponenten.
 Sie dienen dazu, die korrekte Implementierung kleinster funktionaler Einheiten sicherzustellen.
+Hierbei sollten möglichst viele Einheiten getestet werden, um eine hohe Testabdeckung zu erreichen.
+Wegen der verhältnismäßig gering Ausführungszeit kann
+\textquote{[deren] Durchführung [\dots] sehr schnell, beliebig oft und aufwandsarm erfolgen}~\cite{linzBasiswissenSoftwaretest2024}.
+Diese Tests sind in der Regel maschinell und werden häufig während der Entwicklung durchgeführt, um Fehler
+frühzeitig zu erkennen.
+
 Integrationstests hingegen testen das Zusammenspiel mehrerer Module oder Systeme.
 Sie prüfen, ob die verschiedenen Komponenten korrekt miteinander interagieren.
+Integrationstests sind wichtig, um sicherzustellen, dass die einzelnen Module nicht nur isoliert, sondern auch in Kombination miteinander funktionieren.
+Die Testumgebung ist hierbei oft komplexer, da mehrere Module gleichzeitig zur Verfügung stehen müssen und somit ist
+auch die Laufzeit höher.
+
 Systemtests betrachten die Anwendung als Ganzes.
-Dabei wird überprüft, ob das gesamte System im Einklang mit den Anforderungen funktioniert.
+Dabei wird überprüft, ob das gesamte System konform zu den Anforderungen funktioniert.
+Diese Tests sind in der Regel sehr umfangreich in der Erstellung und Ausführung, da sie alle Komponenten und deren Interaktionen berücksichtigen.
+Darum sollten nur wenige Testfälle erstellt werden, die jedoch alle wichtigen Aspekte der Anwendung abdecken.
+
 Akzeptanztests bilden die höchste Testebene und stellen sicher, dass die Anwendung aus Sicht der Endbenutzer den definierten Anforderungen entspricht.
-Diese Tests werden häufig in enger Abstimmung mit den Stakeholdern durchgeführt~\cite{singhSoftwareTesting2011}.
+Diese Tests werden häufig manuell und in enger Abstimmung mit den Stakeholdern durchgeführt~
+\cite{singhSoftwareTesting2011}.
+Sie sind entscheidend für die Validierung der Software und deren Akzeptanz durch die Benutzer.
+Aufgrund des hohen Aufwands sind diese Tests nicht Teil von Entwiklungszyklen, sondern werden in der Regel erst nach der Fertigstellung des Systems durchgeführt.
+
+Die Hierarchie der verschiedenen Teststufen wird in Abbildung~\ref{fig:testpyramid} dargestellt und verdeutlicht.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Testpyramide}
+    \caption{Testpyramide nach \cite{linzBasiswissenSoftwaretest2024}}
+    \label{fig:testpyramid}
+\end{figure}
 
 Neben diesen klassischen Testarten gibt es auch spezialisierte Testmethoden wie Performance-Tests, Sicherheitstests und Usability-Tests.
+Diese Tests konzentrieren sich auf spezifische Aspekte der Softwarequalität und sind darauf ausgelegt, bestimmte Anforderungen zu validieren.
+Deshalb sind diese nicht in die Testhierarchie der Testpyramide eingeordnet, sondern ergänzen diese.
 
 Im Kontext von Microservices gewinnen automatisierte Tests und insbesondere Contract Tests an Bedeutung, da sie die Kommunikation zwischen Diensten absichern und frühzeitig Fehler in der Interaktion erkennen lassen.
 
-\section{Testautomatisierung}\label{sec:test_automation}
+\section{Testautomatisierung}\label{sec:foundation_testautomation}
+
+Mit dem zunehmenden Bedarf an schneller Softwareauslieferung bei gleichbleibend hoher Qualität hat sich die Testautomatisierung zu einem zentralen Bestandteil moderner Entwicklungsprozesse entwickelt.
+Sie beschreibt die automatisierte und kontinuierliche Durchführung von Tests, meist mithilfe spezialisierter Tools und Skripte, um manuelle Testaufwände zu reduzieren, Wiederholbarkeit zu gewährleisten und Fehler frühzeitig im Entwicklungsprozess zu erkennen.
+
+Solche Praktiken und Tools werden häufig under dem Begriff \gls{DevOps} zusammengefasst.
+\gls{DevOps} beschreibt eine kulturelle und technische Bewegung, die darauf abzielt, die Zusammenarbeit zwischen Entwicklungs- und Betriebsteams zu verbessern.
+Ziel ist es, den gesamten Software-Lebenszyklus zu optimieren, von der Entwicklung über das Testing bis hin zum \gls{Deployment} und Betrieb.
+Dazu zählen Dinge wie Kollaboration zwischen Teams, Automatisierung von regelmäßigen Aufgaben, Überwachung von
+Anwendungsinfrastruktur und Auswertung von Nutzerfeedback.
+%TODO: "Dinge" austauschen
+
+Einige dieser Automatisierungen werden unter dem Begriff \gls{CI} zusammengefasst.
+Das bedeutet, dass Änderungen am Code kontinuierlich in das gemeinsame Repository integriert werden und dabei
+automatisierte \glspl{Build} und Tests ausgeführt werden, um sicherzustellen, dass der neue Code keine bestehenden
+Funktionalitäten bricht.
+Durch diese sofortige Rückmeldung können Fehler frühzeitig erkannt und behoben werden.
+
+\Gls{CD} geht noch einen Schritt weiter: Nach der erfolgreichen Integration und dem Bestehen aller Tests wird die
+Anwendung automatisiert für die Auslieferung vorbereitet und zusammengebaut.
+Dies schließt Prozesse wie das Verpacken, Bereitstellen und Testen der Anwendung in produktionsnahen Umgebungen ein.
+In der weitergehenden Form, dem sogenannten Continuous Deployment, erfolgt sogar die automatische Auslieferung in die Produktionsumgebung.
+
+Testautomatisierung ist dabei das Rückgrat dieser Abläufe.
+Sie ermöglicht nicht nur die schnelle und zuverlässige Durchführung von Unit-, Integrations- oder End-to-End-Tests, sondern auch die Validierung nichtfunktionaler Anforderungen wie Performance oder Sicherheit.
+Diese Automatisierungen werden mithilfe von \gls{CI}/\gls{CD}-Pipelines orchestriert, die den gesamten Prozess von der Codeänderung bis zur Bereitstellung steuern.
+
+Gerade in Microservice-Architekturen ist die Testautomatisierung unverzichtbar, da hier viele unabhängige Komponenten miteinander interagieren.
+Ohne automatisierte Tests würde das Risiko fehlerhafter Integrationen oder regressiver Effekte drastisch steigen.
+Contract Testing, als spezieller Ansatz innerhalb der Testautomatisierung, fokussiert sich gezielt auf die Kommunikation zwischen Microservices und stellt sicher, dass Änderungen in einem Dienst keine ungewollten Auswirkungen auf andere haben.
+
+Insgesamt trägt Testautomatisierung in Verbindung mit \gls{DevOps} und \gls{CI}/\gls{CD} entscheidend dazu bei, die Qualität, Sicherheit und Stabilität moderner Softwareprodukte zu gewährleisten.
+
+
