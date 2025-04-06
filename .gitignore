@@ -11,6 +11,7 @@
 *.out
 *.fdb_latexmk
 *.fls
+out/
 
 .idea/
 .DS_Store
