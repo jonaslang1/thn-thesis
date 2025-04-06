@@ -1,3 +1,4 @@
+\pdfminorversion=7
 \documentclass[
     11pt,
     a4paper,
@@ -78,9 +79,17 @@
 \usepackage{lscape}
 \usepackage{booktabs} % for advanced tables
 
-% pdf hyperref
-\usepackage[
-    bookmarks=true,
+% PDF/A compliance
+\begin{filecontents*}{\jobname .xmpdata}
+\Title{\titel}
+\Author{\autor}
+\Subject{\titel}
+\Keywords{\keywords} 
+\Creator{\autor}
+\end{filecontents*}
+
+\usepackage[a-3b,mathxmp]{pdfx}
+\hypersetup{
     bookmarksopen=true,
     bookmarksnumbered=true,
     bookmarksopenlevel=1,
@@ -92,6 +101,7 @@
     pdfpagelabels=true,
     hidelinks,
     colorlinks=false,
+    colorlinks=false,
     linkcolor=red,
     urlcolor=magenta,
     anchorcolor=black,
@@ -100,8 +110,8 @@
     menucolor=red,
     plainpages=false,
     hypertexnames=true,
-    linktocpage=true,
-]{hyperref}
+    linktocpage=true
+}
 
 % configure your listings style
 \usepackage{listings}
