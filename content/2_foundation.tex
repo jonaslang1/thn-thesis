@@ -1,4 +1,4 @@
-\chapter{Grundlagen}\label{ch:foundation}
+\usepackage{glossaries}\chapter{Grundlagen}\label{ch:foundation}
 
 
 \section{Microservice Architektur}\label{sec:foundation_microservices}
@@ -9,12 +9,12 @@ Diese Architektur hat sich als Alternative zur monolithischen Architektur etabli
 
 Ein wesentliches Merkmal der Microservice-Architektur ist die Unabhängigkeit der Dienste.
 Jeder Microservice kann eigenständig entwickelt, getestet, bereitgestellt und skaliert werden.
-Die lose Kopplung zwischen den Diensten wird durch wohl definierte \glspl{API} sichergestellt, die häufig auf REST
-oder Messaging-Protokollen basieren~\cite{richardsonMicroservicesPatterns2018}.
+Das Zusammenspiel zwischen den Diensten wird durch wohldefinierte \glspl{API} sichergestellt, die häufig auf \gls{REST}-
+oder Messaging-Protokollen basieren~\cite{richardsonMicroservicesPatterns2018}. % TODO: Erklärung REST und Messaging
 Zudem wird die funktionale Trennung betont, da jeder Service einen klar definierten Anwendungsteil abdeckt und von einem eigenen Entwicklungsteam verwaltet werden kann.
 Diese Struktur ermöglicht es, unterschiedliche Technologien oder Programmiersprachen für verschiedene Services einzusetzen, wodurch eine technologische Vielfalt innerhalb eines Systems entsteht.
-So entstehen mehrere kleine Anwendungen, die einfacher zu verstehen und zu warten sind als ein großer
-Technologie-Stack wie in einer monolithischen Architektur.
+So entstehen mehrere kleine Anwendungen, die überschaubarer und einfacher zu warten sind als ein großer
+Technologie-Stack wie~\zB in einer monolithischen Architektur~\cite{}, bei der alle Komponenten einer Anwendung in einer unteilbaren Einheit integriert sind.
 
 Die Microservice-Architektur bietet zahlreiche Vorteile.
 Sie ermöglicht eine hohe Flexibilität, da Änderungen an einem Service unabhängig von anderen vorgenommen werden können.
@@ -22,49 +22,15 @@ Die Fehlertoleranz wird verbessert, da ein Fehler in einem Microservice nicht zw
 Durch die gezielte Bereitstellung von Ressourcen für bestimmte Dienste kann die Skalierbarkeit optimiert werden.
 Zudem erleichtert die überschaubare Größe einzelner Microservices deren Wartung, da der Code besser verständlich und weniger komplex ist.
 
-Trotz ihrer Vorteile bringt die Microservice-Architektur auch Herausforderungen mit sich.
+Trotz der vielen Vorteile bringt die Microservice-Architektur auch Herausforderungen mit sich.
 Die Kommunikation zwischen den einzelnen Diensten erfordert robuste Schnittstellen und ein zuverlässiges \gls{API}-Management, um eine reibungslose Interaktion zu gewährleisten.
 Die Verwaltung von Daten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
-werden muss.
+werden muss,~\dahe die Schnittstellen der einzelnen Dienste müssen aufeinander abgestimmt sein.
 Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten.
 
-Die Microservice-Architektur bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen.
+Die Microservice-Architektur bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen, weil sie eine flexible und skalierbare Infrastruktur bietet.
+Diese Architektur verbreitet sich daher zunehmend und wird in Zukunft immer häufiger eingesetzt werden~\cite{richardsonMicroservicesPatterns2018}.
 Da bei dieser Architektur die Kommunikation zwischen den einzelnen Diensten im Vordergrund steht, ist eine zuverlässige Validierung der Schnittstellen essenziell.
-
-
-\section{Testautomatisierung}\label{sec:foundation_testautomation}
-
-Mit dem zunehmenden Bedarf an schneller Softwareauslieferung bei gleichbleibend hoher Qualität hat sich die Testautomatisierung zu einem zentralen Bestandteil moderner Entwicklungsprozesse entwickelt.
-Sie beschreibt die automatisierte und kontinuierliche Durchführung von Tests, meist mithilfe spezialisierter Tools und Skripte, um manuelle Testaufwände zu reduzieren, Wiederholbarkeit zu gewährleisten und Fehler frühzeitig im Entwicklungsprozess zu erkennen.
-
-Solche Praktiken und Tools werden häufig under dem Begriff \gls{DevOps} zusammengefasst.
-\gls{DevOps} beschreibt eine kulturelle und technische Bewegung, die darauf abzielt, die Zusammenarbeit zwischen Entwicklungs- und Betriebsteams zu verbessern.
-Ziel ist es, den gesamten Software-Lebenszyklus zu optimieren, von der Entwicklung über das Testing bis hin zum \gls{Deployment} und Betrieb.
-Dazu zählen Dinge wie Kollaboration zwischen Teams, Automatisierung von regelmäßigen Aufgaben, Überwachung von
-Anwendungsinfrastruktur und Auswertung von Nutzerfeedback.
-%TODO: "Dinge" austauschen
-
-Einige dieser Automatisierungen werden unter dem Begriff \gls{CI} zusammengefasst.
-Das bedeutet, dass Änderungen am Code kontinuierlich in das gemeinsame Repository integriert werden und dabei
-automatisierte \glspl{Build} und Tests ausgeführt werden, um sicherzustellen, dass der neue Code keine bestehenden
-Funktionalitäten bricht.
-Durch diese sofortige Rückmeldung können Fehler frühzeitig erkannt und behoben werden.
-
-\Gls{CD} geht noch einen Schritt weiter: Nach der erfolgreichen Integration und dem Bestehen aller Tests wird die
-Anwendung automatisiert für die Auslieferung vorbereitet und zusammengebaut.
-Dies schließt Prozesse wie das Verpacken, Bereitstellen und Testen der Anwendung in produktionsnahen Umgebungen ein.
-In der weitergehenden Form, dem sogenannten Continuous Deployment, erfolgt sogar die automatische Auslieferung in die Produktionsumgebung.
-
-Testautomatisierung ist dabei das Rückgrat dieser Abläufe.
-Sie ermöglicht nicht nur die schnelle und zuverlässige Durchführung von Unit-, Integrations- oder End-to-End-Tests, sondern auch die Validierung nichtfunktionaler Anforderungen wie Performance oder Sicherheit.
-Diese Automatisierungen werden mithilfe von \gls{CI}/\gls{CD}-Pipelines orchestriert, die den gesamten Prozess von der Codeänderung bis zur Bereitstellung steuern.
-
-Gerade in Microservice-Architekturen ist die Testautomatisierung unverzichtbar, da hier viele unabhängige Komponenten miteinander interagieren.
-Ohne automatisierte Tests würde das Risiko fehlerhafter Integrationen oder regressiver Effekte drastisch steigen.
-Contract Testing, als spezieller Ansatz innerhalb der Testautomatisierung, fokussiert sich gezielt auf die Kommunikation zwischen Microservices und stellt sicher, dass Änderungen in einem Dienst keine ungewollten Auswirkungen auf andere haben.
-
-Insgesamt trägt Testautomatisierung in Verbindung mit \gls{DevOps} und \gls{CI}/\gls{CD} entscheidend dazu bei, die Qualität, Sicherheit und Stabilität moderner Softwareprodukte zu gewährleisten.
-
 
 \section{Arten des Softwaretests}\label{sec:foundation_testing}
 
@@ -74,24 +40,22 @@ Diese lassen sich nach ihrem Fokus und ihrer Testtiefe kategorisieren.
 Unit-Tests (Modultests) überprüfen einzelne Funktionseinheiten, wie Funktionen oder Methoden, isoliert von anderen Komponenten.
 Sie dienen dazu, die korrekte Implementierung kleinster funktionaler Einheiten sicherzustellen.
 Hierbei sollten möglichst viele Einheiten getestet werden, um eine hohe Testabdeckung zu erreichen.
-Wegen der verhältnismäßig gering Ausführungszeit kann
-\textquote{[deren] Durchführung [\dots] sehr schnell, beliebig oft und aufwandsarm erfolgen}~\cite{linzBasiswissenSoftwaretest2024}.
+Wegen der verhältnismäßig geringen Ausführungszeit kann \textquote{[deren] Durchführung [\dots] sehr schnell, beliebig oft und aufwandsarm erfolgen}~\cite{linzBasiswissenSoftwaretest2024}.
 Diese Tests sind in der Regel maschinell und werden häufig während der Entwicklung durchgeführt, um Fehler
 frühzeitig zu erkennen.
 
 Integrationstests hingegen testen das Zusammenspiel mehrerer Module oder Systeme.
 Sie prüfen, ob die verschiedenen Komponenten korrekt miteinander interagieren.
 Integrationstests sind wichtig, um sicherzustellen, dass die einzelnen Module nicht nur isoliert, sondern auch in Kombination miteinander funktionieren.
-Die Testumgebung ist hierbei oft komplexer, da mehrere Module gleichzeitig zur Verfügung stehen müssen und somit ist
-auch die Laufzeit höher.
+Die Testumgebung ist hierbei oft komplexer, da mehrere Module gleichzeitig zur Verfügung stehen müssen, und somit eine höhere Laufzeit resultiert.
 
 Systemtests betrachten die Anwendung als Ganzes.
 Dabei wird überprüft, ob das gesamte System konform zu den Anforderungen funktioniert.
 Diese Tests sind in der Regel sehr umfangreich in der Erstellung und Ausführung, da sie alle Komponenten und deren Interaktionen berücksichtigen.
-Darum sollten nur wenige Testfälle erstellt werden, die jedoch alle wichtigen Aspekte der Anwendung abdecken.
+Darum sollte man sich auf wenige Testfälle beschränken, die jedoch alle wichtigen Aspekte der Anwendung abdecken.
 
 Akzeptanztests bilden die höchste Testebene und stellen sicher, dass die Anwendung aus Sicht der Endbenutzer den definierten Anforderungen entspricht.
-Diese Tests werden häufig manuell und in enger Abstimmung mit den Stakeholdern durchgeführt~\cite{singhSoftwareTesting2011}.
+Diese Tests werden häufig manuell und in enger Abstimmung mit den~\glsdisp{Stakeholder}{Stakoldern} durchgeführt~\cite{singhSoftwareTesting2011}.
 Sie sind entscheidend für die Validierung der Software und deren Akzeptanz durch die Benutzer.
 Aufgrund des hohen Aufwands sind diese Tests nicht Teil von Entwicklungszyklen, sondern werden in der Regel erst nach der Fertigstellung des Systems durchgeführt.
 
@@ -106,27 +70,60 @@ Die Hierarchie der verschiedenen Teststufen wird in~\cref{fig:testpyramid} darge
 
 Neben diesen klassischen Testarten gibt es auch spezialisierte Testmethoden wie Performance-Tests, Sicherheitstests und Usability-Tests.
 Diese Tests konzentrieren sich auf spezifische Aspekte der Softwarequalität und sind darauf ausgelegt, bestimmte Anforderungen zu validieren.
-Deshalb sind diese nicht in die Testhierarchie der Testpyramide eingeordnet, sondern ergänzen diese.
+Deshalb sind diese nicht in die Testhierarchie der Testpyramide eingeordnet, sondern ergänzen diese in der Praxis.
 
+%TODO: Überleitung
+
+\section{Testautomatisierung}\label{sec:foundation_testautomation}
+
+Mit dem zunehmenden Bedarf an schneller Softwareauslieferung bei gleichbleibend hoher Qualität hat sich die Testautomatisierung zu einem zentralen Bestandteil moderner Entwicklungsprozesse entwickelt.
+Sie beschreibt die kontinuierliche und nicht manuelle Durchführung von Softwaretests, meist mithilfe spezialisierter Tools und Skripte, um manuelle Testaufwände zu reduzieren, Wiederholbarkeit zu gewährleisten und Fehler frühzeitig im Entwicklungsprozess zu erkennen.
+
+Solche Praktiken und Tools werden unter dem Begriff \gls{\gls{DevOps}} zusammengefasst.
+\gls{DevOps} beschreibt eine kulturelle und technische Bewegung, die darauf abzielt, die Zusammenarbeit zwischen Entwicklungs- (Development) und Betriebsteams (Operation) zu verbessern.
+Ziel ist es, den gesamten Software-Lebenszyklus zu optimieren, von der Entwicklung über das Testing bis hin zum \gls{Deployment} und Betrieb.
+Dazu zählen Aufgaben wie Kollaboration zwischen den Teams, Automatisierung von regelmäßigen Aufgaben, Überwachung von
+Anwendungsinfrastruktur und Auswertung von Nutzerfeedback.
+
+Einige dieser Tätigkeiten werden mithilfe von \gls{CI} automatisiert.
+Das bedeutet, dass Änderungen am Code kontinuierlich in das gemeinsame Repository integriert werden und dabei
+automatisierte \glspl{Build} und Tests ausgeführt werden, um sicherzustellen, dass der neue Code keine bestehenden
+Funktionalitäten bricht.
+Durch diese sofortige Rückmeldung können Fehler frühzeitig erkannt und behoben werden.
+
+\Gls{CD} geht noch einen Schritt weiter: Nach der erfolgreichen Integration und dem Bestehen aller Tests wird die
+Anwendung automatisiert für die Auslieferung vorbereitet und zusammengebaut.
+Dies schließt Prozesse wie das Verpacken, Bereitstellen und Testen der Anwendung in produktionsnahen Umgebungen ein.
+In der weitergehenden Form erfolgt sogar die automatische Auslieferung der Anwendung in die Produktionsumgebung, Continuous Deployment genannt.
+
+Testautomatisierung ist dabei das Rückgrat dieser Abläufe.
+Sie ermöglicht nicht nur die schnelle und zuverlässige Durchführung von Unit-, Integrations- oder End-to-End-Tests, sondern auch die Validierung nichtfunktionaler Anforderungen wie Performance oder Sicherheit.
+Diese Automatisierungen werden mithilfe von \gls{CI}/\gls{CD}-\gls{Pipelines} orchestriert, die den gesamten Prozess von der Codeänderung bis zur Bereitstellung steuern.
+Dabei werden die einzelnen Automatisierungsschritte und deren Abfolge definiert und der Auslöser der Durchführung festgelegt.
+
+Wie in \cref{sec:foundation_microservices} erläutert ist in Microservice-Architekturen die Testautomatisierung sinnvoll, da hier viele unabhängige Komponenten miteinander interagieren~\cite{haroMicroserviceAPIs2023}.
+Ohne automatisierte Tests würde das Risiko fehlerhafter Integrationen oder regressiver Effekte drastisch steigen.
+
+Insgesamt trägt Testautomatisierung in Verbindung mit \gls{DevOps} und \gls{CI}/\gls{CD} entscheidend dazu bei, die Qualität, Sicherheit und Stabilität moderner Softwareprodukte zu gewährleisten.
 Im Kontext von Microservices gewinnen automatisierte Tests und insbesondere Contract Tests an Bedeutung, da sie die Kommunikation zwischen Diensten absichern und frühzeitig Fehler in der Interaktion erkennen lassen.
-
 
 \section{Contract Testing}\label{sec:foundation_contracttesting}
 
 Contract Testing ist eine Testmethode, die darauf abzielt, die Interoperabilität zwischen verschiedenen Schnittstellen zu gewährleisten.
-Während immer ofter Microservices Architekturen eingesetzt werden und Anwendungen aus vielen kleinen, unabhängigen Diensten bestehen, ist es wichtig das Zusammenspiel dieser Dienste zu testen.
-Contract Testing kombiniert die Funktion von \gls{API}-Integrationstests mit der Zuverlässigkeit und Schnelligkeit von Unit-Tests und kann so Fehler bei der Schnittstellenkommunikation früher im Entwicklungsprozess erkennen~\cite{cruzContractTestingAction2025}.
+Während immer ofter Microservices Architekturen eingesetzt werden und Anwendungen aus vielen kleinen, unabhängigen Diensten bestehen, ist es wichtig, das Zusammenspiel aller Dienste zu testen.
+Contract Testing kombiniert die Funktion von \gls{API}-Integrationstests mit der Zuverlässigkeit und Schnelligkeit von Unit-Tests und kann so Fehler bei der Schnittstellenkommunikation früh im Entwicklungsprozess erkennen~\cite{cruzContractTestingAction2025}.
 
 \subsection{Funktionsweise}\label{subsec:foundation_contracttesting_concept}
 
 Bei der Kommunikation mit \glspl{API} sind immer zwei Parteien beteiligt.
 Zum einen gibt es einen Anbieter (Provider), der die Schnittstelle bereitstellt, und zum anderen einen bis mehrere Verbraucher (Consumer), die diese Schnittstelle nutzen. %TODO: Singular oder Plural bei Verbraucher?
-Wenn ein Verbraucherdienst eine Schnittstelle ansprechen möchte, sendet er eine Anfrage an die \gls{API} des Anbieters.
+Wenn ein Verbraucherdienst eine Schnittstelle ansprechen möchte, um~\zB Daten zu erhalten oder eine Aktion auszulösen, sendet er eine Anfrage an die \gls{API} des Anbieters.
 Der Anbieter verarbeitet diese Anfrage, führt eventuelle zugehörige Aktionen aus und sendet eine Antwort zurück.
-Auf der Verbraucherseite wird die Antwort bei Erhalt verarbeitet, um die gewünschten Informationen zu extrahieren und zu verwenden.
-Um diese Verarbeitung zu ermöglichen, muss der Consumer eine Annahme über die Struktur der Antwort treffen.
+Auf der Verbraucherseite wird die Antwort nach Erhalt verarbeitet, um die gewünschten Informationen zu extrahieren und zu verwenden.
+Um diese Verarbeitung zu ermöglichen, trifft der Consumer eine Annahme über die Struktur der zur Anfrage gehörigen Antwort.
 In einer idealen Welt würde die Antwort immer der Struktur entsprechen, die der Consumer erwartet, doch das kann in der Praxis nicht immer garantiert werden.
-Contract Testing sorgt dafür, dass diese Annahmen auch tatsächlich erfüllt werden und somit Fehler in der Kommunikation zwischen den Diensten vermieden werden.
+Wenn die Antwort nicht mit der Annahme übereinstimmt, kann es zu Fehlern kommen, was zu ungewünschtem Verhalten oder sogar zum Serviceausfall aufseiten des Verbrauchers führen kann.
+Contract Testing wird eingesetzt, damit diese Annahmen auch tatsächlich eintreffen werden und somit Fehler in der Kommunikation zwischen den Diensten vermieden werden.
 
 Dabei wird ein sogenannter „Contract“ definiert – ein Vertrag, der beschreibt, wie die Kommunikation zwischen Consumer und Provider ablaufen soll.
 Dieser Vertrag legt fest, welche Anfragen der Consumer an den Provider stellt und welche Antworten er im Gegenzug erwartet.
@@ -137,22 +134,25 @@ Dieser Contract wird anschließend verwendet, um automatisierte Tests sowohl auf
 
 Auf der Consumer-Seite wird überprüft, ob die Anwendung tatsächlich nur die im Contract beschriebenen Anforderungen stellt.
 Auf der Provider-Seite hingegen wird getestet, ob die \gls{API} die versprochenen Antworten liefert – unabhängig davon, welcher Consumer die Anfrage stellt.
-Damit wird sichergestellt, dass Änderungen wie \zB{}umbenannte Felder oder veränderte Strukturen nicht unbeabsichtigt zu Fehlern auf der anderen Seite führen.
+Damit wird sichergestellt, dass Änderungen auf einer Seite wie \zB{}umbenannte Felder oder veränderte Strukturen nicht unbeabsichtigt zu Fehlern auf der anderen Seite führen.
 
-\subsection{\glsdesc{CDCT}}\label{subsec:foundation_contracttesting_variants}
+\subsection{Varianten}\label{subsec:foundation_contracttesting_variants}
 
-Wenn der Contract von dem Consumer erstellt wird, spricht man von \gls{CDCT}.
+Es gibt zwei verschiedene Ansätze, wie Contract Testing aufgebaut sein kann: \gls{CDCT} und \gls{PDCT}.
+
+\subsubsection{\glsdesc{CDCT}}
+
+Wenn der Contract von dem Consumer erstellt wird und dieser dann mit dem Provider geteilt wird, spricht man von \gls{CDCT}.
 % TODO: Wie sehen die Testfälle aus? Wie viele?
 Ein Contract Test auf der Consumer-Seite beim \gls{CDCT}, wie in~\cref{fig:cdct-consumer-side} dargestellt, lässt sich in drei Schritte unterteilen:
 \begin{enumerate}
-    % TODO: Mock im Text erklären?
     \item Es wird ein \gls{Mock}-Provider erstellt, der die \gls{API} des Providers simuliert, damit der Test vom tatsächlichen Provider unabhängig ist.
-    Dabei wird pro Testfall festgelegt welche Anfragen vom Client gesendet werden soll und welche Antwort vom Provider dazu erwartet wird.
-    \item Der Consumer führt die Contract Tests gleichzeitig mit den Unittests gegen den \gls{Mock}-Provider aus.
+    Dabei wird pro Testfall festgelegt, welche Anfragen vom Client gesendet werden sollen und welche Antwort vom Provider dazu erwartet wird.
+    \item Der Consumer führt die Contract Tests gegen den \gls{Mock}-Provider aus.
     Dadurch wird überprüft, ob der Consumer tatsächlich nur die definierten Anfragen stellt und die erwarteten Antworten korrekt verarbeiten kann.
-    \item Wenn alle solche Tests erfolgreich absolviert wurden, wird der Contract automatisch generiert, welcher genau die definierten Interaktionen beinhaltet.
+    \item Wenn alle Contract Tests erfolgreich absolviert wurden, wird der Contract automatisch generiert, welcher genau die definierten Interaktionen beinhaltet.
     Der Vertrag wird dann so gespeichert, dass er auf der Provider-Seite für deren Contract Tests verwendet werden kann.
-    Dafür gibt es verschiedenen Wege wie in~\cref{sec:-} näher beschrieben.
+    Die verschiedenen Arten der Speicherung werden in~\cref{sec:-} näher beschrieben.
 \end{enumerate}
 
 \begin{figure}[ht]
@@ -167,7 +167,7 @@ Wie auf der Consumer-Seite kommuniziert der Provider nicht mit dem echten Consum
 Der Ablauf eines Contract Tests auf der Provider-Seite beim \gls{CDCT} ist in~\cref{fig:cdct-provider-side} dargestellt.
 Für jede Anfrage im Contract wird ein Testfall generiert, in dem der \gls{Mock}-Consumer die Anfrage an den Provider sendet.
 Der Provider verarbeitet die Anfrage und sendet eine entsprechende Antwort zurück.
-Der Test überprüft dann, ob die Antwort des Providers mit der im Contract definierten Antwort übereinstimmt und verifiziert somit, dass die \gls{API} des Providers den Vertrag einhält.
+Der Test überprüft dann, ob die Antwort des Providers mit der im Contract definierten Antwort übereinstimmt, und verifiziert somit, dass die \gls{API} des Providers den Vertrag einhält.
 
 \begin{figure}[ht]
     \centering
@@ -177,12 +177,19 @@ Der Test überprüft dann, ob die Antwort des Providers mit der im Contract defi
 \end{figure}
 
 Nun wurde der Contract auf der Consumer-Seite erstellt und auf der Provider-Seite verifiziert.
-Das bedeutet, dass beide Seiten unabhängig voneinander auch nach Änderungen in der Zukunft deployt werden können, wenn sie den Contract einhalten.
-Dabei können die Tests auf beiden Seiten unabhängig voneinander ausgeführt werden.
+Das bedeutet, dass beide Seiten unabhängig voneinander auch nach Änderungen ihre Contract Tests durchführen und deployt werden können, wenn sie den Contract einhalten.
 Allerdings muss für das Deployen jedes Services sichergestellt werden, dass dazu immer ein verifizierter Vertrag besteht.
-Im Umkehrschluss bedeutet das aber auch, dass bei neuen Anforderungen des Consumers an die \gls{API} des Providers auch der Contract aktualisiert werden und vom Provider neu verifiziert werden muss.
+Im Umkehrschluss bedeutet das aber auch, dass bei neuen Anforderungen des Consumers an die \gls{API} des Providers auch der Contract aktualisiert und vom Provider neu verifiziert werden muss.
 
-Das Verwalten der Contracts ist eine Herausforderung, da es für eine API viele verschiedene Consumer und Versionsstände geben kann.
+Das Verwalten der Contracts ist aufwändig, da es für eine \gls{API} viele verschiedene Consumer und Versionsstände geben kann.
+Welche Unterschiede und Varianten es für die Speicherung der Contracts gibt, wird in \cref{sec:frameworks_overview} genauer betrachtet.
 
+Wenn die Consumer-driven Variante implementiert wird, hat es den Vorteil, dass der Provider genau die Anforderungen des Consumers erfüllt und keine unbenutzten Funktionalitäten entwickelt \bzw bereitgestellt werden.
+Da der Consumer genau die Anforderungen stellt, die er benötigt, kann der Provider seine \gls{API} genau darauf anpassen.
+Allerdings erfordert das auch eine gute Kommunikation und idealerweise eine geteilte Testinfrastruktur zwischen den beiden Parteien.
+
+\subsubsection{\glsdesc{PDCT}}
+
+In Szenarien, bei denen \zB{}kein Zugriff auf die Testpipeline des Providers besteht, kann auf das \gls{PDCT} zurückgegriffen werden.
 
 \subsection{Vor- und Nachteile}\label{subsec:foundation_contracttesting_proscons}
