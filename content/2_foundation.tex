@@ -191,5 +191,63 @@ Allerdings erfordert das auch eine gute Kommunikation und idealerweise eine gete
 \subsubsection{\glsdesc{PDCT}}
 
 In Szenarien, bei denen \zB{}kein Zugriff auf die Testpipeline des Providers besteht, kann auf das \gls{PDCT} zurückgegriffen werden.
+Dabei werden vom Provider und vom Consumer jeweils ein Contract erstellt, die dann miteinander verglichen werden.
+Deshalb wird \gls{PDCT} auch als bidirektionales Contract Testing bezeichnet.
+Das bedeutet, dass der Provider einen Contract erstellt, der beschreibt, welche Anfragen er erwartet und welche Antworten er bereitstellt.
+Dieser Contract kann auch aus einer bestehenden \gls{API}-Dokumentation, wie \zB{}einer \gls{OpenAPI}-Definition generiert werden.
+Damit wird Contract Testing auch bei Kommunikationen mit öffentlichen oder Drittanbieter-\glsps{API} ermöglicht.
+Auf der Consumer-Seite geschieht die Vertragserstellung analog zum \gls{CDCT}.
+Danach werden die beiden Contracts typischerweise mithilfe eines Brokers verglichen, die sogenannte cross-contract validation.
+Durch dise Validierung ist die Interoperabilität der beiden Services sichergestellt.
+Anders als beim \gls{CDCT} ist es hier nicht notwendig, dass beim Deployment-Prozess beim Broker überprüft wird, ob die entsprechenden Contracts gegenseitig validiert wurden.
+Der Ablauf beim \gls{PDCT} mit Deployment des Consumers ist in~\cref{fig:pdct} dargestellt.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/pdct}
+    \caption{Ablauf eines Contract Tests beim \gls{PDCT}}
+    \label{fig:pdct}
+\end{figure}
+
+Nachdem die grundlegenden Prinzipien sowie die Unterschiede zwischen consumer-driven und provider-driven Contract Testing dargelegt wurden, ist es für eine umfassende Bewertung dieses Testansatzes erforderlich, auch dessen Vor- und Nachteile zu untersuchen.
+Im folgenden Abschnitt werden daher die wesentlichen Stärken und Schwächen des Contract Testings analysiert, um dessen Nutzenpotenzial und etwaige Limitationen im Kontext moderner Softwarearchitekturen differenziert zu betrachten.
 
 \subsection{Vor- und Nachteile}\label{subsec:foundation_contracttesting_proscons}
+
+Contract Testing hat sich als eine effektive Methode etabliert, um die Kommunikation zwischen verschiedenen Services oder Komponenten in modernen, serviceorientierten Architekturen sicherzustellen, und bildet damit die Grundlage für eine verlässliche Integration unterschiedlicher Systeme.
+
+Ein wesentlicher Vorteil von Contract Testing besteht in der frühzeitigen Erkennung von Integrationsfehlern.
+Da die erwarteten Interaktionen bereits während der Entwicklung definiert und automatisiert überprüft werden, lassen sich Abweichungen zwischen Consumer und Provider schnell identifizieren und beheben.
+Dies führt zu einem schnelleren Feedback für die Entwicklungsteams und reduziert das Risiko, dass Integrationsprobleme erst in späteren Testphasen oder sogar im Produktivbetrieb auftreten.
+Insbesondere im Rahmen von \gls{CI}/\gls{CD}-Pipelines kann Contract Testing dazu beitragen, Fehlerquellen frühzeitig zu eliminieren und die Qualität der Software kontinuierlich sicherzustellen.
+
+Ein weiterer bedeutender Vorteil liegt in der Reduzierung der Abhängigkeit von klassischen Systemtests.
+Während Systemtests häufig ressourcenintensiv und fehleranfällig sind, ermöglicht Contract Testing eine gezielte Überprüfung der Schnittstellenkompatibilität, ohne dass das gesamte System integriert und getestet werden muss.
+Dadurch werden die Testzyklen verkürzt und die Entwicklung beschleunigt, da Teams unabhängig voneinander an ihren Komponenten arbeiten können, solange die definierten Contracts eingehalten werden.
+Dies fördert eine parallele Entwicklung und steigert die Agilität, insbesondere in großen Projekten mit mehreren Teams.
+
+Darüber hinaus trägt Contract Testing zu einer verbesserten Dokumentation und Transparenz der Service-Schnittstellen bei.
+Die Verträge dienen als stets aktuelle Referenz und machen die Erwartungen an die Kommunikation zwischen den Komponenten explizit.
+Dies erleichtert nicht nur die Zusammenarbeit zwischen den beteiligten Teams, sondern unterstützt auch das Anlernen neuer Entwickler, da die Schnittstellenanforderungen klar und nachvollziehbar dokumentiert sind.
+Besonders in komplexen Microservice-Architekturen, in denen viele Services miteinander interagieren, bietet Contract Testing eine skalierbare Möglichkeit, die Qualität und Konsistenz der Schnittstellen zu gewährleisten.
+
+Trotz dieser Vorteile bringt Contract Testing auch einige Herausforderungen und potenzielle Nachteile mit sich.
+Die erfolgreiche Umsetzung erfordert eine enge Koordination zwischen den beteiligten Teams, da Änderungen an den Contracts sowohl auf Consumer- als auch auf der Provider-Seite abgestimmt und kommuniziert werden müssen.
+In großen Organisationen oder bei der Zusammenarbeit mit externen Partnern kann dies zu einem erhöhten Abstimmungsaufwand führen.
+Zudem ist die kontinuierliche Pflege und Versionierung der Contracts notwendig, um sicherzustellen, dass die Tests stets den aktuellen Stand der Schnittstellen widerspiegeln.
+Ohne klare Prozesse und geeignete Werkzeuge besteht die Gefahr, dass veraltete oder widersprüchliche Contracts die Wartbarkeit des Systems beeinträchtigen.
+
+Ein weiterer Nachteil ist die begrenzte Testtiefe von Contract Tests.
+Sie überprüfen in erster Linie die Einhaltung der syntaktischen und strukturellen Vorgaben der Schnittstellen, bieten jedoch keine Garantie für die korrekte semantische Umsetzung der Funktionalität.
+So kann es beispielsweise vorkommen, dass ein Service zwar formal korrekte Daten liefert, diese aber inhaltlich fehlerhaft sind.
+Solche Probleme werden durch Contract Testing allein nicht erkannt und erfordern ergänzende Testmethoden, wie etwa Unit- oder Integrationstests, die die Geschäftslogik und die funktionalen Anforderungen abdecken.
+Contract Testing sollte daher nicht als Ersatz für andere Testmethoden betrachtet werden, sondern vielmehr als ergänzende Maßnahme, die in eine umfassende Teststrategie integriert werden sollte.
+
+Nicht zuletzt ist der initiale Implementierungsaufwand für Contract Testing nicht zu unterschätzen.
+Die Einführung entsprechender Tools, die Schulung der Teams und die Anpassung bestehender Entwicklungs- und Testprozesse können insbesondere in gewachsenen, großen Systemlandschaften herausfordernd sein.
+Auch die Integration von Contract Testing in bestehende CI/CD-Pipelines und die regelmäßige Aktualisierung der Tests erfordern zusätzliche Ressourcen und Disziplin im Entwicklungsalltag.
+
+Zusammenfassend lässt sich festhalten, dass Contract Testing einen wertvollen Beitrag zur Qualitätssicherung in serviceorientierten Architekturen leisten kann.
+Die Methode ermöglicht eine frühzeitige Fehlererkennung, fördert die Dokumentation und beschleunigt Entwicklungsprozesse.
+Gleichzeitig setzt sie jedoch eine sorgfältige Integration in bestehende Abläufe sowie eine kontinuierliche Zusammenarbeit und Abstimmung zwischen den beteiligten Teams voraus, um die damit verbundenen Herausforderungen erfolgreich zu bewältigen.
+Contract Testing sollte daher stets als ergänzende Maßnahme zu anderen Testmethoden verstanden und im Rahmen einer ganzheitlichen Teststrategie eingesetzt werden, um sowohl die strukturelle Integrität als auch die funktionale Korrektheit von Softwaresystemen sicherzustellen.
