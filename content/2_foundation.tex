@@ -14,19 +14,19 @@ oder Messaging-Protokollen basieren~\cite{richardsonMicroservicesPatterns2018}. 
 Zudem wird die funktionale Trennung betont, da jeder Service einen klar definierten Anwendungsteil abdeckt und von einem eigenen Entwicklungsteam verwaltet werden kann.
 Diese Struktur ermöglicht es, unterschiedliche Technologien oder Programmiersprachen für verschiedene Services einzusetzen, wodurch eine technologische Vielfalt innerhalb eines Systems entsteht.
 So entstehen mehrere kleine Anwendungen, die überschaubarer und einfacher zu warten sind als ein großer
-Technologie-Stack wie~\zB in einer monolithischen Architektur~\cite{}, bei der alle Komponenten einer Anwendung in einer unteilbaren Einheit integriert sind.
+Technologie-Stack wie~\zB in einer monolithischen Architektur~\cite{cruzContractTestingAction2025}, bei der alle Komponenten einer Anwendung in einer unteilbaren Einheit integriert sind.
 
 Die Microservice-Architektur bietet zahlreiche Vorteile.
-Sie ermöglicht eine hohe Flexibilität, da Änderungen an einem Service unabhängig von anderen vorgenommen werden können.
+Sie ermöglicht eine hohe Flexibilität, da Änderungen an einem Service unabhängig von anderen vorgenommen werden können~\cite{haroMicroserviceAPIs2023}.
 Die Fehlertoleranz wird verbessert, da ein Fehler in einem Microservice nicht zwangsläufig die gesamte Anwendung beeinträchtigt.
 Durch die gezielte Bereitstellung von Ressourcen für bestimmte Dienste kann die Skalierbarkeit optimiert werden.
-Zudem erleichtert die überschaubare Größe einzelner Microservices deren Wartung, da der Code besser verständlich und weniger komplex ist.
+Zudem erleichtert die überschaubare Größe einzelner Microservices deren Wartung, da der Code besser verständlich und weniger komplex ist~\cite{newmanBuildingMicroservices2021}.
 
 Trotz der vielen Vorteile bringt die Microservice-Architektur auch Herausforderungen mit sich.
 Die Kommunikation zwischen den einzelnen Diensten erfordert robuste Schnittstellen und ein zuverlässiges \gls{API}-Management, um eine reibungslose Interaktion zu gewährleisten.
 Die Verwaltung von Daten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
 werden muss,~\dahe die Schnittstellen der einzelnen Dienste müssen aufeinander abgestimmt sein.
-Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten.
+Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten~\cite{newmanMonolithMicroservices2019}.
 
 Die Microservice-Architektur bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen, weil sie eine flexible und skalierbare Infrastruktur bietet.
 Diese Architektur verbreitet sich daher zunehmend und wird in Zukunft immer häufiger eingesetzt werden~\cite{richardsonMicroservicesPatterns2018}.
@@ -195,11 +195,11 @@ Dabei werden vom Provider und vom Consumer jeweils ein Contract erstellt, die da
 Deshalb wird \gls{PDCT} auch als bidirektionales Contract Testing bezeichnet.
 Das bedeutet, dass der Provider einen Contract erstellt, der beschreibt, welche Anfragen er erwartet und welche Antworten er bereitstellt.
 Dieser Contract kann auch aus einer bestehenden \gls{API}-Dokumentation, wie \zB{}einer \gls{OpenAPI}-Definition generiert werden.
-Damit wird Contract Testing auch bei Kommunikationen mit öffentlichen oder Drittanbieter-\glsps{API} ermöglicht.
+Damit wird Contract Testing auch bei Kommunikationen mit öffentlichen oder Drittanbieter-\glspl{API} ermöglicht~\cite{cruzContractTestingAction2025}.
 Auf der Consumer-Seite geschieht die Vertragserstellung analog zum \gls{CDCT}.
 Danach werden die beiden Contracts typischerweise mithilfe eines Brokers verglichen, die sogenannte cross-contract validation.
-Durch dise Validierung ist die Interoperabilität der beiden Services sichergestellt.
-Anders als beim \gls{CDCT} ist es hier nicht notwendig, dass beim Deployment-Prozess beim Broker überprüft wird, ob die entsprechenden Contracts gegenseitig validiert wurden.
+Durch diese Validierung ist die Interoperabilität der beiden Services sichergestellt.
+Anders als beim \gls{CDCT} ist es hier nicht notwendig, dass beim Deployment-Prozess beim Broker überprüft wird, ob die entsprechenden Contracts gegenseitig validiert wurden~\cite{pactflowBiDirectionalContractTesting2023}.
 Der Ablauf beim \gls{PDCT} mit Deployment des Consumers ist in~\cref{fig:pdct} dargestellt.
 
 \begin{figure}[ht]
