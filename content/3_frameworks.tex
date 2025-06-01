@@ -7,8 +7,365 @@ Ziel ist es, einen fundierten Überblick über die verfügbaren Lösungen zu geb
 
 \section{Übersicht verfügbarer Tools}\label{sec:frameworks_overview}
 
+Die Identifikation geeigneter Contract-Testing-Frameworks erfolgte auf Basis definierter Anforderungen, die in enger Abstimmung mit dem betreuenden Unternehmen erarbeitet wurden.
+Zwei Bedingungen waren dabei zwingend erforderlich:
+Zum einen musste das jeweilige Tool unter einer Open-Source-Lizenz stehen, um eine transparente Einsicht in den Quellcode sowie die Unabhängigkeit von einem Anbieter zu gewährleisten.
+Zum anderen wurde gefordert, dass das Framework explizit das Paradigma des Consumer-driven Contract Testing (\gls{CDCT}) unterstützt, da dieses Modell im vorliegenden Anwendungskontext einer Microservice Architektur bevorzugt eingesetzt werden soll.
+
+Im Verlauf dieser Recherche konnten fünf Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von Consumer-driven Contract Testing bieten.
+Diese Tools bilden die Grundlage für die nachfolgende vergleichende Analyse in \cref{sec:frameworks_comparison}.
+
+\subsubsection{Pact}
+Pact ist eines der verbreitetsten Frameworks im Bereich des Contract Testing.
+Das Tool wurde erstmals im Jahr 2013 veröffentlicht und ist ein Open-Source-Projekt, das von der australischen Softwarefirma DiUS ins Leben gerufen wurde.
+Ziel war es, eine leichtgewichtige und praktikable Lösung für \gls{API}-Testing in einer Microservice Architektur bereitzustellen~\cite{pactfoundationPactDocs2022}.
+Die Entwicklung wird heute von der gemeinnützigen Pact Foundation koordiniert, die eine wachsende Open-Source-Community unterstützt.
+Es existieren offizielle Implementierungen für mehrere Programmiersprachen sowie ein eigenes Hosting-Angebot für Pacts namens \textquote{Pactflow}, welches allerdings kommerziell und nicht Open-Source ist~\cite{MicroservicesAPITesting}.
+
+\subsubsection{Spring Cloud Contract}
+Spring Cloud Contract ist Teil des umfassenden Spring Cloud-Frameworks und wurde 2016 unter dem Dach von Pivotal (heute VMware Tanzu) veröffentlicht~\cite{SpringCloudContract}.
+Es ist speziell auf das \gls{Spring}-Ökosystem zugeschnitten und integriert sich nahtlos in bestehende Java-Anwendungen.
+Das Projekt wird kontinuierlich durch die Spring-Entwicklerinnen und -Entwickler bei VMware gepflegt und ist Teil der offiziellen Spring-Infrastruktur.
+Dank der starken Position von Spring im Java-Enterprise-Umfeld ist Spring Cloud Contract weit verbreitet und wird aktiv weiterentwickelt~\cite{SpringCloudContracta}.
+
+\subsubsection{Specmatic}
+Specmatic ist wurde 2019 vorgestellt und ist ein \gls{CDCT}-Tool, welches im Kern open-source ist, aber auch kommerzielle Angebote bietet~\cite{ContractDrivenDevelopment}.
+Es entstand aus dem Bestreben, \gls{API}-Spezifikationen wie \gls{OpenAPI} als zentrale Vertragsquelle zu nutzen und daraus sowohl Tests als auch virtuelle Services zu generieren.
+Das Framework unterstützt eine Vielzahl von Protokollen und verfolgt einen No-Code-Ansatz, um die Implementierung von Contract Tests zu erleichtern~\cite{ContractDrivenDevelopment}.
+Specmatic bietet eine quelloffene Basis, die durch einige kommerzielle Features erweitert wird~\cite{ContractDrivenDevelopment}.
+In der nachfolgenden Analyse wird Specmatic als Open-Source-Tool betrachtet, da die Kernfunktionen für Contract Testing ohne kommerzielle Komponenten genutzt werden sollen.
+
+\subsubsection{Karate}
+Karate wurde ab 2017 von einer Einzelperson als Open-Source-Projekt veröffentlicht.
+Ziel war es, ein umfassendes und einfach zu verwendendes Framework für die \gls{API}-Test-Automatisierung zu schaffen.
+Karate wurde später unter dem Dach von Karate Labs weiterentwickelt, einem dedizierten Unternehmen zur Professionalisierung und Kommerzialisierung des Tools~\cite{OriginKarateKarate}.
+Trotz kommerzieller Angebote ist der Kern von Karate weiterhin quelloffen und wird von einer aktiven Community getragen.
+In dieser Arbeit werden nur die Open-Source Funktionalitäten von Karate als Open-Source-Tool betrachtet.
+Die Bekanntheit des Tools hat sich in den letzten Jahren durch gute Dokumentation und eine niedrige Einstiegshürde deutlich erhöht~\cite{KaratelabsKarate2025}.
+
+\subsubsection{ContractCase}
+ContractCase ist ein vergleichsweise neues Projekt, das seit 2021 auf GitHub gepflegt wird~\cite{CasecontracttestingContractcase2025}.
+Es entstand aus der Bedarfsanalyse kleinerer Entwicklungsteams, die ein leichtgewichtiges, sprachübergreifendes Framework für Contract Testing suchten.
+Die Entwicklung erfolgt durch ein kleines Team unabhängiger Maintainer mit Fokus auf Interoperabilität und einfache Integration in moderne Build- und Deployment-Pipelines.
+Obwohl ContractCase bislang weniger verbreitet ist als andere Frameworks, zeigt die wachsende Nutzerbasis und Dokumentation ein zunehmendes Interesse in der Entwicklergemeinschaft~\cite{ContractCaseContractTesting}.
+
+Diese fünf Frameworks wurden hinsichtlich ihrer Relevanz für Consumer-driven Contract Testing ausgewählt und werden im \cref{sec:frameworks_comparison} vergleichend gegenübergestellt.
 
 
-\section{Auswahlkriterien}\label{sec:frameworks_selection}
+\section{Auswahlkriterien}\label{sec:frameworks_criteria}
+
+Die Auswahl geeigneter Contract-Testing-Frameworks setzt eine methodisch fundierte Bewertung voraus, die sich an spezifischen Anforderungen und Zielsetzungen des Contract-Testing orientiert.
+Im Rahmen dieser Arbeit wurden die Kriterien in enger Zusammenarbeit mit dem betreuenden Unternehmen entwickelt, um sicherzustellen, dass sowohl technische als auch betriebliche Aspekte angemessen berücksichtigt werden.
+Die Kriterien sollen dabei nicht nur die Funktionalität eines Tools erfassen, sondern auch Aspekte wie Wartbarkeit, Zukunftssicherheit und organisatorische Integration reflektieren.
+Die nachfolgende Darstellung erläutert die einzelnen Kriterien im Detail und legt deren Relevanz für die Toolbewertung dar.
+
+\subsection{Technisch-funktionale Aspekte}\label{subsec:frameworks_criterion_functionality}
+
+Hierunter fallen alle funktionalen Merkmale, die das Tool in Bezug auf die Durchführung von Contract Tests bietet.
+Bewertet wurden unter anderem die Unterstützung synchroner und asynchroner Kommunikation, die Möglichkeit zur Validierung verschiedener Schnittstellentypen (\gls{REST}, GraphQL, WebSocket, Kafka, g\gls{RPC}, \ldots).
+Auch die unterstützten Varianten von Contract Testing, wie \cref{subsec:foundation_contracttesting_variants} erklärt, wurden berücksichtigt.
+Außerdem wurde die Möglichkeit, verschiedene Anforderungen in den Contracts zu definieren, wie etwa Validierung von Request/Response-Strukturen, Headern, Statuscodes, usw., bei der Bewertung einbezogen.
+
+\subsection{Sprach- und Technologieunterstützung}\label{subsec:frameworks_criterion_languagesupport}
+
+Ein weiteres zentrales Kriterium ist die Unterstützung von unterschiedlichen Programmiersprachen und Technologien.
+Frameworks, die Multi-Language-Support oder spezifische Integrationen für Java, JavaScript, Python, \etc bieten, sind flexibler einsetzbar und ermöglichen eine schnellere und nahtlosere Adaption in die unterschiedlichen Microservices.
+
+\subsection{Initialer Aufwand}\label{subsec:frameworks_criterion_initialeffort}
+
+Der Aufwand zur erstmaligen Implementierung eines Contract-Testing-Tools ist ein wesentlicher Faktor bei der Bewertung.
+Er umfasst sowohl den technischen Integrationsaufwand in bestehende Anwendungen und \gls{CI}-Umgebungen als auch die Komplexität der Erstellung der Contract Tests an sich.
+Dazu zählen \zB die Einarbeitung in die Funktionsweise des Tools, installieren und konfigurieren der Plugins, das Definieren von Mock-Servern sowie die Erstellung von Überprüfungen.
+Tools mit einfacher Einstiegshilfe, klarer Struktur und guter Dokumentation zur Erstkonfiguration bieten in diesem Bereich Vorteile.
+
+\subsection{Kontinuierlicher Aufwand}\label{subsec:frameworks_criterion_continuouseffort}
+
+Neben dem initialen Aufwand ist auch der laufende Wartungsaufwand zu berücksichtigen.
+Dieser umfasst etwa die Aktualisierung von Verträgen bei Änderungen der Schnittstellen, das Nachziehen von Tests und die Pflege von Testdaten.
+Ein gutes Tool sollte Mechanismen zur Reduktion dieses Aufwands bieten, beispielsweise durch automatische Generierung von Tests aus bestehenden Contracts oder durch unterstützende IDE-Integration.
+Geringer kontinuierlicher Wartungsaufwand verbessert die langfristige Wirtschaftlichkeit und Nachhaltigkeit des Tools im Betrieb.
+
+\subsection{Lizenz und Kosten}\label{subsec:frameworks_criterion_license}
+
+Ein zentraler Aspekt war die Lizenzierung der Tools.
+Da im betrachteten Anwendungsfall ausschließlich Open-Source-Lösungen infrage kamen, wurde überprüft, ob die Frameworks unter einer anerkannten Open-Source-Lizenz (\zB \gls{MIT}, Apache 2.0) stehen.
+Zusätzlich wurden mögliche Kosten durch optionale kommerzielle Komponenten, Support-Angebote oder Hosting-Dienste mit in die Bewertung einbezogen.
+
+\subsection{Aktualität und Weiterentwicklung}\label{subsec:frameworks_criterion_activity}
+
+Ein Indikator für die Zukunftssicherheit eines Frameworks ist die Aktivität in der Weiterentwicklung.
+Bewertet wurden die Häufigkeit von Releases, die Anzahl aktiver Contributor, die Pflege von Issue-Trackern und Pull Requests sowie die Reaktionszeit auf Sicherheitslücken oder Fehlerberichte.
+Auch die Existenz einer aktiven Community oder einer verantwortlichen Organisation ist relevant, da sie langfristige Wartung und Support wahrscheinlicher macht.
+
+\subsection{Dokumentation}\label{subsec:frameworks_criterion_documentation}
+
+Die Qualität der verfügbaren Dokumentation hat direkten Einfluss auf die Nutzbarkeit und den Einarbeitungsaufwand eines Frameworks.
+Bewertet wurden Umfang, Struktur und Aktualität der offiziellen Dokumentation sowie zusätzliche Ressourcen wie Tutorials, Blogs oder Community-Foren.
+Eine gut strukturierte und vollständige Dokumentation erleichtert sowohl den Einstieg als auch die Lösung von Problemen im laufenden Betrieb.
+
+\subsection{Contract-Verwaltung}\label{subsec:frameworks_criterion_contractmanagement}
+
+Ein zentrales Element des Contract Testings ist das Management von Verträgen zwischen Consumer und Provider.
+Tools wurden dahingehend bewertet, ob sie Funktionen zur zentralen Speicherung, Versionierung, Prüfung und Verteilung von Verträgen anbieten.
+Berichtigt wurde, ob es Unterstützung für die Verwaltung von Contracts gibt.
+Einige Frameworks bieten integrierte Broker-Funktionalitäten, die eine zentrale Anlaufstelle für alle Contracts darstellen und den Austausch zwischen Consumer und Provider erleichtern.
+Bei diesem Kriterium wurde vor allem die Schnittstelle zwischen den Tests und dem Broker betrachtet.
+Positiv bewertet wurden Frameworks, die eine einfache Integration mit dem Broker oder umfangreiche Konfigurationsmöglichkeiten bieten, um die Verwaltung von Contracts zu optimieren.
+
+\subsection{Contract-Versionierung}\label{subsec:frameworks_criterion_versioning}
+
+Da sich \glspl{API} im Lebenszyklus eines Softwareprodukts weiterentwickeln, ist eine zuverlässige Versionsverwaltung von Verträgen unabdingbar.
+Bewertet wurde, ob ein Tool den gleichzeitigen Umgang mit mehreren Versionen eines Contracts erlaubt und wie diese voneinander abgegrenzt und verwaltet werden können.
+Idealerweise wird durch Versionierung auch die Rückwärtskompatibilität gewährleistet und dokumentiert, um verschiedene Arbeitsstände von \glspl{API} testen zu können.
+
+\subsection{Visualisierung}\label{subsec:frameworks_criterion_visualization}
+
+Einige Tools bieten Funktionen zur Visualisierung von \gls{API}-Strukturen, Abhängigkeiten und Contracts.
+Solche Visualisierungen sind insbesondere im Zusammenspiel mit umfangreichen Microservice-Architekturen hilfreich, um die Übersicht zu behalten und Fehlerursachen schneller zu identifizieren.
+Gute Visualisierungen von Contracts können auch teilweise als \gls{API}-Dokumentationen verwendet werden und den Aufwand manueller Erstellung einsparen.
+
+\subsection{Verbindlichkeit und Fehlererkennungsrate}\label{subsec:frameworks_criterion_reliability}
+
+Die Wirksamkeit eines Contract-Testing-Frameworks steht und fällt mit der Fähigkeit, Verstöße gegen definierte Verträge zuverlässig zu erkennen.
+Bewertet wurde, wie präzise und vollständig die Tools Inkonsistenzen identifizieren und wie aussagekräftig die resultierenden Fehlermeldungen sind.
+Ein hoher Grad an Verbindlichkeit stärkt das Vertrauen in die Tests und reduziert das Risiko von Integrationsfehlern.
+
+\subsection{Automatisierbarkeit}\label{subsec:frameworks_criterion_automability}
+
+Ein zentrales Ziel des Einsatzes von Contract Testing ist die möglichst nahtlose Integration in automatisierte Entwicklungs- und Deployment-Prozesse.
+Daher wurde untersucht, inwieweit die einzelnen Frameworks eine Automatisierung der Vertragserstellung und -überprüfung im Rahmen von \gls{CI}/\gls{CD}-Pipelines ermöglichen.
+Besonderes Augenmerk galt dabei der Unterstützung gängiger Build-Tools (\zB Maven, Gradle, npm), \gls{CI}-Server (\zB Jenkins, Drone CI, GitHub Actions) sowie der Möglichkeit, Validierungsprozesse durch Webhooks oder \gls{CLI}-Befehle zu automatisieren.
+
+\subsection{Skalierbarkeit}\label{subsec:frameworks_criterion_scalability}
+
+Nicht zuletzt wurde auch die Skalierbarkeit eines Tools bewertet.
+Dies betrifft die technische Fähigkeit, mit wachsender Anzahl an Services und Verträgen umzugehen, aber auch organisatorische Aspekte wie die Nutzbarkeit durch mehrere Teams oder Integration in größere Systemlandschaften.
+Tools, die eine flexible und performante Nutzung auch in großen Umgebungen ermöglichen, wurden in dieser Kategorie positiv bewertet.
+
+Die Auswahl dieser Kriterien bildet die Grundlage für die vergleichende Bewertung der in \cref{sec:frameworks_overview} identifizierten Frameworks, wie in \cref{sec:frameworks_comparison} näher ausgeführt wird.
 
 \section{Vergleich der Frameworks}\label{sec:frameworks_comparison}
+
+Basierend auf den in \cref{sec:frameworks_criteria} definierten Kriterien wurde eine vergleichende Analyse der in \cref{sec:frameworks_overview} vorgestellten Contract-Testing-Tools durchgeführt.
+Die Bewertung erfolgt für jedes Tool entlang der einzelnen Kriterien, um eine fundierte Entscheidungsgrundlage für die spätere Implementierung bereitzustellen.
+Für jedes Kriterium wurde eine Bewertungspunktzahl von 1 bis 5 vergeben, wobei 1 für eine unzureichende Erfüllung des Kriteriums und 5 für eine hervorragende Erfüllung steht.
+Durch Multiplizieren der Punktzahl des Kriteriums mit dem Gewichtungsfaktor ergibt sich eine gewichtete Bewertung, die als Summe die Relevanz des Frameworks für Contract Testing widerspiegelt.
+% TODO: Gewichtung
+
+% TODO: Nummerierungen der Überschriften oder nicht?
+
+
+\subsection*{Pact}
+
+\textbf{\nameref{subsec:frameworks_criterion_functionality}:} Pact unterstützt synchrone HTTP-Kommunikation über \gls{REST}, SOAP, JSON-RPC, GraphQL sowie synchrone als auch asynchrone Schnittstellen (\zB Kafka, gRPC, Websocket, MQTT \usw).
+Es bietet umfassende Möglichkeiten zur Definition von Contracts, einschließlich Validierung von Request/Response-Strukturen, Headern und Statuscodes sowie verschiedene Typ- und Format- und Wertüberprüfungen.
+
+\textbf{\nameref{subsec:frameworks_criterion_languagesupport}:} Pact bietet breite Sprachunterstützung mit vielen Plugins für insgesamt über 12 Programmiersprachen-Umgebungen \ua Java, JS/TS, Python, Ruby, Go, Rust, C++.
+
+\textbf{\nameref{subsec:frameworks_criterion_initialeffort}:} Die erstmalige Einrichtung ist gut dokumentiert, jedoch erfordert die Vielfalt an Implementierungen eine gewisse Einarbeitung, da sich die Integration bei den unterschiedlichen in verschiedene Anwendungskontexte sich teilweise stark unterscheidet.
+
+\textbf{\nameref{subsec:frameworks_criterion_continuouseffort}:} Änderungen an Verträgen müssen händisch nachgezogen werden, was bei vielen Services aufwendig sein kann.
+Welche Verträge und welche Validierungen konkret angepasst werden müssen, wird transparent dargestellt.
+Die Provider-Tests werden jedoch automatisch aus den Consumer-Contracts generiert, was den Aufwand reduziert.
+
+\textbf{\nameref{subsec:frameworks_criterion_license}:} Pact steht unter der \gls{MIT}-Lizenz, eine häufige Open-Source-Lizenz, und erlaubt freie Nutzung, Änderung und Weitergabe mit Lizenzhinweis.
+Kommerzielle Zusatzangebote wie \textit{PactFlow} bieten optionale Erweiterungen und Cloud-Dienste.
+Diese werden jedoch nicht in der Analyse berücksichtigt.
+
+\textbf{\nameref{subsec:frameworks_criterion_activity}:} Pact weist eine hohe Entwicklungsaktivität auf, mit regelmäßigen Updates in den verschiedenen Sprachimplementierungen.
+Außerdem wird die Entwicklung von der Pact Foundation koordiniert und durch \textit{PactFlow} unterstützt.
+
+\textbf{\nameref{subsec:frameworks_criterion_documentation}:} Die Dokumentation ist umfangreich und deckt viele Anwendungsfälle ab und ist trotz vieler unterschiedlicher Repositories auf einer zentralen Webseite bereitgestellt.
+
+\textbf{\nameref{subsec:frameworks_criterion_contractmanagement}:} Mit Pact Broker ist eine zentrale Verwaltung und Veröffentlichung von Verträgen möglich.
+Dieser ist mithilfe der unterschiedlichen Plugins gut in die verschiedenen Programmiersprachen-Umgebungen integrierbar.
+
+\textbf{\nameref{subsec:frameworks_criterion_versioning}:} Pact Broker unterstützt Versionierung, Tagging und die Historisierung von Verträgen.
+Außerdem können verschiedene und auch neue Contract-Versionen durch den Broker (vor-)verifiziert werden und so die Versionskompatibilität zu erhöhen.
+
+\textbf{\nameref{subsec:frameworks_criterion_visualization}:} Pact Broker bietet übersichtliche Web-Oberflächen für Vertragszustände und Verifizierungen.
+Darüber hinaus lässt sich eine Übersicht über die Abhängigkeiten zwischen Consumer und Provider generieren.
+
+\textbf{\nameref{subsec:frameworks_criterion_reliability}:} Pact liefert detaillierte Fehlermeldungen und bietet eine zuverlässige Erkennung von Vertragsbrüchen.
+Durch das separate can-i-deploy-Feature kann die Verbindlichkeit von Consumer- und Provider-Verträgen überprüft werden, bevor Deployments durchgeführt werden.
+
+\textbf{\nameref{subsec:frameworks_criterion_automability}:} Pact unterstützt \gls{CI}/\gls{CD}-Integrationen durch gute Kompatibilität mit typischen Build-Tools und einem CLI-Tool.
+
+\textbf{\nameref{subsec:frameworks_criterion_scalability}:} Mit der Cloudfähigkeit und strukturierter Contract-Verwaltung des Pact Brokers lassen sich auch größere Projekte gut abbilden und effizient Testen.
+
+
+\subsection*{Spring Cloud Contract}
+
+\textbf{Technisch-funktionale Aspekte:} Spring Cloud Contract fokussiert sich auf synchrone HTTP-Kommunikation über \gls{REST} und bietet auch (teilweise nur experimentelle) Unterstützung für weitere Protokolle wie GraphQL, gRPC sowie Messaging-Protokolle.
+
+\textbf{Sprach- und Technologieunterstützung:} Der Fokus liegt stark auf Java/Spring-Anwendungen.
+Daher gibt es Unterstützung für Java, Groovy und Kotlin, aber keine explizite Unterstützung für andere Sprachen.
+
+\textbf{Initialer Aufwand:} Die Integration in bestehende Spring-Projekte ist standardisiert, da es direkt in das Spring-Ökosystem eingebunden ist.
+
+\textbf{Kontinuierlicher Aufwand:} Gute Integration mit Spring erleichtert die Wartung, da die Tests auf Provider-Seite vollständig automatisiert aus dem Contract generiert werden.
+
+\textbf{Lizenz und Kosten:} Spring Cloud Contract ist unter der Apache-2.0-Lizenz veröffentlicht, die eine freie auch kommerzielle Nutzung und Modifikation erlaubt.
+
+\textbf{Aktualität und Weiterentwicklung:} Als Teil des Spring-Cloud-Projekts wird es aktiv gepflegt, befindet sich aber nicht mehr unter starker Weiterentwicklung.
+
+\textbf{Dokumentation:} Die offizielle Dokumentation ist gut strukturiert, setzt jedoch teilweise tiefere Spring-Kenntnisse voraus.
+
+\textbf{Contract-Verwaltung:} Die Verwaltung von Contracts erfolgt über ein zentrales Source-Control-Repository, in dem die Contracts als Groovy- oder YAML-Dateien abgelegt werden.
+
+\textbf{Contract-Versionierung:} Muss mithilfe von Build-Tools oder externen Repositories manuell organisiert werden.
+
+\textbf{Visualisierung:} Es steht keine eigene Visualisierungskomponente zur Verfügung.
+
+\textbf{Verbindlichkeit und Fehlererkennungsrate:} Spring Cloud Contract zeichnet sich durch hohe Verbindlichkeit aus, da \gls{API}-Implementierungen strikt gegen definierte Verträge getestet werden.
+Die Fehlererkennungsrate ist hoch, sofern Verträge vollständig gepflegt sind und realistische Nutzung abbilden.
+
+\textbf{\nameref{subsec:frameworks_criterion_automability}:} Die Integration in Spring-Build-Prozesse (Maven oder Gradle) ist exzellent, ebenso wie die \gls{CI}/\gls{CD}-Anbindungen.
+
+\textbf{\nameref{subsec:frameworks_criterion_scalability}:} Durch die enge Integration in das Spring-Ökosystem gut skalierbar aufgrund des Fokus auf Cloud- und Microservice-Umgebungen.
+
+
+\subsection*{Specmatic}
+
+\textbf{\nameref{subsec:frameworks_criterion_functionality}:} Specmatic unterstützt in der Open-Source-Variante lediglich die Kommunikation über \gls{REST} und \gls{SOAP}.
+Aufgrund der \gls{OpenAPI}-Basis können Verträge verschiedene Validierungsregeln definieren, einschließlich Typ- und Format- und Wertüberprüfungen.
+
+\textbf{\nameref{subsec:frameworks_criterion_languagesupport}:} Specmatic ist sprachunabhängig und kann in verschiedenen Umgebungen eingesetzt werden, da Tests mithilfe eines alleinstehenden CLI-Tools durchgeführt werden.
+
+\textbf{\nameref{subsec:frameworks_criterion_initialeffort}:} Die manuelle Erstellung von \gls{OpenAPI}-Spezifikationen ist nötwendig.
+Die Integration in bestehende Projekte erfordert eine gewisse Einarbeitung, da es keine spezifischen Plugins für gängige Build-Tools gibt.
+
+\textbf{\nameref{subsec:frameworks_criterion_continuouseffort}:} Die \gls{OpenAPI}-Spezifikationen müssen bei Änderungen der Schnittstellen manuell aktualisiert werden, da diese nicht mit dem Anwendungscode zusammenhängen, was den kontinuierlichen Aufwand erhöht.
+
+\textbf{\nameref{subsec:frameworks_criterion_license}:} Specmatic steht unter MIT-Lizenz, die eine freie Nutzung und Modifikation erlaubt.
+Specmatic bietet jedoch auch kommerzielle Erweiterungen an, welche nicht in die Analyse einbezogen werden.
+
+\textbf{\nameref{subsec:frameworks_criterion_activity}:} Das Tool ist aktiv in der Entwicklung, jedoch mit einem kleinen Entwicklungsteam und einer kleinen Community.
+Viele Weiterentwicklungen sind auf die kommerzielle Version ausgerichtet.
+
+\textbf{\nameref{subsec:frameworks_criterion_documentation}:} Die Dokumentation ist gut strukturiert und bietet viele Beispiele, jedoch ist sie nicht so umfangreich wie bei anderen Frameworks.
+
+\textbf{\nameref{subsec:frameworks_criterion_contractmanagement}:} Specmatic bietet keine zentrale Contract-Verwaltung, sondern nutzt \gls{OpenAPI}-Spezifikationen, die in Repositories manuell verwaltet werden.
+
+\textbf{\nameref{subsec:frameworks_criterion_versioning}:} Versionierung erfolgt über Git oder andere Versionskontrollsysteme, jedoch ohne spezielle Unterstützung durch das Tool.
+
+\textbf{\nameref{subsec:frameworks_criterion_visualization}:} Die standardisierten \gls{OpenAPI}-Spezifikationen können als \gls{API}-Dokumentationen visualisiert werden.
+Die Testergebnisse können in Form von JSON- oder XML-Berichten ausgegeben werden, jedoch ist keine grafische Visualisierung dieser mit dem Tool möglich.
+
+\textbf{\nameref{subsec:frameworks_criterion_reliability}:} Specmatic bietet eine hohe Verbindlichkeit, da es auf standardisierten \gls{OpenAPI}-Spezifikationen basiert und diese strikt gegen die Implementierung prüft.
+
+\textbf{\nameref{subsec:frameworks_criterion_automability}:} Die Automatisierung erfolgt über ein CLI-Tool, das in \gls{CI}/\gls{CD}-Pipelines integriert werden kann.
+Dies erfordert allerdings manuelle Integration in bestehende Abläufe, da es keine spezifischen Plugins für gängige Build-Tools gibt.
+
+\textbf{\nameref{subsec:frameworks_criterion_scalability}:} Specmatic ist aufgrund seiner sprachunabhängigen Natur und der Nutzung von \gls{OpenAPI}-Spezifikationen gut skalierbar.
+Allerdings kann die Contract-Verwaltung bei größeren Projekten aufwendig und unübersichtlich werden, da sie nicht zentralisiert ist und manuelle Pflege erfordert.
+
+
+\subsection*{Karate}
+
+\textbf{\nameref{subsec:frameworks_criterion_functionality}:} Karate unterstützt synchrone HTTP-Kommunikation über \gls{REST}, \gls{SOAP} und GraphQL\@.
+Es bietet umfassende Möglichkeiten zur Definition von Contracts, einschließlich Validierung von Request/Response-Strukturen, Headern, Statuscodes und benutzerdefinierten Überprüfungen mithilfe der Karte \gls{DSL}\@.
+
+\textbf{\nameref{subsec:frameworks_criterion_languagesupport}:} Karate ist in Java implementiert, bietet jedoch eine eigene \gls{DSL}, die es ermöglicht, Tests in einer leicht verständlichen und progammiersprchenunabhängigen Syntax zu schreiben.
+Es bietet eine gute Integration in Java-Umgebungen, ist aber durch ein selbstständiges CLI-Tool in anderen Anwendungsumgebungen einsetzbar.
+
+\textbf{\nameref{subsec:frameworks_criterion_initialeffort}:} Die Einrichtung ist einfach, da Karate als Maven- oder Gradle-Plugin integriert werden kann.
+Die Tests können in einer leicht verständlichen \gls{DSL} geschrieben werden, welche aber eine gewisse Einarbeitung erfordert.
+
+\textbf{\nameref{subsec:frameworks_criterion_continuouseffort}:} Die Wartung der Tests ist durch die klare Struktur und die Möglichkeit, Tests in einer \gls{DSL} zu schreiben, relativ gering.
+
+\textbf{\nameref{subsec:frameworks_criterion_license}:} Karate ist Open-Source und steht unter der MIT-Lizenz, die eine freie Nutzung und Modifikation erlaubt.
+
+\textbf{\nameref{subsec:frameworks_criterion_activity}:} Karate ist aktiv in der Entwicklung, mit regelmäßigen, aber seltenen Updates und einer großen Community.
+Die Entwicklung wird von Karate Labs unterstützt, die auch kommerzielle Erweiterungen anbieten.
+
+\textbf{\nameref{subsec:frameworks_criterion_documentation}:} Die Dokumentation ist umfangreich und gut strukturiert, bietet Beispiele, Tutorials und weitere Ressourcen für die Nutzung des Tools und der \gls{DSL}.
+
+\textbf{\nameref{subsec:frameworks_criterion_contractmanagement}:} Karate bietet keine zentrale Contract-Verwaltung, sondern nutzt eine einfache Dateistruktur zur Ablage der Tests.
+Die Contract können in einem Repository verwaltet werden, jedoch ohne spezielle Unterstützung durch das Tool.
+
+\textbf{\nameref{subsec:frameworks_criterion_versioning}:} Zwar ist eine Versionierung über gängige Versionskontrollsysteme wie Git möglich, allerdings bietet das Tool hierfür keine spezielle Funktionalität.
+
+\textbf{\nameref{subsec:frameworks_criterion_visualization}:} Karate bietet eine einfache Visualisierung der Testergebnisse in Form von HTML-Berichten, die jedoch keine umfassende \gls{API}-Dokumentation ersetzen können.
+Darüber hinaus gibt es keine speziellen Visualisierungsfunktionen für Contract-Abhängigkeiten \oae.
+
+\textbf{\nameref{subsec:frameworks_criterion_reliability}:} Karate bietet eine hohe Verbindlichkeit, da es auf einer klaren \gls{DSL} basiert und die Tests direkt gegen die Implementierung prüft.
+Allerdings ist die Fehlererkennungsrate abhängig von der Qualität der Tests und der definierten Contracts.
+
+\textbf{\nameref{subsec:frameworks_criterion_automability}:} Karate unterstützt die Automatisierung durch Integration in \gls{CI}/\gls{CD}-Pipelines über Maven oder Gradle.
+Die Tests können über ein CLI-Tool ausgeführt werden, was auch eine manuelle Integration in bestehende Abläufe ermöglicht.
+
+\textbf{\nameref{subsec:frameworks_criterion_scalability}:} Die Tests sind bei Karate aufgrund seiner klaren Struktur und der Möglichkeit, Tests in einer \gls{DSL} zu schreiben, gut skalierbar.
+Bei umfangreicheren Projekten gestaltet sich die Contract-Verwaltung oft aufwendig, da es an einer zentralen Verwaltung der Contracts fehlt.
+
+
+\subsection*{ContractCase}
+
+\textbf{\nameref{subsec:frameworks_criterion_functionality}:} ContractCase ist begrenzt auf das Testen von \gls{REST}-\glspl{API} und bietet grundlegende Validierungsfunktionen für Request/Response-Strukturen, Header und Statuscodes.
+
+\textbf{\nameref{subsec:frameworks_criterion_languagesupport}:} ContractCase bietet Unterstützung für Java und JavaScript/TypeScript.
+Eine Integration in andere Programmiersprachen wie Python, C\# und Go ist geplant, each noch nicht verfügbar.
+
+\textbf{\nameref{subsec:frameworks_criterion_initialeffort}:} Die Einbindung in bestehende Projekte gut beschrieben, da es für beide unterstützten Sprachen spezifische Plugins gibt.
+Die Erstellung der Contracts erfolgt in Code, was eine gewisse Einarbeitung erfordert.
+
+\textbf{\nameref{subsec:frameworks_criterion_continuouseffort}:} Die Wartung der Contracts ist durch die codebasierte Definition relativ gering, da Änderungen direkt im Code nachgezogen werden können.
+
+\textbf{\nameref{subsec:frameworks_criterion_license}:} ContractCase ist unter der BSD-3-Clause-Lizenz veröffentlicht, die die freie Nutzung, Änderung und Weiterverbreitung der Software erlaubt, solange der ursprüngliche Copyright-Hinweis erhalten bleibt. %~\cite{CasecontracttestingContractcase2025}.
+
+\textbf{\nameref{subsec:frameworks_criterion_activity}:} ContractCase ist ein relativ neues Projekt und befindet sich noch im Aufbau.
+Die Entwicklung erfolgt aktiv mit häufigen Änderungen, jedoch nur durch eine Einzelperson.
+
+\textbf{\nameref{subsec:frameworks_criterion_documentation}:} Die Dokumentation bietet umfangreiche Informationen zur Nutzung des Tools.
+Allerdings gibt es wenige Beispiele und Tutorials, aufgrund der Neuheit des Projekts.
+
+\textbf{\nameref{subsec:frameworks_criterion_contractmanagement}:} ContractCase ist kompatibel mit dem Pact Broker, was eine zentrale Verwaltung und Veröffentlichung von Contracts ermöglicht.
+Die Unterstützung der Broker-Funktionalitäten ist eingeschränkt, da sich die Struktur der Contracts zwischen ContractCase und Pact unterscheidet.
+
+\textbf{\nameref{subsec:frameworks_criterion_versioning}:} Die Versionierung der Contracts erfolgt über den Pact Broker, der eine zentrale Anlaufstelle für alle Contracts darstellt.
+Auch hier ist die Unterstützung jedoch eingeschränkt.
+Es ist \zB keine Vorverifizierung von neuen Contract-Versionen möglich.
+
+\textbf{\nameref{subsec:frameworks_criterion_visualization}:} Die guten Visualisierungsfunktionen des Pact Brokers können genutzt werden, um die Contracts und deren Abhängigkeiten, aber nicht deren Inhalt darzustellen.
+
+\textbf{\nameref{subsec:frameworks_criterion_reliability}:} ContractCase bietet eine hohe Verbindlichkeit, da es auf den Pact-Standards basiert und die Tests direkt gegen die Implementierung prüft.
+
+\textbf{\nameref{subsec:frameworks_criterion_automability}:} ContractCase unterstützt die Automatisierung durch Integration in \gls{CI}/\gls{CD}-Pipelines über Maven oder Gradle und \gls{npm}.
+
+\textbf{\nameref{subsec:frameworks_criterion_scalability}:} Die Skalierbarkeit ist aufgrund der Unterstützung für den Pact Broker gegeben, der eine zentrale Verwaltung und Veröffentlichung von Contracts ermöglicht.
+
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[htbp]
+    \centering
+    \caption{Vergleich der Contract-Testing-Frameworks}
+    \begin{tabular}{l|r|rrrrr}
+        \toprule
+        Kriterien & \multicolumn{1}{l}{Gewichtung} & \multicolumn{1}{l}{\textbf{P}} & \multicolumn{1}{l}{\textbf{SCC}} & \multicolumn{1}{l}{\textbf{S}} & \multicolumn{1}{l}{\textbf{K}} & \multicolumn{1}{l}{\textbf{CC}} \\
+        \midrule
+        \nameref{subsec:frameworks_criterion_functionality} & 2     & 5     & 4     & 3     & 4     & 4 \\
+        \nameref{subsec:frameworks_criterion_languagesupport} & 3     & 5     & 3     & 4     & 4     & 3 \\
+        \nameref{subsec:frameworks_criterion_initialeffort} & 2     & 3     & 2     & 3     & 4     & 3 \\
+        \nameref{subsec:frameworks_criterion_continuouseffort} & 2     & 4     & 3     & 3     & 4     & 4 \\
+        \nameref{subsec:frameworks_criterion_license} & 1     & 4     & 5     & 5     & 5     & 5 \\
+        \nameref{subsec:frameworks_criterion_activity} & 3     & 5     & 4     & 4     & 4     & 4 \\
+        \nameref{subsec:frameworks_criterion_documentation} & 3     & 5     & 4     & 3     & 4     & 4 \\
+        \nameref{subsec:frameworks_criterion_contractmanagement} & 3     & 5     & 3     & 4     & 3     & 3 \\
+        \nameref{subsec:frameworks_criterion_versioning} & 2     & 5     & 4     & 3     & 4     & 4 \\
+        \nameref{subsec:frameworks_criterion_visualization} & 1     & 4     & 3     & 3     & 3     & 2 \\
+        \nameref{subsec:frameworks_criterion_reliability} & 2     & 5     & 4     & 3     & 4     & 5 \\
+        \nameref{subsec:frameworks_criterion_automability} & 3     & 5     & 5     & 3     & 5     & 4 \\
+        \nameref{subsec:frameworks_criterion_scalability} & 1     & 5     & 4     & 3     & 3     & 4 \\
+        \midrule
+        Summe & & 60 & 48 & 44 & 51 & 49 \\
+        \midrule
+        Gewichtete Summe &       & 132 & 103 & 95 & 111 & 105 \\
+        \bottomrule
+    \end{tabular}%
+    \label{tab:framework_evaluation}%
+\end{table}%
+
+
+\bigskip
+Diese vergleichende Bewertung bildet die Grundlage für die Auswahl des geeignetsten Tools, wie im nächsten Kapitel beschrieben wird.
+
+
