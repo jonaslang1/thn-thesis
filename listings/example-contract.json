@@ -1,0 +1,73 @@
+{
+  "consumer": {
+    "name": "frontend_component"
+  },
+  "interactions": [
+    {
+      "description": "a request for a customer",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "I have a customer"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/customers/1"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "email": "test@msg.group",
+            "gebaeudeSet": [],
+            "hausnummer": "14a",
+            "id": 1,
+            "name": "msg.systems",
+            "ort": "Nuernberg",
+            "plz": 12345,
+            "strasse": "teststrasse"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "status": {}
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.22",
+      "models": "1.2.3"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "instance_management_component"
+  }
+}

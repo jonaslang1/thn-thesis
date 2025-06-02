@@ -20,7 +20,7 @@ Pact ist eines der verbreitetsten Frameworks im Bereich des Contract Testing.
 Das Tool wurde erstmals im Jahr 2013 veröffentlicht und ist ein Open-Source-Projekt, das von der australischen Softwarefirma DiUS ins Leben gerufen wurde.
 Ziel war es, eine leichtgewichtige und praktikable Lösung für \gls{API}-Testing in einer Microservice Architektur bereitzustellen~\cite{pactfoundationPactDocs2022}.
 Die Entwicklung wird heute von der gemeinnützigen Pact Foundation koordiniert, die eine wachsende Open-Source-Community unterstützt.
-Es existieren offizielle Implementierungen für mehrere Programmiersprachen sowie ein eigenes Hosting-Angebot für Pacts namens \textquote{Pactflow}, welches allerdings kommerziell und nicht Open-Source ist~\cite{MicroservicesAPITesting}.
+Es existieren offizielle Implementierungen für mehrere Programmiersprachen sowie ein eigenes Hosting-Angebot für Pacts namens \texttt{Pactflow}, welches allerdings kommerziell und nicht Open-Source ist~\cite{MicroservicesAPITesting}.
 
 \subsubsection{Spring Cloud Contract}
 Spring Cloud Contract ist Teil des umfassenden Spring Cloud-Frameworks und wurde 2016 unter dem Dach von Pivotal (heute VMware Tanzu) veröffentlicht~\cite{SpringCloudContract}.
@@ -169,11 +169,11 @@ Welche Verträge und welche Validierungen konkret angepasst werden müssen, wird
 Die Provider-Tests werden jedoch automatisch aus den Consumer-Contracts generiert, was den Aufwand reduziert.
 
 \textbf{\nameref{subsec:frameworks_criterion_license}:} Pact steht unter der \gls{MIT}-Lizenz, eine häufige Open-Source-Lizenz, und erlaubt freie Nutzung, Änderung und Weitergabe mit Lizenzhinweis.
-Kommerzielle Zusatzangebote wie \textit{PactFlow} bieten optionale Erweiterungen und Cloud-Dienste.
+Kommerzielle Zusatzangebote wie \texttt{PactFlow} bieten optionale Erweiterungen und Cloud-Dienste.
 Diese werden jedoch nicht in der Analyse berücksichtigt.
 
 \textbf{\nameref{subsec:frameworks_criterion_activity}:} Pact weist eine hohe Entwicklungsaktivität auf, mit regelmäßigen Updates in den verschiedenen Sprachimplementierungen.
-Außerdem wird die Entwicklung von der Pact Foundation koordiniert und durch \textit{PactFlow} unterstützt.
+Außerdem wird die Entwicklung von der Pact Foundation koordiniert und durch \texttt{PactFlow} unterstützt.
 
 \textbf{\nameref{subsec:frameworks_criterion_documentation}:} Die Dokumentation ist umfangreich und deckt viele Anwendungsfälle ab und ist trotz vieler unterschiedlicher Repositories auf einer zentralen Webseite bereitgestellt.
 
@@ -196,28 +196,28 @@ Durch das separate can-i-deploy-Feature kann die Verbindlichkeit von Consumer- u
 
 \subsection*{Spring Cloud Contract}
 
-\textbf{Technisch-funktionale Aspekte:} Spring Cloud Contract fokussiert sich auf synchrone HTTP-Kommunikation über \gls{REST} und bietet auch (teilweise nur experimentelle) Unterstützung für weitere Protokolle wie GraphQL, gRPC sowie Messaging-Protokolle.
+\textbf{\nameref{subsec:frameworks_criterion_functionality}:} Spring Cloud Contract fokussiert sich auf synchrone HTTP-Kommunikation über \gls{REST} und bietet auch (teilweise nur experimentelle) Unterstützung für weitere Protokolle wie GraphQL, gRPC sowie Messaging-Protokolle.
 
-\textbf{Sprach- und Technologieunterstützung:} Der Fokus liegt stark auf Java/Spring-Anwendungen.
+\textbf{\nameref{subsec:frameworks_criterion_languagesupport}:} Der Fokus liegt stark auf Java/Spring-Anwendungen.
 Daher gibt es Unterstützung für Java, Groovy und Kotlin, aber keine explizite Unterstützung für andere Sprachen.
 
-\textbf{Initialer Aufwand:} Die Integration in bestehende Spring-Projekte ist standardisiert, da es direkt in das Spring-Ökosystem eingebunden ist.
+\textbf{\nameref{subsec:frameworks_criterion_initialeffort}:} Die Integration in bestehende Spring-Projekte ist standardisiert, da es direkt in das Spring-Ökosystem eingebunden ist.
 
-\textbf{Kontinuierlicher Aufwand:} Gute Integration mit Spring erleichtert die Wartung, da die Tests auf Provider-Seite vollständig automatisiert aus dem Contract generiert werden.
+\textbf{\nameref{subsec:frameworks_criterion_continuouseffort}:} Gute Integration mit Spring erleichtert die Wartung, da die Tests auf Provider-Seite vollständig automatisiert aus dem Contract generiert werden.
 
-\textbf{Lizenz und Kosten:} Spring Cloud Contract ist unter der Apache-2.0-Lizenz veröffentlicht, die eine freie auch kommerzielle Nutzung und Modifikation erlaubt.
+\textbf{\nameref{subsec:frameworks_criterion_license}:} Spring Cloud Contract ist unter der Apache-2.0-Lizenz veröffentlicht, die eine freie auch kommerzielle Nutzung und Modifikation erlaubt.
 
-\textbf{Aktualität und Weiterentwicklung:} Als Teil des Spring-Cloud-Projekts wird es aktiv gepflegt, befindet sich aber nicht mehr unter starker Weiterentwicklung.
+\textbf{\nameref{subsec:frameworks_criterion_activity}:} Als Teil des Spring-Cloud-Projekts wird es aktiv gepflegt, befindet sich aber nicht mehr unter starker Weiterentwicklung.
 
-\textbf{Dokumentation:} Die offizielle Dokumentation ist gut strukturiert, setzt jedoch teilweise tiefere Spring-Kenntnisse voraus.
+\textbf{\nameref{subsec:frameworks_criterion_documentation}:} Die offizielle Dokumentation ist gut strukturiert, setzt jedoch teilweise tiefere Spring-Kenntnisse voraus.
 
-\textbf{Contract-Verwaltung:} Die Verwaltung von Contracts erfolgt über ein zentrales Source-Control-Repository, in dem die Contracts als Groovy- oder YAML-Dateien abgelegt werden.
+\textbf{\nameref{subsec:frameworks_criterion_contractmanagement}:} Die Verwaltung von Contracts erfolgt über ein zentrales Source-Control-Repository, in dem die Contracts als Groovy- oder YAML-Dateien abgelegt werden.
 
-\textbf{Contract-Versionierung:} Muss mithilfe von Build-Tools oder externen Repositories manuell organisiert werden.
+\textbf{\nameref{subsec:frameworks_criterion_versioning}:} Muss mithilfe von Build-Tools oder externen Repositories manuell organisiert werden.
 
-\textbf{Visualisierung:} Es steht keine eigene Visualisierungskomponente zur Verfügung.
+\textbf{\nameref{subsec:frameworks_criterion_visualization}:} Es steht keine eigene Visualisierungskomponente zur Verfügung.
 
-\textbf{Verbindlichkeit und Fehlererkennungsrate:} Spring Cloud Contract zeichnet sich durch hohe Verbindlichkeit aus, da \gls{API}-Implementierungen strikt gegen definierte Verträge getestet werden.
+\textbf{\nameref{subsec:frameworks_criterion_reliability}:} Spring Cloud Contract zeichnet sich durch hohe Verbindlichkeit aus, da \gls{API}-Implementierungen strikt gegen definierte Verträge getestet werden.
 Die Fehlererkennungsrate ist hoch, sofern Verträge vollständig gepflegt sind und realistische Nutzung abbilden.
 
 \textbf{\nameref{subsec:frameworks_criterion_automability}:} Die Integration in Spring-Build-Prozesse (Maven oder Gradle) ist exzellent, ebenso wie die \gls{CI}/\gls{CD}-Anbindungen.
@@ -341,7 +341,7 @@ Pact (\textbf{P}), Spring Cloud Contract (\textbf{SCC}), Specmatic (\textbf{S}),
 \begin{table}[htbp]
     \centering
     \vspace{1ex}
-    \begin{tabular}{l|c|>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}}
+    \begin{tabular}{@{}l|c|>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}>{\centering\arraybackslash}m{1.7em}@{}}
         \toprule
         Kriterien                                                & Gewichtung & \textbf{P} & \textbf{SCC} & \textbf{S} & \textbf{K} & \textbf{CC} \\
         \midrule
