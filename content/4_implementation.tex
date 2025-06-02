@@ -113,6 +113,15 @@ Diese Durchführung erfolgte nach demselben Muster wie bei der Nutzeroberfläche
 Für die Veröffentlichung der Contracts musste noch das CLI-Plugin über \texttt{Maven} installiert werden, um die Pact-Contracts an den \texttt{Pact Broker} zu übermitteln.
 
 Jede Service-Interaktion durchlief dabei denselben Zyklus: Definition der Consumer-Seite, Veröffentlichung zum Pact Broker, Implementation und Ausführung des Provider-Tests, Veröffentlichung des Verifizierungsstatus.
+Die Contract-Tests wurden für alle relevanten Interaktionen zwischen den Microservices implementiert, um die Interoperabilität und Konsistenz der Kommunikation sicherzustellen.
+Die \cref{fig:service_dependecies} zeigt den Abhängigkeitsgraphen der Microservices, der die Kommunikationsbeziehungen zwischen den einzelnen Services darstellt.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/service-dependencies}
+    \caption{Abhängigkeitsgraph der Microservices}
+    \label{fig:service_dependecies}
+\end{figure}
 
 \subsection{CI-Integration und Automatisierung}\label{subsec:implementation_execution_ci-integration}
 
