@@ -114,7 +114,8 @@ Für die Veröffentlichung der Contracts musste noch das CLI-Plugin über \textt
 
 Jede Service-Interaktion durchlief dabei denselben Zyklus: Definition der Consumer-Seite, Veröffentlichung zum Pact Broker, Implementation und Ausführung des Provider-Tests, Veröffentlichung des Verifizierungsstatus.
 Die Contract-Tests wurden für alle relevanten Interaktionen zwischen den Microservices implementiert, um die Interoperabilität und Konsistenz der Kommunikation sicherzustellen.
-Die \cref{fig:service_dependecies} zeigt den Abhängigkeitsgraphen der Microservices, der die Kommunikationsbeziehungen zwischen den einzelnen Services darstellt.
+Dabei sind insgesamt sechs Contracts zwischen den fünf Microservices entstanden, die die Interaktionen zwischen den Services abbilden.
+Diese sind mithilfe eines Abhängigkeitsgraphen in \cref{fig:service_dependecies} visualisiert, welcher durch den \texttt{Pact Broker} automatisch generiert wurde.
 
 \begin{figure}[htbp]
     \centering
