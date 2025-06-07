@@ -9,7 +9,11 @@ Dazu zählen insbesondere die eingesetzten Programmiersprachen, Build- und Test-
 Ein Verständnis für die Anwendungsumgebung ist essenziell, um die getroffenen Implementierungsentscheidungen nachvollziehbar zu machen und die spätere Übertragbarkeit der Ergebnisse auf andere Projekte realistisch einschätzen zu können.
 
 Die Anwendung mit dem Namen \textit{msg.Sensorik} ist ein internes Projekt der msg systems ag, das als Grundlage für die Implementierung der Contract-Tests dient.
-Sie dient ... % TODO: Zweck der Anwendung
+Ziel der Anwendung ist die Erfassung und automatisierte Verarbeitung von Umgebungsdaten in betreuungsintensiven Wohn- oder Pflegeeinrichtungen.
+Dabei kommen Sensoren zum Einsatz, die beispielsweise geöffnete Fenster oder Türen detektieren und definierte Reaktionen auslösen können.
+Die Erfassung erfolgt über Sensoren, deren Signale durch ein lokales Gerät mit Smarthome-Schnittstelle gesammelt und an eine cloudbasierte Verwaltungsplattform weitergegeben werden.
+Diese Plattform übernimmt die zentrale Steuerung und Regelverarbeitung sowie die Bereitstellung grafischer Dashboards und Reporting-Funktionalitäten.
+Durch Regeldefinitionen kann festgelegt werden, bei welchen Sensorzuständen welche Aktionen ausgelöst werden, etwa das Herunterregeln eines Heizungsthermostats bei geöffnetem Fenster.
 
 Die Anwendung ist in einer Microservice-Architektur aufgebaut, wobei die Microservices jeweils eine spezifische Funktionalität bereitstellt und über Schnittstellen miteinander kommuniziert.
 Insgesamt ist die Anwendung in fünf verschiedene Microservices aufgeteilt:
