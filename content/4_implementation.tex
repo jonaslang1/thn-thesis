@@ -1,4 +1,4 @@
-\chapter{Implementierung}\label{ch:implementation}
+\chapter{Prototypische Implementierung}\label{ch:implementation}
 
 \section{Anwendungsumgebung}\label{sec:implementation_environment}
 
@@ -80,26 +80,26 @@ Hier wurde zuerst die Nutzeroberfläche gewählt, welche siehe \cref{tab:consume
 Zuerst musste eines der Integrations-Plugins für \texttt{Pact} ausgewählt werden, welches Consumer-Tests in TypeScript unterstützt.
 Die Wahl fiel letztendlich auf \texttt{pact-js}, welches von der offiziellen \texttt{Pact} Dokumentation empfohlen wird~\cite{pactfoundationPactDocs2022}.
 Damit wurden die Tests im Nutzeroberflächen-Service-Repository in TypeScript formuliert.
-Die Testklassen wurden in einem separaten Verzeichnis als die Angular-Anwendung innerhalb des Repositories abgelegt, da die Angular-Anwendung Probleme mit Abhängigkeiten der \texttt{pact-js}-Bibliothek hatte.
-Nähere Informationen zu den Herausforderungen der Einrichtung von Contract-Tests in Angular sind in \cref{subsec:implementation_problems_angular-integration} zu finden.
+Die Testklassen wurden in einem separaten Verzeichnis als die \texttt{\gls{Angular}}-Anwendung innerhalb des Repositories abgelegt, da die \texttt{\gls{Angular}}-Anwendung Probleme mit Abhängigkeiten der \texttt{pact-js}-Bibliothek hatte.
+Nähere Informationen zu den Herausforderungen der Einrichtung von Contract-Tests in \texttt{\gls{Angular}} sind in \cref{subsec:implementation_problems_angular-integration} zu finden.
 
-Für die Erstellung der Testfälle wurde sich an den Methoden der Service-Klassen der Angular-Anwendung orientiert, da diese die tatsächlichen Interaktionen mit den Backend-Services im Code abbilden.
-Für jede der genutzten HTTP-Verben (GET, POST, PUT, DELETE \usw) der einzelnen \gls{API}-Pfade wurde ein separater Consumer-Test definiert, der die erwarteten Interaktionen mit dem zugehörigen Provider-Service beschreibt.
+Für die Erstellung der Testfälle wurde sich an den Methoden der Service-Klassen der \texttt{\gls{Angular}}-Anwendung orientiert, da diese die tatsächlichen Interaktionen mit den Backend-Services im Code abbilden.
+Für jede der genutzten \gls{HTTP}-Verben (GET, POST, PUT, DELETE \usw) der einzelnen \gls{API}-Pfade wurde ein separater Consumer-Test definiert, der die erwarteten Interaktionen mit dem zugehörigen Provider-Service beschreibt.
 Als Erstes wurde für jede Interaktion ein Status definiert, der beschreibt, in welchem Status sich der Provider zur Zeit der Provider-Verifizierung befinden muss, um die zugehörige Antwort zurückliefern zu können.
-Danach wird die Anfrage festgelegt, die der Consumer an den Provider sendet, einschließlich der HTTP-Methode, des Pfads, der Header und des Inhalts.
-Die erwartete Antwort des Providers wird ebenfalls spezifiziert, einschließlich des HTTP-Statuscodes, der Header und der erwarteten Antwortdaten.
+Danach wird die Anfrage festgelegt, die der Consumer an den Provider sendet, einschließlich des \gls{HTTP}-Verbs, des Pfads, der Header und des Inhalts.
+Die erwartete Antwort des Providers wird ebenfalls spezifiziert, einschließlich des \gls{HTTP}-Statuscodes, der Header und der erwarteten Antwortdaten.
 Dabei konnten auch komplexe Datenstrukturen und Validierungsregeln der Antwortinhalte definiert werden, um sich ändernde Werte zu berücksichtigen.
-Diese Angaben dienen als Grundlage für den Provider-Mock, gegen den die Aufrufe der Angular-Anwendung getestet werden.
+Diese Angaben dienen als Grundlage für den Provider-Mock, gegen den die Aufrufe der \texttt{\gls{Angular}}-Anwendung getestet werden.
 
 Außerdem werden Erwartungen definiert, die bei der Ausführung der Consumer-Tests gegen den Provider-Mock erfüllt sein müssen, um die simulierte Interaktion zu überprüfen.
-So kann sichergestellt werden, dass die Angular-Anwendung die erwarteten Antworten korrekt verarbeitet.
-Nach erfolgreicher Ausführung der Consumer-Tests wird ein Pact-Contract generiert, der diese definierten Interaktionen zwischen Consumer und Provider beschreibt und als JSON-Datei speichert.
-Ein Beispiel für einen solchen Pact-Contract ist in \cref{lst:pact_contract_example} zu finden.
+So kann sichergestellt werden, dass die \texttt{\gls{Angular}}-Anwendung die erwarteten Antworten korrekt verarbeitet.
+Nach erfolgreicher Ausführung der Consumer-Tests wird einparagraph-Contract generiert, der diese definierten Interaktionen zwischen Consumer und Provider beschreibt und als \gls{JSON}-Datei speichert.
+Ein Beispiel für einen solchen \texttt{Pact}-Contract ist in \cref{lst:pact_contract_example} zu finden.
 
-\lstinputlisting[language=JSON, caption=Beispiel für einen Pact-Contract, label=lst:pact_contract_example]{listings/example-contract.json}
+\lstinputlisting[language=JSON, caption=Beispiel für einen \texttt{Pact}-Contract, label=lst:pact_contract_example]{listings/example-contract.json}
 
-Zur Ausführung der Tests kam das Test-Framework \texttt{Jasmine} zum Einsatz, welches in dieser Angular-Anwendung bereits für andere Testarten verwendet wird.
-Nach erfolgreicher Definition und Ausführung der Consumer-Tests wurde der erstellte Pact-Contract unter Angabe der Service-Version über die Pact CLI an den \texttt{Pact Broker} publiziert.
+Zur Ausführung der Tests kam das Test-Framework \texttt{Jasmine} zum Einsatz, welches in dieser \texttt{\gls{Angular}}-Anwendung bereits für andere Testarten verwendet wird.
+Nach erfolgreicher Definition und Ausführung der Consumer-Tests wurde der erstellte \texttt{Pact}-Contract unter Angabe der Service-Version über die \texttt{Pact}-\gls{CLI} an den \texttt{Pact Broker} publiziert.
 
 \subsection{Provider-Verifizierung}\label{subsec:implementation_execution_provider-verification}
 
@@ -107,17 +107,17 @@ Im Anschluss wurde der zugehörige Provider-Test aufseiten des Instanz-Managemen
 Die auf Spring-Boot basierenden Services verwenden \texttt{Junit5} für die Ausführung von bestehenden Tests, weshalb dieses Framework auch für die Contract-Tests verwendet wurde.
 Die Verifizierung der Consumer-Contracts erfolgte dem \texttt{pact-jvm-junit5}-Provider-Framework, welches speziell für die Integration mit \texttt{Junit5} entwickelt wurde.
 Dazu wurde die entsprechende Abhängigkeit mithilfe von \texttt{\gls{Maven}} in das Projekt eingebunden und Konfigurationen, wie \zB das Eintragen der Broker-URL durchgeführt.
-Dieses Framework ermöglicht es, die im Pact-Contract definierten Interaktionen gegen die tatsächliche Implementierung des Providers automatisiert zu prüfen.
-Es musste lediglich eine Testklasse mit einem \texttt{TestTemplate} erstellt werden, die die Consumer-Interaktionen aus dem Pact-Contract lädt und gegen die Provider-Implementierung validiert.
+Dieses Framework ermöglicht es, die im \texttt{Pact}-Contract definierten Interaktionen gegen die tatsächliche Implementierung des Providers automatisiert zu prüfen.
+Es musste lediglich eine Testklasse mit einem \texttt{TestTemplate} erstellt werden, die die Consumer-Interaktionen aus dem \texttt{Pact}-Contract lädt und gegen die Provider-Implementierung validiert.
 Um die erwarteten Zustände für die Vertragsprüfung (\zB vorhandene Entitäten in der Datenbank) zu simulieren, wurden sogenannte \texttt{State Definitions} im Provider eingerichtet.
 Dazu musste für jeden Zustand eine Status-Methode definiert werden, die den Provider in den erwarteten Zustand versetzt, bevor der entsprechende Test ausgeführt wird.
 Nach erfolgreicher Durchführung der Provider-Tests wird der Contract im \texttt{Pact Broker} automatisch als verifiziert markiert und Services, die mit diesem Contract kompatibel sind, können deployt werden.
 
 Nach erfolgreicher Implementierung der Contract-Tests für die Kommunikation der Nutzer\-ober\-fläche mit dem Instanz-Management-Service wurde der Prozess sukzessive für die anderen Microservices wiederholt, wobei nun die Consumer-Seite auch mit dem \texttt{pact-jvm}-Framework implementiert werden musste.
 Diese Durchführung erfolgte nach demselben Muster wie bei der Nutzeroberfläche, wobei jedoch die Syntax und die spezifischen Implementierungsdetails durch die verwendete Programmiersprache Java abwichen.
-Für die Veröffentlichung der Contracts wurde dann das CLI-Plugin über \texttt{Maven} installiert, um die Pact-Contracts an den \texttt{Pact Broker} zu übermitteln.
+Für die Veröffentlichung der Contracts wurde dann das CLI-Plugin über \texttt{Maven} installiert, um die \texttt{Pact}-Contracts an den \texttt{Pact Broker} zu übermitteln.
 
-Jede Service-Interaktion durchlief dabei denselben Zyklus: Erst die Definition der Consumer-Seite, danach die Veröffentlichung zum Pact Broker, die Implementierung und Ausführung des Provider-Tests und zuletzt die Veröffentlichung des Verifizierungsstatus.
+Jede Service-Interaktion durchlief dabei denselben Zyklus: Erst die Definition der Consumer-Seite, danach die Veröffentlichung zum \texttt{Pact Broker}, die Implementierung und Ausführung des Provider-Tests und zuletzt die Veröffentlichung des Verifizierungsstatus.
 Die Contract-Tests wurden für alle relevanten Interaktionen zwischen den Microservices implementiert, um die Interoperabilität und Konsistenz der Kommunikation sicherzustellen.
 Dabei sind insgesamt sechs Contracts zwischen den fünf Microservices entstanden, die die Interaktionen zwischen den Services abbilden.
 Diese sind mithilfe eines Abhängigkeitsgraphen in \cref{fig:service_dependecies} visualisiert, welcher durch Nutzung des \texttt{Pact Brokers} automatisch generiert wurde.
@@ -136,9 +136,9 @@ Eine Durchführung der Contract-Tests in der lokalen Umgebung war notwendig, da 
 Mit dieser lokalen \texttt{Drone CI}-Instanz konnte für jeden Microservice eine Pipeline konfiguriert werden, die die Contract-Tests automatisch ausführt und deren Ergebnisse im \texttt{Pact Broker} speichert.
 Die Pipeline umfasst je nach Service die folgenden Schritte:
 \begin{itemize}
-    \item Ausführen der Consumer-Tests, um den Pact-Contract zu generieren.
-    \item Publizieren des Pact-Contracts an den \texttt{Pact Broker}.
-    \item Ausführen der Provider-Verifizierungstests gegen den Pact-Contract.
+    \item Ausführen der Consumer-Tests, um den \texttt{Pact}-Contract zu generieren.
+    \item Publizieren des \texttt{Pact}-Contracts an den \texttt{Pact Broker}.
+    \item Ausführen der Provider-Verifizierungstests gegen den \texttt{Pact}-Contract.
     \item Aktualisieren des Verifizierungsstatus im \texttt{Pact Broker}.
     \item Can-I-Deploy-Abfrage an den \texttt{Pact Broker}, um zu prüfen, ob der Service mit den aktuellen Contracts kompatibel ist.
 \end{itemize}
@@ -153,7 +153,7 @@ Die folgenden Abschnitte skizzieren die zentralen Problemfelder und beschreiben,
 \subsection{\gls{CI}-Infrastrukturkomplexität}\label{subsec:implementation_problems_ci-infrastructure}
 
 Eine zentrale Hürde zu Beginn der Umsetzung war die Einrichtung einer funktionsfähigen lokalen Testumgebung, die alle beteiligten Komponenten – insbesondere den \texttt{Pact Broker} und das CI-System \texttt{Drone CI} und die Versionsverwaltung \texttt{Gitea} – umfasst.
-Die drei Dienste sollten so konfiguriert werden, dass die vollständige Kommunikationskette zwischen Consumer-Tests, Pact-Veröffentlichung und Provider-Verifikation ohne manuelle Zwischenschritte möglich ist.
+Die drei Dienste sollten so konfiguriert werden, dass die vollständige Kommunikationskette zwischen Consumer-Tests, \texttt{Pact}-Veröffentlichung und Provider-Verifikation ohne manuelle Zwischenschritte möglich ist.
 
 Da für die prototypische Implementierung keine zentrale \texttt{Pact Broker}-Instanz zur Verfügung stand, musste eine lokale Instanz aufgesetzt werden.
 Um die Integration in die \texttt{Drone CI}-Pipeline zu ermöglichen, musste auch die \texttt{Drone CI}-Instanz lokal betrieben werden, da die zentrale \texttt{Drone CI}-Instanz des Unternehmens nicht auf den lokalen \texttt{Pact Broker} zugreifen kann.
@@ -171,16 +171,16 @@ Aus diesem Grund wurde die Lösung mit der lokalen \texttt{Drone CI}-Instanz und
 
 \subsection{Angular-Integration}\label{subsec:implementation_problems_angular-integration}
 
-Die Integration der Contract-Tests in die Angular-Anwendung stellte eine besondere Herausforderung dar, da die Angular-Entwicklungsumgebung und die verwendeten Abhängigkeiten nicht optimal mit den \texttt{pact-js}-Bibliotheken harmonierten.
+Die Integration der Contract-Tests in die \texttt{\gls{Angular}}-Anwendung stellte eine besondere Herausforderung dar, da die \texttt{\gls{Angular}}-Entwicklungsumgebung und die verwendeten Abhängigkeiten nicht optimal mit den \texttt{pact-js}-Bibliotheken harmonierten.
 
 Viele Anleitungen und Beispiele für den \texttt{Angular}-Context beziehen sich auf die Plugin-Kombination von \texttt{pact-web}, \texttt{pact-node} \bzw \texttt{karma-pact}~\cite{hendricksenConsumerDrivenContractTesting2020, hombergsCreatingConsumerDrivenContract2017}.
 Diese werden allerdings nicht mehr aktiv gepflegt~\cite{PactfoundationPactweb2022, PactfoundationKarmapactPact}.
-Deshalb wurde auf die Implementierung mithilfe von \texttt{pact-js} gesetzt, welches die Consumer-Tests in TypeScript unterstützt und von der Pact Foundation empfohlen wird~\cite{pactfoundationPactDocs2022}.
+Deshalb wurde auf die Implementierung mithilfe von \texttt{pact-js} gesetzt, welches die Consumer-Tests in TypeScript unterstützt und von der \texttt{Pact Foundation} empfohlen wird~\cite{pactfoundationPactDocs2022}.
 
-Bei der Integration von \texttt{pact-js} in die Angular-Anwendung traten zunächst Abhängigkeitskonflikte auf, die eine direkte Verwendung der Bibliothek in der Angular-Umgebung verhinderten.
-Da die direkte Integration in die Angular-Anwendung nicht nötig war, wurde stattdessen ein separates Verzeichnis innerhalb des Repositories erstellt, in dem die Consumer-Tests unabhängig von der Angular-Anwendung ausgeführt werden konnten.
+Bei der Integration von \texttt{pact-js} in die \texttt{\gls{Angular}}-Anwendung traten zunächst Abhängigkeitskonflikte auf, die eine direkte Verwendung der Bibliothek in der \texttt{\gls{Angular}}-Umgebung verhinderten.
+Da die direkte Integration in die \texttt{\gls{Angular}}-Anwendung nicht nötig war, wurde stattdessen ein separates Verzeichnis innerhalb des Repositories erstellt, in dem die Consumer-Tests unabhängig von der \texttt{\gls{Angular}}-Anwendung ausgeführt werden konnten.
 Dort musste dadurch eine neue \texttt{Node.js}-Umgebung eingerichtet werden, die die Abhängigkeiten für \texttt{pact-js}, \texttt{Jasmine} \usw verwaltet.
-So konnte die Ausführung der Consumer-Tests unabhängig von der Angular-Anwendung erfolgen.
+So konnte die Ausführung der Consumer-Tests unabhängig von der \texttt{\gls{Angular}}-Anwendung erfolgen.
 
 \subsection{Provider-Verifizierung}\label{subsec:implementation_problems_provider-verification}
 
@@ -188,7 +188,7 @@ Auch bei der Implementierung der Provider-Verifizierungstests musste eine kleine
 Die Tests wurden nicht direkt gegen die reale Implementierung des Providers ausgeführt.
 Die im Contract definierten Requests wurden zu Beginn an einen zufälligen Port gesendet, der nicht mit dem Port des laufenden Providers übereinstimmte.
 Dies führte dazu, dass die Tests fehlschlugen, da auf dem angesprochenen Port nicht die erwartete Antwort zurückgegeben wurde.
-Dieses ungewollte Verhalten wurde zunächst nicht bemerkt, da auf dem angesprochenen Port ein anderer undefinierter Server lief und mit seinen HTTP-Responses antwortete.
+Dieses ungewollte Verhalten wurde zunächst nicht bemerkt, da auf dem angesprochenen Port ein anderer undefinierter Server lief und mit seinen \gls{HTTP}-Responses antwortete.
 
 Die Lösung bestand darin, den Port des Providers in der Testkonfiguration explizit anzugeben, sodass die Anfragen an den richtigen Port gesendet wurden.
 Es wurde eine Konfiguration in der Testklasse erstellt, die den Port des laufenden Providers ermittelt und für die Tests als Zielport spezifiziert.
