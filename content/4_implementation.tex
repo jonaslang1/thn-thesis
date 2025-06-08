@@ -75,7 +75,7 @@ Der Broker wird in einem \texttt{Docker}-Container betrieben, um eine einfache H
 
 \subsection{Consumer-Contract als Ausgangspunkt}\label{subsec:implementation_execution_consumer-contract}
 
-Getreu nach den \gls{CDCT}-Prinzipien erfolgte der Einstieg in die Contract-Test-Implementierung bei einem Consumer-Service.
+Getreu nach den Prinzipien von \gls{CDCT}, die in \cref{subsec:foundation_contracttesting_variants} vorgestellt wurden, erfolgte der Einstieg in die Contract-Test-Implementierung bei einem Consumer-Service.
 Hier wurde zuerst die Nutzeroberfläche gewählt, welche siehe \cref{tab:consumer_provider_matrix} nur als Consumer einiger Backend-\glspl{API} fungiert.
 Zuerst musste eines der Integrations-Plugins für \texttt{Pact} ausgewählt werden, welches Consumer-Tests in TypeScript unterstützt.
 Die Wahl fiel letztendlich auf \texttt{pact-js}, welches von der offiziellen \texttt{Pact} Dokumentation empfohlen wird~\cite{pactfoundationPactDocs2022}.
@@ -99,6 +99,7 @@ Ein Beispiel für einen solchen \texttt{Pact}-Contract ist in \cref{lst:pact_con
 \lstinputlisting[language=JSON, caption=Beispiel für einen \texttt{Pact}-Contract, label=lst:pact_contract_example]{listings/example-contract.json}
 
 Zur Ausführung der Tests kam das Test-Framework \texttt{Jasmine} zum Einsatz, welches in dieser \texttt{\gls{Angular}}-Anwendung bereits für andere Testarten verwendet wird.
+Es ermöglicht die Definition von Testklassen und Testfällen, die in der \texttt{Node.js}-Umgebung ausgeführt werden können.
 Nach erfolgreicher Definition und Ausführung der Consumer-Tests wurde der erstellte \texttt{Pact}-Contract unter Angabe der Service-Version über die \texttt{Pact}-\gls{CLI} an den \texttt{Pact Broker} publiziert.
 
 \subsection{Provider-Verifizierung}\label{subsec:implementation_execution_provider-verification}
@@ -113,9 +114,10 @@ Um die erwarteten Zustände für die Vertragsprüfung (\zB vorhandene Entitäten
 Dazu musste für jeden Zustand eine Status-Methode definiert werden, die den Provider in den erwarteten Zustand versetzt, bevor der entsprechende Test ausgeführt wird.
 Nach erfolgreicher Durchführung der Provider-Tests wird der Contract im \texttt{Pact Broker} automatisch als verifiziert markiert und Services, die mit diesem Contract kompatibel sind, können deployt werden.
 
-Nach erfolgreicher Implementierung der Contract-Tests für die Kommunikation der Nutzer\-ober\-fläche mit dem Instanz-Management-Service wurde der Prozess sukzessive für die anderen Microservices wiederholt, wobei nun die Consumer-Seite auch mit dem \texttt{pact-jvm}-Framework implementiert werden musste.
-Diese Durchführung erfolgte nach demselben Muster wie bei der Nutzeroberfläche, wobei jedoch die Syntax und die spezifischen Implementierungsdetails durch die verwendete Programmiersprache Java abwichen.
-Für die Veröffentlichung der Contracts wurde dann das CLI-Plugin über \texttt{Maven} installiert, um die \texttt{Pact}-Contracts an den \texttt{Pact Broker} zu übermitteln.
+Nach erfolgreicher Implementierung der Contract-Tests für die Kommunikation der Nutzer\-ober\-fläche mit dem Instanz-Management-Service wurde der Prozess sukzessive für die anderen Microservices wiederholt, wobei nun die Consumer-Seite auch mit dem \texttt{pact-jvm-junit5}-Framework implementiert wurde.
+Bei der in \cref{tab:consumer_provider_matrix} aufgelisteten Services erfolgte diese Durchführung nach dem gleichen Prozess wie bei der Nutzeroberfläche.
+Jedoch wurde die Syntax und die spezifischen Implementierungsdetails auf die in diesen Services verwendete Programmiersprache Java angepasst.
+Für die Veröffentlichung der Contracts wurde dann im Anschluss das \gls{CLI}-Plugin über \texttt{Maven} installiert, um die \texttt{Pact}-Contracts an den \texttt{Pact Broker} zu übermitteln.
 
 Jede Service-Interaktion durchlief dabei denselben Zyklus: Erst die Definition der Consumer-Seite, danach die Veröffentlichung zum \texttt{Pact Broker}, die Implementierung und Ausführung des Provider-Tests und zuletzt die Veröffentlichung des Verifizierungsstatus.
 Die Contract-Tests wurden für alle relevanten Interaktionen zwischen den Microservices implementiert, um die Interoperabilität und Konsistenz der Kommunikation sicherzustellen.
