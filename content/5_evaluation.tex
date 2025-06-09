@@ -1,10 +1,10 @@
 \chapter{Evaluation der Ergebnisse}\label{ch:evaluation}
 
-Wie in \cref{ch:implementation} beschrieben, konnten die Contract Tests innerhalb der Anwendung \textit{msg.Sensorik} grundsätzlich erfolgreich implementiert werden.
+Wie in \cref{ch:implementation} beschrieben, konnten die Contract Tests innerhalb der Anwendung \linebreak\textit{msg.Sensorik} grundsätzlich erfolgreich implementiert werden.
 Bei der konkreten Umsetzung der Architektur ergaben sich jedoch Herausforderungen.
 Wie in \cref{sec:implementation_challenges} dargelegt wurde, konnten diese im Verlauf der vorliegenden Arbeit erfolgreich gelöst werden.
 
-Nach der Implementierung der Contract-Tests stellt dieses Kapitel die Evaluation der erzielten Ergebnisse dar.
+Nach der prototypischen Implementierung der Contract-Tests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
 Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele – insbesondere die Reduktion von Integrationsproblemen und die Steigerung der Testeffizienz – durch den Einsatz von Contract Testing erreicht werden konnten.
 
 \section{Bewertung der Fehlererkennung}\label{sec:evaluation_errordetection}
@@ -15,11 +15,11 @@ Es wurden absichtlich Änderung mit Kompatibilitätsbruch in den \gls{API}-Schni
 Die Änderungen umfassten sowohl Anpassungen an \gls{API}-Pfaden, \gls{HTTP}-Verben als auch an den \gls{JSON}-Daten der Anfragen und Antworten.
 Beim Ändern der Schnittstellen wurde darauf geachtet, dass teilweise auch die Contract Tests des jeweiligen Services angepasst wurden, um sowohl unabsichtliche Änderungen als auch realistische Arbeit eines Umsetzungsteams zu simulieren.
 
-Nach abgeschlossener Änderung an einem Service wurde die jeweilige Test-Pipeline automatisiert ausgeführt, die bereits in \cref{sec:implementation_execution} beschrieben wurden.
+Nach abgeschlossener Änderung an einem Service wurde die jeweilige Test-Pipeline automatisiert ausgeführt, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurden.
 Dabei schlug erwartungsgemäß entweder die Ausführung der Contract Tests, da die vorgenommenen Änderungen gegen die definierten Contracts verstießen, oder der \texttt{can-i-deploy}-Schritt fehl, da die neu erstellten Contracts nicht verifiziert werden konnten.
 Die Ergebnisse dieses kontrollierten Testszenarios zeigen eindeutig, dass alle eingebauten Abweichungen von den vertraglich vereinbarten Schnittstellen durch die Contract Tests identifiziert wurden.
 Die Fehler wurden jeweils unmittelbar im Rahmen der Consumer- oder Provider-Tests erkannt, wodurch der Integrationsbruch frühzeitig sichtbar wurde.
-Bei der Analyse der Ergebnisse zeigte sich, dass die Contract Tests in der Lage sind, auch auf der Provider-Seite Fehler zu erkennen, die bei  Integrationstests nicht erst durch die Ausführung der Tests auf der Consumer-Seite sichtbar werden.
+Bei der Analyse der Ergebnisse zeigte sich, dass die Contract Tests in der Lage sind, auch direkt auf der Provider-Seite Fehler zu erkennen, die bei  Integrationstests nicht erst durch die Ausführung der Tests auf der Consumer-Seite sichtbar werden.
 
 Ob durch den Einsatz von Contract Testing insgesamt mehr Fehler entdeckt werden als durch herkömmliche Integrationstests, lässt sich im Rahmen dieser Arbeit jedoch nicht abschließend bewerten.
 Eine belastbare Aussage dazu würde eine längerfristige Beobachtung über mehrere Entwicklungszyklen hinweg erfordern, idealerweise mit quantitativen Vergleichsdaten über mehrere Releases oder Sprints hinweg.
@@ -31,10 +31,11 @@ Zudem wären nachträgliche Contract Tests auf historische Implementierungen wen
 
 Neben der Fehlererkennung ist die Effizienz ein entscheidender Aspekt beim Vergleich von Contract Tests mit klassischen Integrationstests.
 Im Rahmen dieser Arbeit wurden konkrete Messungen zur Ausführungsdauer der Test-Pipelines durchgeführt, um die Auswirkungen auf den Entwicklungsprozess zu bewerten.
+Auch wenn absolute Zeitangaben je nach Infrastruktur und Testumgebung variieren können, ist der relative Vergleich zwischen Contract Tests und Integrationstests aufschlussreich.
 
 Das Balkendiagramm in \cref{fig:testing_duration_comparison} zeigt die durchschnittlichen Ausführungsdauern der \gls{CI}-Pipelines für Contract Tests und Integrationstests für die fünf Microservices der Anwendung.
 Die Zeitangaben basieren auf jeweils zehn Einzelmessungen pro Testtyp und pro Microservice.
-Zur besseren Vergleichbarkeit wurden die Mittelwerte berechnet und auf ganze Sekunden gerundet.
+Zur besseren Vergleichbarkeit wurden die Mittelwerte berechnet und auf ganze Sekunden gerundet, um Schwankungen auszugleichen.
 
 \begin{figure}[htbp]
     \centering
@@ -44,12 +45,12 @@ Zur besseren Vergleichbarkeit wurden die Mittelwerte berechnet und auf ganze Sek
 \end{figure}
 
 Die Ergebnisse zeigen, dass Contract Tests signifikant schneller ausgeführt werden können als Integrationstests.
-Dies liegt insbesondere daran, dass Contract Tests unabhängig laufen, also ohne die vollständige Inbetriebnahme aller beteiligten Services und deren technologie Stacks.
+Dies liegt insbesondere daran, dass Contract Tests unabhängig von anderen Services laufen, also ohne die vollständige Inbetriebnahme aller beteiligten Services und deren technologie Stacks.
 Dadurch entfällt ein großer Teil des technischen Mehraufwandes, der bei klassischen Integrationstests anfällt, etwa durch das Starten von Containern, Datenbankinitialisierung oder Netzwerkkonfiguration.
-Die Unterschiede dieser zwei Test-Pipelines sind in \cref{app:test_pipelines} detailliert dargestellt.
+Die weiterführende Informationen und Unterschiede dieser zwei Test-Pipelines sind in \cref{app:test_pipelines} detailliert dargestellt.
 
-Ein wesentlicher Vorteil ergibt sich aus der Möglichkeit, Contract Tests frühzeitig und häufiger im Entwicklungszyklus auszuführen – etwa direkt beim Commit oder beim Aktualisieren eines Pull Request~\cite{cruzContractTestingAction2025}.
-Durch die Unabhängigkeit von anderen Services können Contract Tests sogar lokal auf den Entwicklerrechnern ausgeführt werden, ohne dass aufwendige Infrastruktur wie Container gestartet werden müssen.
+Ein wesentlicher Vorteil ergibt sich aus der Möglichkeit, Contract Tests frühzeitig und häufiger im Entwicklungszyklus auszuführen – etwa direkt beim Commit oder beim Prüfen eines Pull Request~\cite{cruzContractTestingAction2025}.
+Durch die Unabhängigkeit von anderen Services können Contract Tests sogar lokal auf den Entwicklerrechnern ausgeführt werden, ohne dass aufwendig Infrastruktur, wie Container, gestartet werden muss.
 Während Integrationstests aufgrund der erhöhten Dauer oft erst in späteren \gls{CI}-Phasen oder gar in dedizierten Testumgebungen stattfinden~\cite{singhSoftwareTesting2011}, können Contract Tests bereits während der Entwicklung wertvolles Feedback liefern.
 
 Diese Eigenschaft ist vornehmlich im Kontext der sogenannten \textit{Cost of Failure}-Kurve relevant.
@@ -64,6 +65,6 @@ Ein Fehler, der in der Entwicklungsphase entdeckt und behoben wird, verursacht e
 \end{figure}
 
 Insgesamt lässt sich feststellen, dass der Einsatz von Contract Tests zu einer spürbaren Steigerung der Testeffizienz beitragen kann.
-Entwickler erhalten schneller Rückmeldung über \gls{API}-Kompatibilitätsbrüche, was die Entwicklungszyklen verkürzt und die Feedback-Schleifen optimiert.
+Entwickler erhalten schneller Rückmeldung über \gls{API}-Kompatibilitätsbrüche, was die Entwicklungszyklen und die Feedback-Schleifen optimiert.
 Die dadurch gewonnene Agilität kann in komplexeren Projektkontexten wie \zB bei Microservice-Architekturen einen entscheidenden Vorteil darstellen.
 Durch die frühzeitige Detektion von \gls{API}-Inkompatibilitäten im Rahmen von Contract Tests lassen sich somit nicht nur technische Ressourcen einsparen, sondern auch betriebswirtschaftliche Kosten reduzieren.
