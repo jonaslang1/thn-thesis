@@ -19,6 +19,7 @@ Nach abgeschlossener Änderung an einem Service wurde die jeweilige Test-Pipelin
 Dabei schlug erwartungsgemäß entweder die Ausführung der Contract Tests, da die vorgenommenen Änderungen gegen die definierten Contracts verstießen, oder der \texttt{can-i-deploy}-Schritt fehl, da die neu erstellten Contracts nicht verifiziert werden konnten.
 Die Ergebnisse dieses kontrollierten Testszenarios zeigen eindeutig, dass alle eingebauten Abweichungen von den vertraglich vereinbarten Schnittstellen durch die Contract Tests identifiziert wurden.
 Die Fehler wurden jeweils unmittelbar im Rahmen der Consumer- oder Provider-Tests erkannt, wodurch der Integrationsbruch frühzeitig sichtbar wurde.
+Bei der Analyse der Ergebnisse zeigte sich, dass die Contract Tests in der Lage sind, auch auf der Provider-Seite Fehler zu erkennen, die bei  Integrationstests nicht erst durch die Ausführung der Tests auf der Consumer-Seite sichtbar werden.
 
 Ob durch den Einsatz von Contract Testing insgesamt mehr Fehler entdeckt werden als durch herkömmliche Integrationstests, lässt sich im Rahmen dieser Arbeit jedoch nicht abschließend bewerten.
 Eine belastbare Aussage dazu würde eine längerfristige Beobachtung über mehrere Entwicklungszyklen hinweg erfordern, idealerweise mit quantitativen Vergleichsdaten über mehrere Releases oder Sprints hinweg.
@@ -32,7 +33,7 @@ Neben der Fehlererkennung ist die Effizienz ein entscheidender Aspekt beim Vergl
 Im Rahmen dieser Arbeit wurden konkrete Messungen zur Ausführungsdauer der Test-Pipelines durchgeführt, um die Auswirkungen auf den Entwicklungsprozess zu bewerten.
 
 Das Balkendiagramm in \cref{fig:testing_duration_comparison} zeigt die durchschnittlichen Ausführungsdauern der \gls{CI}-Pipelines für Contract Tests und Integrationstests für die fünf Microservices der Anwendung.
-Die Zeitangaben basieren auf jeweils zehn Einzelmessungen pro Testtyp und Microservice.
+Die Zeitangaben basieren auf jeweils zehn Einzelmessungen pro Testtyp und pro Microservice.
 Zur besseren Vergleichbarkeit wurden die Mittelwerte berechnet und auf ganze Sekunden gerundet.
 
 \begin{figure}[htbp]
@@ -48,6 +49,7 @@ Dadurch entfällt ein großer Teil des technischen Mehraufwandes, der bei klassi
 Die Unterschiede dieser zwei Test-Pipelines sind in \cref{app:test_pipelines} detailliert dargestellt.
 
 Ein wesentlicher Vorteil ergibt sich aus der Möglichkeit, Contract Tests frühzeitig und häufiger im Entwicklungszyklus auszuführen – etwa direkt beim Commit oder beim Aktualisieren eines Pull Request~\cite{cruzContractTestingAction2025}.
+Durch die Unabhängigkeit von anderen Services können Contract Tests sogar lokal auf den Entwicklerrechnern ausgeführt werden, ohne dass aufwendige Infrastruktur wie Container gestartet werden müssen.
 Während Integrationstests aufgrund der erhöhten Dauer oft erst in späteren \gls{CI}-Phasen oder gar in dedizierten Testumgebungen stattfinden~\cite{singhSoftwareTesting2011}, können Contract Tests bereits während der Entwicklung wertvolles Feedback liefern.
 
 Diese Eigenschaft ist vornehmlich im Kontext der sogenannten \textit{Cost of Failure}-Kurve relevant.

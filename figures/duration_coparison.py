@@ -6,7 +6,7 @@ services = ['Instanz-Management', 'Regel', 'Reporting', 'Proxy', 'Nutzeroberflä
 
 # Messdaten (10 Messungen je Service & Testtyp)
 contract_measurements = [
-    [83, 84, 77, 79, 80, 12, 12, 12, 12, 12],  # Instanz-Management
+    [83, 84, 77, 79, 80, 79, 84, 80, 82, 82],  # Instanz-Management
     [15, 15, 15, 15, 15, 15, 15, 15, 15, 15],  # Regel
     [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],           # Reporting
     [14, 14, 14, 14, 14, 14, 14, 14, 14, 14], # Proxy
@@ -14,7 +14,7 @@ contract_measurements = [
 ]
 
 integration_measurements = [
-    [258, 260, 255, 248, 250, 20, 20, 20, 20, 20],  # Instanz-Management
+    [258, 260, 255, 248, 250, 244, 250, 259, 249, 243],  # Instanz-Management
     [25, 25, 25, 25, 25, 25, 25, 25, 25, 25],  # Regel
     [18, 18, 18, 18, 18, 18, 18, 18, 18, 18],  # Reporting
     [22, 22, 22, 22, 22, 22, 22, 22, 22, 22],  # Proxy
