@@ -19,29 +19,30 @@ Aufbauend auf diesen Grundlagen lassen sich auch die spezifischen Vorteile und H
 Die Microservice-Architektur bietet zahlreiche Vorteile.
 Sie ermöglicht eine hohe Flexibilität, da Änderungen an einem Service unabhängig von anderen Anwendungsteilen vorgenommen werden können~\cite{haroMicroserviceAPIs2023}.
 Die Fehlertoleranz wird verbessert, weil ein Fehler in einem Microservice nicht zwangsläufig die gesamte Anwendung beeinträchtigt.
-Durch die gezielte Bereitstellung von Ressourcen für bestimmte Dienste kann die Skalierbarkeit optimiert werden, indem einzelne Services bei Bedarf optimiert werden, ohne die gesamte Anwendung zu beeinflussen~\cite{newmanMonolithMicroservices2019}.
+Durch die gezielte Bereitstellung von Ressourcen für bestimmte Dienste kann die Skalierbarkeit optimiert werden, indem einzelne Services bei Bedarf optimiert werden, ohne die restliche Anwendung zu beeinflussen~\cite{newmanMonolithMicroservices2019}.
 Zudem erleichtert die überschaubare Größe einzelner Microservices deren Wartung, da der Code besser verständlich und weniger komplex ist~\cite{newmanBuildingMicroservices2021}.
 
 Trotz der vielen Vorteile bringt die Microservice-Architektur auch Herausforderungen mit sich.
 Die Kommunikation zwischen den einzelnen Diensten erfordert robuste Schnittstellen und ein zuverlässiges \gls{API}-Management, um eine reibungslose Interaktion zu gewährleisten.
-Die Verwaltung von Daten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
+Die Verwaltung von Nutzdaten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
 werden muss,~\dahe die Schnittstellen der einzelnen Dienste müssen aufeinander abgestimmt sein.
 Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten~\cite{newmanMonolithMicroservices2019}.
 
 Die Microservice-Architektur in ihrer Gesamtheit bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen, weil sie eine flexible und skalierbare Infrastruktur bietet.
+Cloud-Umgebungen ermöglichen den Betrieb und die Bereitstellung von IT-Ressourcen unabhängig von physischer Hardware und bieten dabei ein hohes Maß an Flexibilität~\cite{freewheelbiz-uiteamCloudNativeApplicationArchitecture2024}.
 Diese Architektur verbreitet sich daher zunehmend und wird in Zukunft immer häufiger eingesetzt werden~\cite{richardsonMicroservicesPatterns2018}.
 Da bei dieser Architektur die Kommunikation zwischen den einzelnen Diensten im Vordergrund steht, ist eine zuverlässige Validierung der Schnittstellen essenziell.
 
 \section{Arten des Softwaretests}\label{sec:foundation_testing}
 
-Um die Qualität und Funktionsfähigkeit von Software sicherzustellen, kommen verschiedene Arten von Softwaretests zum Einsatz.
+Um die Qualität und Funktionsfähigkeit von Software und ihren Schnittstellen sicherzustellen, können verschiedene Arten von Softwaretests zum Einsatz kommen.
 Diese lassen sich nach ihrem Fokus und ihrer Testtiefe kategorisieren.
 
 Unit-Tests (Modultests) überprüfen einzelne Codeeinheiten isoliert von anderen Komponenten.
 Sie dienen dazu, die korrekte Implementierung kleinster funktionaler Einheiten, wie \zB Funktionen und Methoden, sicherzustellen.
 Bei dieser Testart sollten möglichst viele Einheiten getestet werden, um eine hohe Testabdeckung zu erreichen.
 Wegen der verhältnismäßig geringen Ausführungszeit kann \textquote{[deren] Durchführung [\dots] sehr schnell, beliebig oft und aufwandsarm erfolgen}~\cite{linzBasiswissenSoftwaretest2024}. % TODO: direktes Zitat?
-Diese Tests sind in der Regel maschinell und werden häufig während der Entwicklung durchgeführt, um Fehler
+Diese Tests sind in der Regel automatisiert und werden häufig während der Entwicklung durchgeführt, um Fehler
 frühzeitig zu erkennen.
 
 Integrationstests hingegen testen das Zusammenspiel mehrerer Module oder Systeme.
@@ -59,7 +60,7 @@ Diese Tests werden häufig manuell und in enger Abstimmung mit den~\glsdisp{Stak
 Sie sind entscheidend für die Validierung der Software und deren Akzeptanz durch die Benutzer.
 Aufgrund des hohen Aufwands sind diese Tests nicht Teil von Entwicklungszyklen, sondern werden in der Regel erst nach der Erreichung von Meilensteinen \bzw nach der Fertigstellung des Systems durchgeführt~\cite{linzBasiswissenSoftwaretest2024}.
 
-Die Hierarchie der verschiedenen Teststufen wird in \cref{fig:testpyramid} dargestellt und verdeutlicht.
+Die eben beschriebene Hierarchie der verschiedenen Teststufen wird in \cref{fig:testpyramid} dargestellt und verdeutlicht.
 
 \begin{figure}[ht]
     \centering
@@ -76,8 +77,8 @@ Um diese verschiedenen Testarten effizient und regelmäßig durchzuführen, insb
 
 \section{Testautomatisierung}\label{sec:foundation_testautomation}
 
-Mit dem zunehmenden Bedarf an schneller Softwareauslieferung bei gleichbleibend hoher Qualität hat sich die Testautomatisierung zu einem zentralen Bestandteil moderner Entwicklungsprozesse entwickelt~\cite{duvallContinuousIntegrationImproving2007}.
-Sie beschreibt die kontinuierliche und nicht manuelle Durchführung von Softwaretests, meist mithilfe spezialisierter Tools und Skripte, um manuelle Testaufwände zu reduzieren, Wiederholbarkeit zu gewährleisten und Fehler frühzeitig im Entwicklungsprozess zu erkennen~\cite{newmanBuildingMicroservices2021}.
+Mit dem zunehmenden Bedarf an schneller Softwareauslieferung -- bei gleichbleibend hoher Qualität -- hat sich die Testautomatisierung zu einem zentralen Bestandteil moderner Entwicklungsprozesse entwickelt~\cite{duvallContinuousIntegrationImproving2007}.
+Sie beschreibt die kontinuierliche und nicht manuelle Durchführung von Softwaretests, die meist mithilfe spezialisierter Tools und Skripte erfolgt, um den manuellen Testaufwand zu reduzieren, Wiederholbarkeit zu gewährleisten und Fehler frühzeitig im Entwicklungsprozess zu erkennen~\cite{newmanBuildingMicroservices2021}.
 
 Solche Praktiken und Tools werden unter dem Begriff \gls{DevOps} zusammengefasst.
 \gls{DevOps} beschreibt eine kulturelle und technische Bewegung, die darauf abzielt, die Zusammenarbeit zwischen Entwicklungs- (Development) und Betriebsteams (Operation) zu verbessern~\cite{vijayakumaranDevOpsFrameworksTechniques2025}.
@@ -99,7 +100,7 @@ Sie ermöglicht nicht nur die schnelle und zuverlässige Durchführung von Unit-
 Diese Automatisierungen werden mithilfe von \gls{CI}/\gls{CD}-\glspl{Pipeline} orchestriert, die den gesamten Prozess von der Codeänderung bis zur Bereitstellung steuern.
 Dabei werden die einzelnen Automatisierungsschritte und deren Abfolge definiert und der Auslöser der Durchführung festgelegt~\cite{vanmerodeContinuousIntegrationCI2023}.
 
-Wie in \cref{sec:foundation_microservices} erläutert, ist in Microservice-Architekturen die Testautomatisierung sinnvoll, da hier viele unabhängige Komponenten miteinander interagieren~\cite{haroMicroserviceAPIs2023}.
+Wie in \cref{sec:foundation_microservices} erläutert, ist besonders in Microservice-Architekturen die Testautomatisierung sinnvoll, da hier viele unabhängige Komponenten miteinander interagieren~\cite{haroMicroserviceAPIs2023}.
 Ohne automatisierte Tests würde das Risiko fehlerhafter Integrationen oder regressiver Effekte drastisch steigen~\cite{vanmerodeContinuousIntegrationCI2023} und damit auch der monetäre Aufwand zur Behebung~\cite{boehmSoftwareEngineeringEconomics1984}.
 
 Insgesamt trägt Testautomatisierung in Verbindung mit \gls{DevOps} und \gls{CI}/\gls{CD} entscheidend dazu bei, die Qualität, die Sicherheit und die Stabilität moderner Softwareprodukte zu gewährleisten.
@@ -111,7 +112,7 @@ Die besondere Testart Contract Testing wird im Folgenden näher erläutert und b
 \subsection{Funktionsweise}\label{subsec:foundation_contracttesting_concept}
 
 Contract Testing ist eine Testmethode, die darauf abzielt, die Interoperabilität zwischen verschiedenen Schnittstellen zu gewährleisten.
-Sie kombiniert die Funktion von \gls{API}-Integrationstests mit der Zuverlässigkeit und Schnelligkeit von Unit-Tests und kann so Fehler bei der Schnittstellenkommunikation früh im Entwicklungsprozess erkennen~\cite{cruzContractTestingAction2025}.
+Sie kombiniert die Funktion von \gls{API}-\-Integrations\-tests mit der Zuverlässigkeit und Schnelligkeit von Unit-Tests und kann so Fehler bei der Schnittstellenkommunikation früh im Entwicklungsprozess erkennen~\cite{cruzContractTestingAction2025}.
 
 Bei der Kommunikation mit \glspl{API} sind immer zwei Parteien beteiligt.
 Zum einen gibt es einen Anbieter (Provider), der die Schnittstelle bereitstellt, und zum anderen ein bis mehrere Verbraucher (Consumer), die diese Schnittstelle nutzen~\cite{newmanBuildingMicroservices2021}.
@@ -128,17 +129,18 @@ Dieser Contract legt fest, welche Anfragen der Consumer an den Provider stellt u
 Der entscheidende Vorteil dabei ist, dass beide Seiten unabhängig voneinander testen können, ob sie diesen Contract einhalten~\cite{newmanBuildingMicroservices2021}.
 Beim Contract Testing wird der Fokus also nicht auf die vollständige Funktionalität des Systems gelegt, sondern auf die Schnittstelle und die Erwartungen, die damit einhergehen.
 
-In einem Contract werden die Anfragen des Consumers festgehalten mit den zugehörigen Details, wie dem \gls{HTTP}-Verb und den Headern \usw.
+In einem Contract werden die Anfragen des Consumers festgehalten mit den zugehörigen Details, wie dem \gls{HTTP}-Verb und den Headern usw.
 Eine stark vereinfachte Anfrage wäre zum Beispiel ein \texttt{GET}-Request an den Pfad \texttt{/user/1}.
 Zu dieser Anfrage wird die zugehörige Antwort definiert, die der Provider liefern soll, wenn der Consumer diese Anfrage stellt.
 Auch hier werden verschiedene Details festgehalten, wie der \gls{HTTP}-Statuscode, die Header und der Inhalt der Antwort.
-Ein Beispiel für eine solche Antwort könnte ein \gls{JSON}-Objekt sein, das Informationen des Nutzers mit der ID 1 enthält, wie \zB\verb|{"id": 1, "name": "Max Mustermann"}|.
+Ein Beispiel für eine solche Antwort könnte ein \gls{JSON}-Objekt sein, das Informationen des Nutzers mit der ID \texttt{1} enthält, wie \zB \verb|{"id": 1, "name": "Max Mustermann"}|.
 Dieser Contract wird verwendet, um Tests sowohl auf Consumer- als auch auf Provider-Seite durchzuführen~\cite{fowlerConsumerDrivenContractsService}.
 Auf der Consumer-Seite wird überprüft, ob die Anwendung tatsächlich nur die im Contract beschriebenen Anfragen stellt.
 Auf der Provider-Seite hingegen wird getestet, ob die \gls{API} die versprochenen Antworten liefert – unabhängig davon, welcher Consumer die Anfrage stellt.
 Damit wird sichergestellt, dass Änderungen auf einer Seite wie \zB umbenannte Felder oder veränderte Strukturen nicht unbeabsichtigt zu Fehlern auf der anderen Seite führen~\cite{cruzContractTestingAction2025}.
 Wenn  beispielsweise das Feld \texttt{name} beim Provider in \texttt{fullName} umbenannt wird
  und somit der Provider mit \verb|{"id": 1, "fullName": "Max Mustermann"}| antwortet, würden die Contract Tests auf der Provider-Seite fehlschlagen, da die Antwort nicht mehr mit dem Contract konform ist.
+Daraufhin können unmittelbar Maßnahmen ergriffen werden, um den Contract zu aktualisieren und die Kompatibilität zwischen Consumer und Provider wiederherzustellen~\cite{morganTestingMicroservicesConsumerdriven2019}.
 
 \subsection{Varianten}\label{subsec:foundation_contracttesting_variants}
 
@@ -170,7 +172,7 @@ Auf der Provider-Seite wird der Contract dann verwendet, um sicherzustellen, das
 Auch der Provider kommuniziert nicht mit dem echten Consumer, sondern mit einem \gls{Mock}-Consumer, der die Anfragen simuliert, um die Unabhängigkeit der Tests zu gewährleisten~\cite{cruzContractTestingAction2025}.
 Für jede Anfrage im Contract wird ein Testfall generiert, in dem der \gls{Mock}-Consumer die Anfrage an die Provider-Anwendung sendet.
 Der Provider verarbeitet die Anfrage und sendet eine entsprechende Antwort zurück.
-Der Test überprüft dann, ob die Antwort des Providers mit der im Contract definierten Antwort übereinstimmt, und verifiziert somit, dass die \gls{API} des Providers den Contract einhält~\cite{morganTestingMicroservicesConsumerdriven2019}.
+Der Test überprüft dann, ob die Antwort des Providers mit der im Contract definierten Antwort übereinstimmt, und verifiziert somit, dass die \gls{API} des Providers den Contract erfüllt~\cite{morganTestingMicroservicesConsumerdriven2019}.
 Dieser Ablauf eines Contract Tests auf der Provider-Seite beim \gls{CDCT} ist in~\cref{fig:cdct-provider-side} beispielhaft dargestellt.
 
 \begin{figure}[ht]
@@ -181,10 +183,10 @@ Dieser Ablauf eines Contract Tests auf der Provider-Seite beim \gls{CDCT} ist in
 \end{figure}
 
 Nun wurde der Contract auf der Consumer-Seite erstellt und auf der Provider-Seite verifiziert.
-Das bedeutet, dass beide Seiten unabhängig voneinander auch nach Änderungen ihre Contract Tests durchführen und die Services deployt werden können, wenn sie den Contract einhalten~\cite{waseemSystematicMappingStudy2020}.
+Das bedeutet, dass beide Seiten unabhängig voneinander auch nach Änderungen ihre Contract Tests durchführen und die Services ohne Kompatibilitätsprobleme deployt werden können, wenn sie den Contract einhalten~\cite{waseemSystematicMappingStudy2020}.
 Allerdings muss für das Deployen jedes Services sichergestellt werden, dass dazu immer ein verifizierter Contract besteht.
 Im Umkehrschluss bedeutet das aber auch, dass bei neuen Anforderungen des Consumers an die \gls{API} des Providers auch der Contract aktualisiert und vom Provider neu verifiziert werden muss~\cite{cruzContractTestingAction2025}.
-% TODO: Bezug zu ?? herstellen
+% TODO: Bezug zu ?? herstellen wegen Aufwand
 
 Das Verwalten der Contracts ist aufwändig, da es für eine \gls{API} viele verschiedene Consumer und Versionsstände geben kann~\cite{haroMicroserviceAPIs2023}.
 Welche Unterschiede und Varianten es für die Speicherung der Contracts gibt, wird in \cref{sec:frameworks_overview} genauer betrachtet.
