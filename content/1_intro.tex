@@ -2,6 +2,53 @@
 
 \section{Problemstellung und Motivation}\label{sec:intro_problem}
 
+Microservice-Architekturen haben sich in den letzten Jahren als architektonisches Paradigma für moderne Softwaresysteme etabliert.
+Sie bieten eine Vielzahl von Vorteilen, darunter eine erhöhte Skalierbarkeit, modulare Wartbarkeit sowie die Möglichkeit, einzelne Dienste unabhängig voneinander zu entwickeln und zu deployen.
+Gleichzeitig bringen sie jedoch neue Herausforderungen mit sich – insbesondere im Bereich der Qualitätssicherung und der Sicherstellung der Interoperabilität zwischen den einzelnen Services.
+
+Eine zentrale Problemstellung liegt darin, dass Änderungen an einzelnen Microservices potenziell unerwartete Seiteneffekte auf abhängige Services haben können.
+Klassische Testmethoden wie Systemtests und Integrationstests sind zwar in der Lage, solche Probleme aufzudecken, jedoch sind sie oft mit hohen Kosten, langen Ausführungszeiten und einer erhöhten Komplexität in der Wartung verbunden.
+Dies macht sie vornehmlich in regelmäßig ausgeführten \gls{CI}-Pipelines schwer handhabbar und ineffizient.
+
+Contract Testing hat sich als eine potenziell leistungsfähige Alternative herausgestellt.
+Es ermöglicht eine gezielte Validierung von Service-Schnittstellen, indem Verträge (Contracts) zwischen Consumer- und Provider-Services definiert und automatisch überprüft werden.
+Allerdings gibt es bisher nur begrenzte wissenschaftliche Untersuchungen zur praktischen Umsetzung und Wirksamkeit dieser Methodik.
+
+Daher ist es essenziell, eine detaillierte Untersuchung zur Anwendung von Contract Testing in \gls{CI}-Pipelines durchzuführen, um herauszufinden, ob und inwieweit diese Testmethode eine nachhaltige Verbesserung der Interoperabilität in einer Microservice-Architektur gewährleisten kann.
+
 \section{Zielsetzung der Arbeit}\label{sec:intro_objective}
 
+Ziel dieser Bachelorarbeit ist es, Contract Testing im Kontext von \gls{CI}-Pipelines systematisch zu analysieren, praktisch zu implementieren und hinsichtlich seines Nutzens zur Sicherstellung der Interoperabilität in einer Microservice-Architektur zu evaluieren.
+Im Zentrum steht die prototypische Integration von Contract Testing in die reale, containerisierte Microservice-Anwendung \textit{msg.Sensorik} aus dem Unternehmenskontext der \textit{msg systems ag}.
+
+Auf dieser Basis sollen folgende Fragestellungen beantwortet werden:
+
+\begin{itemize}
+\item Welche konkreten Vorteile ergeben sich durch die Einführung von Contract Testing im Vergleich zu klassischen Integrationstests?
+\item Inwieweit trägt Contract Testing zur frühzeitigen Fehlererkennung und Effizienzsteigerung in CI-Pipelines bei?
+\item Welche Herausforderungen treten bei der praktischen Umsetzung auf und wie lassen sich diese bewältigen?
+\item Welche Handlungsempfehlungen lassen sich daraus für andere Projekte ableiten?
+\end{itemize}
+
+Ein besonderes Augenmerk liegt dabei auf der Bewertung anhand quantitativer und qualitativer Kriterien – beispielsweise Fehlererkennungsrate, Testdurchlaufzeit und Komplexität der Testinfrastruktur.
+Ziel ist es, eine belastbare Grundlage für den praktischen Einsatz von Contract Testing in produktionsnahen Umgebungen zu schaffen.
+
 \section{Aufbau der Arbeit}\label{sec:intro_structure}
+
+Die vorliegende Arbeit ist in sieben Kapitel gegliedert, die systematisch von den theoretischen Grundlagen bis zur praktischen Umsetzung und den daraus resultierenden Erkenntnissen führen.
+
+\Cref{ch:foundation} vermittelt zunächst das notwendige Hintergrundwissen.
+Es behandelt zentrale Konzepte wie Microservice-Architekturen, \glsdesc{CI} sowie gängige Teststrategien und stellt das Prinzip der Contract Tests im Detail vor.
+
+Im darauffolgenden Kapitel \cref{ch:frameworks} werden verschiedene Contract-Testing-Frameworks untersucht.
+Anhand definierter Kriterien erfolgt ein systematischer Vergleich, auf dessen Grundlage ein geeignetes Werkzeug für die Implementierung ausgewählt wird.
+
+\Cref{ch:implementation} widmet sich der praktischen Umsetzung.
+Es beschreibt die konkrete Anwendungsumgebung, die technischen Voraussetzungen sowie die schrittweise Integration der Contract-Tests in eine bestehende Microservice-Infrastruktur und die \gls{CI}-Umgebung.
+
+Die Wirksamkeit dieser Integration wird in Kapitel \cref{ch:evaluation} analysiert.
+Hier werden die Ergebnisse anhand quantitativer Messungen und qualitativer Beobachtungen bewertet – insbesondere in Bezug auf Fehlererkennung, Testeffizienz und potenzielle Einsparungen gemäß der Cost-of-Failure-Kurve.
+
+Abschließend zieht Kapitel \cref{ch:summary} ein Fazit.
+Es fasst die zentralen Erkenntnisse der Arbeit zusammen, diskutiert bestehende Einschränkungen und zeigt mögliche Perspektiven für weiterführende Forschung oder den produktiven Einsatz in anderen Projekten auf.
+
