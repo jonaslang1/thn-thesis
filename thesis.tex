@@ -4,8 +4,8 @@
     a4paper,
     sfdefaults=false,
     toc=chapterentrywithdots,
-    oneside, % or twoside for printing
-    openany, % or openright for printing
+    twoside, % oneside for pdf or twoside for printing
+    openright, % openany for pdf or openright for printing
     titlepage,
     parskip=half,
     headings=normal,  % reduces heading size
@@ -148,7 +148,7 @@
 
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
-\geometry{paper=a4paper,left=2.5cm,top=3.0cm,} % bindingoffset=.8cm for printing
+\geometry{paper=a4paper,left=2.5cm,top=3.0cm,bindingoffset=.8cm} % bindingoffset=.8cm for printing
 \onehalfspacing
 \frenchspacing
 \clubpenalty = 10000
@@ -196,8 +196,10 @@
 % https://intern.ohmportal.de/fileadmin/Public_Docs/SB/SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf
 %\includepdf{SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf}\cleardoublepage
 
+\pdfbookmark[1]{Abstract}{abs}
 \include{content/0_abstract}\cleardoublepage
 
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
 \tableofcontents
 
 \mainmatter
