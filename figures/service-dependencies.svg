@@ -10,15 +10,11 @@
         </marker>
     </defs>
     <g transform="translate(1355,635.5)" id="0" class="frontend_component">
-        <path d="M0,0A380.42260651806134, 380.42260651806134 0 0,0 -361.8033988749894,117.55705045849459"
-              class="c6p7 link relationship" fill="none" stroke-width="14" opacity="0" stroke="white"></path>
-        <path d="M0,0A235.11410091698932, 235.11410091698932 0 0,0 -138.1966011250106,190.21130325903073"
-              class="c6p8 link relationship" fill="none" stroke-width="14" opacity="0" stroke="white"></path>
-        <path d="M0,0A380.42260651806134, 380.42260651806134 0 0,0 -361.8033988749894,117.55705045849459"
-              class="c6p7 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
+        <path d="M0,5A380.42260651806134, 380.42260651806134 0 0,1 -360.8033988749894,120.55705045849459"
+              class="c6p7 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="1"
               marker-end="url(#arrowGrayStart)"></path>
-        <path d="M0,0A235.11410091698932, 235.11410091698932 0 0,0 -138.1966011250106,190.21130325903073"
-              class="c6p8 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
+        <path d="M6,0A235.11410091698932, 235.11410091698932 0 0,1 -130.1966011250106,195.21130325903073"
+              class="c6p8 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="1"
               marker-end="url(#arrowGrayStart)"></path>
         <circle r="6" fill="#2ca02c" stroke="#2ca02c" stroke-width="2" cx="6" cy="0"></circle>
         <text x="40" y="0" text-anchor="start" fill="#2ca02c" class="pacticpantLabel"
@@ -27,12 +23,7 @@
         </text>
     </g>
     <g transform="translate(1216.8033988749894,825.7113032590307)" id="1" class="reporting_component">
-        <path d="M0,0A235.1141009169891, 235.1141009169891 0 0,0 -223.6067977499788,-72.65425280053614"
-              class="c7p8 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
-              marker-start="url(#arrowGrayEnd)"></path>
-        <path d="M0,0A235.11410091698932, 235.11410091698932 0 0,1 138.1966011250106,-190.21130325903073"
-              class="c6p8 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
-              marker-start="url(#arrowGrayEnd)"></path>
+
         <circle r="6" fill="#d62728" stroke="#d62728" stroke-width="2" cx="1.8541019662496847"
                 cy="5.706339097770921"></circle>
         <text x="12.360679774997898" y="34.79306368947707" text-anchor="start" fill="#d62728" class="pacticpantLabel"
@@ -42,25 +33,10 @@
     </g>
     <g transform="translate(993.1966011250106,753.0570504584946)" id="2" class="instance_management_component">
         <path d="M0,0A380.4226065180613, 380.4226065180613 0 0,0 223.6067977499788,-307.7683537175253"
-              class="c7p10 link relationship" fill="none" stroke-width="14" opacity="0" stroke="white"></path>
-        <path d="M0,0A235.1141009169891, 235.1141009169891 0 0,1 223.6067977499788,72.65425280053614"
-              class="c7p8 link relationship" fill="none" stroke-width="14" opacity="0" stroke="white"></path>
-        <path d="M0,0A235.11410091698917, 235.11410091698917 0 0,0 -1.1368683772161603e-13,-235.11410091698917"
-              class="c7p9 link relationship" fill="none" stroke-width="14" opacity="0" stroke="white"></path>
-        <path d="M0,0A380.42260651806134, 380.42260651806134 0 0,1 361.8033988749894,-117.55705045849459"
-              class="c6p7 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
-              marker-start="url(#arrowGrayEnd)"></path>
-        <path d="M0,0A380.4226065180613, 380.4226065180613 0 0,0 223.6067977499788,-307.7683537175253"
-              class="c7p10 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
+              class="c7p10 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="1"
               marker-end="url(#arrowGrayStart)"></path>
-        <path d="M0,0A380.4226065180613, 380.4226065180613 0 0,0 223.6067977499788,-307.7683537175253"
-              class="c10p7 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
-              marker-start="url(#arrowGrayEnd)"></path>
-        <path d="M0,0A235.1141009169891, 235.1141009169891 0 0,1 223.6067977499788,72.65425280053614"
-              class="c7p8 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
-              marker-end="url(#arrowGrayStart)"></path>
-        <path d="M0,0A235.11410091698917, 235.11410091698917 0 0,0 -1.1368683772161603e-13,-235.11410091698917"
-              class="c7p9 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
+        <path d="M0,6A235.1141009169891, 235.1141009169891 0 0,0 218.6067977499788,80.65425280053614"
+              class="c7p8 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="1"
               marker-end="url(#arrowGrayStart)"></path>
         <circle r="6" fill="#9467bd" stroke="#9467bd" stroke-width="2" cx="-4.854101966249684"
                 cy="3.5267115137548393"></circle>
@@ -70,8 +46,8 @@
         </text>
     </g>
     <g transform="translate(993.1966011250105,517.9429495415054)" id="3" class="rules_component">
-        <path d="M0,0A235.11410091698917, 235.11410091698917 0 0,1 1.1368683772161603e-13,235.11410091698917"
-              class="c7p9 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
+        <path d="M-9,2A235.11410091698917, 235.11410091698917 0 0,0 -7,232.11410091698917"
+              class="c7p9 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="1"
               marker-start="url(#arrowGrayEnd)"></path>
         <circle r="6" fill="#8c564b" stroke="#8c564b" stroke-width="2" cx="-4.854101966249686"
                 cy="-3.5267115137548384"></circle>
@@ -81,13 +57,8 @@
         </text>
     </g>
     <g transform="translate(1216.8033988749894,445.28869674096927)" id="4" class="proxy_component">
-        <path d="M0,0A380.4226065180613, 380.4226065180613 0 0,1 -223.6067977499788,307.7683537175253"
-              class="c10p7 link relationship" fill="none" stroke-width="14" opacity="0" stroke="white"></path>
-        <path d="M0,0A380.4226065180613, 380.4226065180613 0 0,1 -223.6067977499788,307.7683537175253"
-              class="c7p10 provider relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
-              marker-start="url(#arrowGrayEnd)"></path>
-        <path d="M0,0A380.4226065180613, 380.4226065180613 0 0,1 -223.6067977499788,307.7683537175253"
-              class="c10p7 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="0.75"
+        <path d="M-4,0A380.4226065180613, 380.4226065180613 0 0,0 -226.6067977499788,304.7683537175253"
+              class="c10p7 consumer relationship visible" fill="none" stroke="gray" stroke-width="0.75" opacity="1"
               marker-end="url(#arrowGrayStart)"></path>
         <circle r="6" fill="#ff7f0e" stroke="#ff7f0e" stroke-width="2" cx="1.8541019662496834"
                 cy="-5.706339097770922"></circle>
