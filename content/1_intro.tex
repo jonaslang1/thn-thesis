@@ -2,16 +2,16 @@
 
 \section{Problemstellung und Motivation}\label{sec:intro_problem}
 
-Microservice-Architekturen haben sich in den letzten Jahren als architektonisches Paradigma für moderne Softwaresysteme etabliert.
-Sie bieten eine Vielzahl von Vorteilen, darunter eine erhöhte Skalierbarkeit, modulare Wartbarkeit sowie die Möglichkeit, einzelne Dienste unabhängig voneinander zu entwickeln und zu deployen.
-Gleichzeitig bringen sie jedoch neue Herausforderungen mit sich – insbesondere im Bereich der Qualitätssicherung und der Sicherstellung der Interoperabilität zwischen den einzelnen Services.
+Microservice-Architekturen haben sich in den letzten Jahren als architektonisches Paradigma für moderne Softwaresysteme etabliert~\cite{haroMicroserviceAPIs2023}.
+Sie bieten eine Vielzahl von Vorteilen, \zB eine erhöhte Skalierbarkeit, modulare Wartbarkeit sowie die Möglichkeit, einzelne Dienste unabhängig voneinander zu entwickeln und zu deployen.
+Gleichzeitig bringen sie jedoch neue Herausforderungen mit sich – insbesondere im Bereich der Qualitätssicherung und der Sicherstellung der Interoperabilität zwischen den einzelnen Services~\cite{newmanMonolithMicroservices2019}.
 
-Eine zentrale Problemstellung liegt darin, dass Änderungen an einzelnen Microservices potenziell unerwartete Seiteneffekte auf abhängige Services haben können.
-Klassische Testmethoden wie Systemtests und Integrationstests sind zwar in der Lage, solche Probleme aufzudecken, jedoch sind sie oft mit hohen Kosten, langen Ausführungszeiten und einer erhöhten Komplexität in der Wartung verbunden.
-Dies macht sie vornehmlich in regelmäßig ausgeführten \gls{CI}-Pipelines schwer handhabbar und ineffizient.
+Eine zentrale Problemstellung liegt darin, dass Änderungen an einzelnen Microservices potenziell unerwartete Seiteneffekte auf abhängige Services haben können~\cite{fowlerTestingStrategiesMicroservice2014}.
+Klassische Testmethoden wie Systemtests und Integrationstests sind zwar in der Lage, solche Probleme aufzudecken, jedoch sind diese oft mit hohen Kosten, langen Ausführungszeiten und einer erhöhten Komplexität in der Wartung verbunden.
+Dies macht sie vornehmlich in regelmäßig ausgeführten \gls{CI}-Pipelines schwer handhabbar und ineffizient~\cite{singhSoftwareTesting2011}.
 
 Contract Testing hat sich als eine potenziell leistungsfähige Alternative herausgestellt.
-Es ermöglicht eine gezielte Validierung von Service-Schnittstellen, indem Verträge (Contracts) zwischen Consumer- und Provider-Services definiert und automatisch überprüft werden.
+Es ermöglicht eine gezielte Validierung von Service-Schnittstellen, indem Verträge (Contracts) zwischen Consumer- und Provider-Services definiert und automatisch überprüft werden~\cite{cruzContractTestingAction2025}.
 Allerdings gibt es bisher nur begrenzte wissenschaftliche Untersuchungen zur praktischen Umsetzung und Wirksamkeit dieser Methodik.
 
 Daher ist es essenziell, eine detaillierte Untersuchung zur Anwendung von Contract Testing in \gls{CI}-Pipelines durchzuführen, um herauszufinden, ob und inwieweit diese Testmethode eine nachhaltige Verbesserung der Interoperabilität in einer Microservice-Architektur gewährleisten kann.
@@ -19,7 +19,7 @@ Daher ist es essenziell, eine detaillierte Untersuchung zur Anwendung von Contra
 \section{Zielsetzung der Arbeit}\label{sec:intro_objective}
 
 Ziel dieser Bachelorarbeit ist es, Contract Testing im Kontext von \gls{CI}-Pipelines systematisch zu analysieren, praktisch zu implementieren und hinsichtlich seines Nutzens zur Sicherstellung der Interoperabilität in einer Microservice-Architektur zu evaluieren.
-Im Zentrum steht die prototypische Integration von Contract Testing in die reale, containerisierte Microservice-Anwendung \textit{msg.Sensorik} aus dem Unternehmenskontext der \textit{msg systems ag}\footnote{\url{https://www.msg.group}}.
+Im Zentrum steht die prototypische Integration von Contract Testing in die reale Microservice-Anwendung \textit{msg.Sensorik} aus dem Unternehmenskontext der \textit{msg systems ag}\footnote{\url{https://www.msg.group}}.
 
 Auf dieser Basis sollen folgende Fragestellungen beantwortet werden:
 
@@ -40,14 +40,14 @@ Die vorliegende Arbeit ist in sieben Kapitel gegliedert, die systematisch von de
 \Cref{ch:foundation} vermittelt zunächst das notwendige Hintergrundwissen.
 Es behandelt zentrale Konzepte wie Microservice-Architekturen, \glsdesc{CI} sowie gängige Teststrategien und stellt das Prinzip der Contract Tests im Detail vor.
 
-Im darauffolgenden Kapitel \cref{ch:frameworks} werden verschiedene Contract-Testing-Frameworks untersucht.
+Im darauffolgenden \cref{ch:frameworks} werden verschiedene Contract-Testing-Frameworks untersucht.
 Anhand definierter Kriterien erfolgt ein systematischer Vergleich, auf dessen Grundlage ein geeignetes Werkzeug für die Implementierung ausgewählt wird.
 
 \Cref{ch:implementation} widmet sich der praktischen Umsetzung.
-Es beschreibt die konkrete Anwendungsumgebung, die technischen Voraussetzungen sowie die schrittweise Integration der Contract-Tests in eine bestehende Microservice-Infrastruktur und die \gls{CI}-Umgebung.
+Es beschreibt die konkrete Anwendungsumgebung, die technischen Voraussetzungen sowie die schrittweise Integration der Contract-Tests in eine bestehende Microservice-Infrastruktur und deren \gls{CI}-Umgebung.
 
-Die Wirksamkeit dieser Integration wird in Kapitel \cref{ch:evaluation} analysiert.
+Die Wirksamkeit dieser Integration wird in \cref{ch:evaluation} analysiert.
 Hier werden die Ergebnisse anhand quantitativer Messungen und qualitativer Beobachtungen bewertet – insbesondere in Bezug auf Fehlererkennung, Testeffizienz und potenzielle Einsparungen gemäß der Cost-of-Failure-Kurve.
 
-Abschließend zieht Kapitel \cref{ch:summary} ein Fazit.
+Abschließend wird in \cref{ch:summary} ein Fazit gezogen.
 Es fasst die zentralen Erkenntnisse der Arbeit zusammen, diskutiert bestehende Einschränkungen und zeigt mögliche Perspektiven für weiterführende Forschung oder den produktiven Einsatz in anderen Projekten auf.

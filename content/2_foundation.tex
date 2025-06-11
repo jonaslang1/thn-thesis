@@ -7,7 +7,7 @@ Dieses Kapitel stellt die theoretischen Grundlagen bereit, die für das Verstän
 
 Die Microservice-Architektur ist ein Architekturstil in der Softwareentwicklung, bei dem eine Anwendung als eine Sammlung unabhängiger, kleiner Dienste aufgebaut wird.
 Jeder dieser Dienste ist eigenständig und erfüllt eine spezifische Anwendungsaufgabe.
-Diese Architektur hat sich als Alternative zu einer monolithischen Architektur etabliert, bei der alle Funktionalitäten einer Anwendung in einer einzigen, großen Codebasis zusammengefasst werden.
+Diese Architektur hat sich als Alternative zu einer monolithischen Architektur etabliert, bei der alle Funktionalitäten einer Anwendung in einer einzigen, großen Codebasis zusammengefasst werden\cite{haroMicroserviceAPIs2023}.
 
 Ein wesentliches Merkmal der Microservice-Architektur ist die Unabhängigkeit der Dienste.
 Jeder Microservice kann eigenständig entwickelt, getestet, bereitgestellt und skaliert werden.
@@ -28,7 +28,7 @@ Zudem erleichtert die überschaubare Größe einzelner Microservices deren Wartu
 Trotz der vielen Vorteile bringt die Microservice-Architektur auch Herausforderungen mit sich.
 Die Kommunikation zwischen den einzelnen Diensten erfordert robuste Schnittstellen und ein zuverlässiges \gls{API}-Management, um eine reibungslose Interaktion zu gewährleisten.
 Die Verwaltung von Nutzdaten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
-werden muss,~\dahe die Schnittstellen der einzelnen Dienste müssen aufeinander abgestimmt sein.
+werden muss, \dahe die Schnittstellen der einzelnen Dienste müssen aufeinander abgestimmt sein.
 Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten~\cite{newmanMonolithMicroservices2019}.
 
 Die Microservice-Architektur in ihrer Gesamtheit bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen, weil sie eine flexible und skalierbare Infrastruktur bietet.
@@ -147,7 +147,7 @@ Daraufhin können unmittelbar Maßnahmen ergriffen werden, um den Contract zu ak
 
 \subsection{Varianten}\label{subsec:foundation_contracttesting_variants}
 
-Es gibt zwei verschiedene Ansätze wie Contract Testing aufzubauen, als \gls{CDCT} und  als \gls{PDCT}~\cite{cruzContractTestingAction2025}.
+Es gibt zwei verschiedene Ansätze wie Contract Testing aufzubauen, als \gls{CDCT} und als \gls{PDCT}~\cite{cruzContractTestingAction2025}.
 
 \subsubsection{\glsdesc{CDCT}}
 
@@ -166,8 +166,8 @@ Ein Contract Test auf der Consumer-Seite beim \gls{CDCT}, wie in \cref{fig:cdct-
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/consumer-side}
-    \caption{Ablauf eines Contract Tests auf der Consumer-Seite beim \gls{CDCT}}
+    \includegraphics[width=0.7\textwidth]{figures/consumer-side}
+    \caption{Ablauf eines Contract Tests auf der Consumer-Seite beim \gls{CDCT} nach \cite{cruzContractTestingAction2025}}
     \label{fig:cdct-consumer-side}
 \end{figure}
 
@@ -210,11 +210,11 @@ Auf der Consumer-Seite geschieht die Contract-Erstellung analog zum \gls{CDCT}.
 Danach werden die beiden Contracts typischerweise mithilfe eines Brokers verglichen, die sogenannte cross-contract validation.
 Durch diese Validierung ist die Interoperabilität der beiden Services sichergestellt.
 Anders als beim \gls{CDCT} ist es hier nicht notwendig, dass beim Deployment-Prozess beim Broker überprüft wird, ob die entsprechenden Contracts gegenseitig validiert wurden~\cite{pactflowBiDirectionalContractTesting2023}.
-Der Ablauf beim \gls{PDCT} mit Deployment des Consumers ist in~\cref{fig:pdct} dargestellt.
+Der Ablauf beim \gls{PDCT} ist in~\cref{fig:pdct} dargestellt.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/pdct}
+    \includegraphics[width=0.9\textwidth]{figures/pdct}
     \caption{Ablauf eines Contract Tests beim \gls{PDCT}}
     \label{fig:pdct}
 \end{figure}
