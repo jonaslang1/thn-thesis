@@ -1,0 +1,28 @@
+@startuml
+skinparam defaultFontSize 22
+
+start
+
+:Änderung mit Kompatibilitätsbruch \nin Consumer-Service vorgenommen;
+note left
+Änderung ist absichtlich
+inkompatibel
+end note
+if (Überprüfung in Consumer- oder Provider-Service?) then (Consumer-Service)
+  :Start der CI-Pipeline\ndes Consumer-Services;
+  if (Contract Tests in Consumer-\nService angepasst?) then (ja)
+    :Contract Tests schlagen nicht fehl ✅;
+    :Aktualisierte Contracts mit neuer \nVersion im Pact Broker veröffentlicht;
+    :<i>can-i-deploy</i>-Schritt schlägt fehl ❌;
+  else (nein)
+    :Contract Tests schlagen fehl ❌;
+  endif
+else (Provider-Service)
+  :Start der CI-Pipeline\ndes Provider-Services;
+  :Contract Tests schlagen nicht fehl ✅;
+  :<i>can-i-deploy</i>-Schritt schlägt fehl ❌;
+endif
+:Inkompatibilität wird in CI-Pipeline erkannt ❌;
+
+stop
+@enduml

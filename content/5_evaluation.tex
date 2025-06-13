@@ -7,7 +7,7 @@ Wie in \cref{sec:implementation_challenges} dargelegt wurde, konnten diese im Ve
 Nach der prototypischen Implementierung der Contract-Tests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
 Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele, insbesondere die Reduktion von Integrationsproblemen und die Steigerung der Testeffizienz – durch den Einsatz von Contract Testing erreicht werden konnten.
 
-\section{Bewertung der Fehlererkennung}\label{sec:evaluation_errordetection}
+\section{Quantitative Bewertung der Fehlererkennung}\label{sec:evaluation_errordetection}
 
 Ein zentrales Ziel von Contract Testing ist es, Integrationsfehler zuverlässig und automatisiert zu erkennen.
 Um die Wirksamkeit der implementierten Tests im Rahmen dieser Arbeit zu evaluieren, wurde ein gezieltes Testszenario entworfen:
@@ -18,6 +18,17 @@ Beim Ändern der Schnittstellen wurde darauf geachtet, dass teilweise auch die C
 Nach Abschluss der Änderungen an einem Service wurde die jeweilige Test-Pipeline, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurde, automatisiert ausgeführt.
 Dabei wurden die Änderungen erwartungsgemäß als Fehler erkannt, da die vorgenommenen Änderungen gegen die definierten Contracts verstießen.
 Entweder schlug die Ausführung der Contract Tests fehl oder die \texttt{can-i-deploy}-Überprüfung war nicht erfolgreich, weil die neu erstellten Contracts nicht verifiziert werden konnten.
+Der Ablauf der Fehlererkennung bei der Ausführung der Test-Pipline ist mit den verschiedenen Varianten der Untersuchung in \cref{fig:error_injection_flow} dargestellt.
+Bei der Ausführung der Test-Pipeline gilt die Fehlererkennung als erfolgreich, wenn die Pipeline aufgrund der enthaltenen Überprüfungen nicht erfolgreich abgeschlossen werden kann.
+Dieses Fehlschlagen der Pipeline wird dann in der \gls{CI}-Umgebung protokolliert und dem jeweiligen Entwicklerteam gemeldet und sorgt dafür, dass weitere Schritte, wie das Deployment in eine Testumgebung, unterbunden werden.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/error_injection_flow}
+    \caption{Ablauf der Fehlererkennung bei der Ausführung der Test-Pipeline}
+    \label{fig:error_injection_flow}
+\end{figure}
+
 Die Ergebnisse dieses kontrollierten Testszenarios zeigen eindeutig, dass alle eingebauten Abweichungen von den vertraglich vereinbarten Schnittstelleninteraktionen durch die Contract Tests identifiziert wurden.
 Die Fehler wurden jeweils unmittelbar im Rahmen der Consumer- oder Provider-Tests erkannt, wodurch der Integrationsbruch frühzeitig sichtbar wurde.
 Bei der Analyse der Ergebnisse zeigte sich, dass die Contract Tests sogar in der Lage sind, auch direkt auf der Provider-Seite Fehler zu erkennen, die bei Integrationstests erst durch die Ausführung der Tests auf der Consumer-Seite sichtbar werden.
