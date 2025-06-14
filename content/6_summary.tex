@@ -1,1 +1,62 @@
 \chapter{Fazit und Ausblick}\label{ch:summary}
+
+In diesem Kapitel werden die zentralen Ergebnisse der vorliegenden Arbeit zusammengefasst und im Hinblick auf die anfangs formulierten Zielsetzungen reflektiert.
+Hierzu wurde Contract Testing in eine reale Microservice-Anwendung prototypisch integriert.
+Anhand des Ergebnisses wird bewertet, inwiefern die angestrebten Verbesserungen hinsichtlich Testbarkeit, Effizienz und Fehlertoleranz erreicht wurden.
+
+Darüber hinaus wird ein Ausblick auf mögliche zukünftige Forschungsvorhaben gegeben.
+Diese könnten sich mit der Weiterentwicklung, verschiedenen Anwendungen oder alternativen Varianten von Contract Testing befassen.
+Außerdem ergeben sich Potenziale und offene Fragestellungen, die über den im Rahmen dieser Arbeit untersuchten Anwendungsfall hinausgehen und zur Weiterentwicklung der Methodik beitragen können.
+
+\section{Fazit}
+\label{sec:summary_result}
+
+Ziel dieser Arbeit war die prototypische Integration von Contract Testing in eine bestehende Microservice-Anwendung.
+Zu diesem Zweck wurden zunächst mehrere etablierte Frameworks systematisch analysiert.
+Auf Basis definierter Bewertungskriterien erfolgte eine vergleichende Bewertung der Werkzeuge, die sowohl qualitative als auch quantitative Aspekte berücksichtigte.
+Durch die Auswertung der gewichteten Bewertungskriterien konnte eine Rangfolge der untersuchten Frameworks hinsichtlich ihrer Eignung für das vorliegende Anwendungsszenario abgeleitet werden.
+Auf dieser Grundlage fiel die Entscheidung zugunsten des Frameworks \texttt{Pact}, das im weiteren Verlauf prototypisch in die reale Anwendung \textit{msg.Sensorik} integriert wurde.
+
+Die praktische Umsetzung der Contract Tests konnte – trotz einiger technischer Herausforderungen – im Rahmen dieser Arbeit erfolgreich abgeschlossen werden.
+Es zeigte sich, dass \texttt{Pact} eine gut integrierbare Lösung darstellt, die sich sowohl in bestehende \gls{CI}/\gls{CD}-Pipelines einfügt als auch frühzeitiges Feedback bei \gls{API}-Änderungen ermöglicht.
+
+Die Evaluation der Implementierung hat gezeigt, dass Contract Testing eine wirksame Methode zur Qualitätssicherung von Schnittstellen insbesondere in Microservice-Architekturen darstellt.
+Durch die automatisierte Prüfung der vertraglich definierten Interaktionen zwischen Consumer und Provider lassen sich Schnittstelleninkompatibilitäten zuverlässig identifizieren.
+Die im Rahmen dieser Arbeit durchgeführten Tests bestätigten, dass eingeführte \gls{API}-Veränderungen vollständig durch die Contract Tests erkannt wurden.
+
+Zudem konnte eine messbare Verbesserung der Testeffizienz und somit eine frühzeitige Erkennung von Integrationsproblemen im Entwicklungsprozess festgestellt werden.
+Contract Tests benötigen keine aufwändige Infrastruktur und lassen sich schneller ausführen als klassische Integrationstests.
+Dies erlaubt häufigere Ausführungen und schnellere Rückmeldungen im Entwicklungsprozess, was zu verkürzten Feedback-Zyklen und einer höheren Reaktionsgeschwindigkeit führt.
+Somit wird die Qualität der Software erhöht.
+Außerdem werden durch Contract Tests die Kosten für Fehlerbehebungen oder Ausfälle von Anwendungen gesenkt, da frühzeitige Fehlerbehebungen weniger Kosten verursachen.
+
+Eine Verbesserung der Fehlererkennungsrate konnte im Rahmen dieser Arbeit nicht quantitativ belegt werden, da eine umfassende Analyse über mehrere Releases und Sprints hinweg nicht durchgeführt werden konnte.
+
+Insgesamt bestätigt die durchgeführte Evaluation, dass Contract Testing einen relevanten Beitrag zur Steigerung der Softwarequalität und eine wichtige Ergänzung der klassischen Testverfahren darstellt – besonders in verteilten, dynamischen und schnelllebigen Systemlandschaften, wie sie typischerweise in Microservice-Architekturen anzutreffen sind.
+
+Für zukünftige Projekte, die Contract Testing in die jeweilige Anwendungsumgebung integrieren möchten, lassen sich auf Basis der Erkenntnisse dieser Arbeit mehrere Handlungsempfehlungen ableiten.
+Die Einführung sollte möglichst frühzeitig erfolgen, damit sich das volle Potenzial zur Fehlerprävention entfalten kann.
+Der Einsatz eines zentralen Contract Brokers ist empfehlenswert, um die Verwaltung und den Austausch der Verträge zwischen Consumer und Provider zu erleichtern.
+Die Integration in \gls{CI}/\gls{CD}-Pipelines sollte von Anfang an berücksichtigt werden, um die Tests automatisiert und regelmäßig ausführen zu können.
+Die Auswahl des richtigen Frameworks sollte auf Basis der spezifischen Anforderungen und Gegebenheiten des Projekts erfolgen, wobei die in dieser Arbeit definierten Bewertungskriterien als Orientierung dienen können.
+Allgemein hat sich \texttt{Pact} durch die flexible Einsetzbarkeit, praktische Contract-Verwaltung durch den \texttt{Pact Broker} und die aktive Gemeinschaft als eine robuste und sinnvolle Lösung erwiesen, die Integration von Contract Testing zu unterstützen.
+
+\section{Ausblick}\label{sec:summary_outlook}
+
+Die in dieser Arbeit gewonnenen Erkenntnisse bilden eine solide Grundlage für die Bewertung und Einführung von Contract Testing in realen Microservice-Umgebungen.
+Im Zuge der Erstellung dieser Arbeit haben sich zudem mehrere interessante Themengebiete ergeben, die als potenzielle Inhalte zukünftiger Forschungsprojekte dienen können.
+
+Ein naheliegender nächster Schritt wäre die langfristige Begleitung eines Projekts mit aktiv genutzten Contract Tests über mehrere Iterationen hinweg.
+Eine solche Untersuchung könnte beispielsweise die Auswirkungen auf Fehlerraten, Wartungsaufwand und Release-Zyklen systematisch erfassen und quantifizieren.
+Insbesondere die Analyse von Daten im Vergleich zu Entwicklungsprozessen ohne Einsatz von Contract Testing wäre geeignet, den tatsächlichen Einfluss auf die Qualität und Stabilität der Systemlandschaft weiter zu präzisieren.
+
+Ein weiteres mögliches Untersuchungsfeld ist das Provider-driven Contract Testing.
+Im Gegensatz zum Ansatz, der vom Consumer ausgeht, werden die Verträge von beiden Seiten definiert und veröffentlicht.
+Dies ist insbesondere dann sinnvoll, wenn die Provider-Seite eine Drittanbieter-\gls{API} ist und die Consumer-Seite nicht die Möglichkeit hat, diese \gls{API} zu beeinflussen.
+Zukünftige Arbeiten könnten untersuchen, in welchen Szenarien dieser Ansatz vorteilhaft ist und wie er sich technisch und organisatorisch umsetzen lässt.
+
+Nicht zuletzt könnte zukünftig untersucht werden, wie sich Contract Testing auf die Tätigkeiten von Entwicklern und anderen Projektbeteiligten \bzgl Arbeitsweise, Zeitaufwand und Kommunikation zwischen Projektteams auswirkt.
+Dazu könnten qualitative Interviews durchgeführt werden, um Erfahrungen und Wahrnehmungen der Beteiligten zu erfassen.
+
+Zusammenfassend lässt sich festhalten, dass Contract Testing nicht nur ein technisches Werkzeug zur Schnittstellenprüfung ist, sondern ein umfassendes Konzept zur Qualitätssicherung von Schnittstelleninteraktionen darstellt.
+Die Ergebnisse dieser Arbeit bieten hierfür eine fundierte Ausgangsbasis, auf der zukünftige Entwicklungen aufbauen können.
