@@ -44,7 +44,7 @@ Diese lassen sich nach ihrem Fokus und ihrer Testtiefe kategorisieren.
 Unit-Tests (Modultests) überprüfen einzelne Codeeinheiten isoliert von anderen Komponenten.
 Sie dienen dazu, die korrekte Implementierung kleinster funktionaler Einheiten, wie \zB Funktionen und Methoden, sicherzustellen.
 Bei dieser Testart sollten möglichst viele Einheiten getestet werden, um eine hohe Testabdeckung zu erreichen.
-Wegen der verhältnismäßig geringen Ausführungszeit kann \textquote{[deren] Durchführung [\dots] sehr schnell, beliebig oft und aufwandsarm erfolgen}~\cite{linzBasiswissenSoftwaretest2024}. % TODO: direktes Zitat?
+Wegen der verhältnismäßig geringen Ausführungszeit kann deren Durchführung sehr schnell, beliebig oft und aufwandsarm erfolgen~\cite{linzBasiswissenSoftwaretest2024}.
 Diese Tests sind in der Regel automatisiert und werden häufig während der Entwicklung durchgeführt, um Fehler
 frühzeitig zu erkennen.
 
@@ -92,7 +92,6 @@ Einige dieser Tätigkeiten werden mithilfe von \gls{CI} automatisiert.
 Das bedeutet, dass Änderungen am Code kontinuierlich in das gemeinsame Repository integriert werden und dabei automatisierte Bauprozesse der Software und Tests ausgeführt werden, um sicherzustellen, dass der neue Code keine bestehenden Funktionalitäten beeinträchtigt~\cite{vanmerodeContinuousIntegrationCI2023}.
 Durch diese sofortige Rückmeldung können Fehler frühzeitig erkannt und behoben werden, was nicht nur die Codequalität verbessert, sondern auch langfristig Entwicklungskosten senkt.
 Dies steht im Einklang mit der sogenannten \textit{Cost of Failure}-Kurve, die zeigt, dass die Kosten zur Behebung eines Fehlers exponentiell steigen, je später dieser im Softwareentwicklungsprozess entdeckt wird~\cite{boehmSoftwareEngineeringEconomics1984}.
-% TODO: Abbildung einfügen?
 
 \Gls{CD} geht noch einen Schritt weiter: Nach der erfolgreichen Integration und dem Bestehen bestimmter Qualitätsziele wird die Anwendung automatisiert für die Auslieferung vorbereitet und bereitgestellt.
 Dies schließt Prozesse wie das Verpacken, Bereitstellen und Testen der Anwendung in produktionsnahen Umgebungen ein~\cite{humbleContinuousDelivery2012}.
@@ -152,7 +151,6 @@ Es gibt zwei verschiedene Ansätze wie Contract Testing aufzubauen, als \gls{CDC
 \subsubsection{\glsdesc{CDCT}}
 
 Wenn der Consumer den Contract erstellt und ihn anschließend mit dem Provider teilt, spricht man von \gls{CDCT}.
-% TODO: Wie sehen die Testfälle aus? Wie viele?
 Ein Contract Test auf der Consumer-Seite beim \gls{CDCT}, wie in \cref{fig:cdct-consumer-side} anhand des oben genannten Beispiels dargestellt, lässt sich in drei Schritte unterteilen:
 \begin{enumerate}
     \item Es wird ein \gls{Mock}-Provider erstellt, der die \gls{API} des Providers simuliert, damit der Test vom tatsächlichen Provider unabhängig ist.
@@ -189,7 +187,7 @@ Nun wurde der Contract auf der Consumer-Seite erstellt und auf der Provider-Seit
 Das bedeutet, dass beide Seiten unabhängig voneinander auch nach Änderungen ihre Contract Tests durchführen und die Services ohne Kompatibilitätsprobleme deployt werden können, wenn sie den Contract einhalten~\cite{waseemSystematicMappingStudy2020}.
 Allerdings muss für das Deployen jedes Services sichergestellt werden, dass dazu immer ein verifizierter Contract besteht.
 Im Umkehrschluss bedeutet das aber auch, dass bei neuen Anforderungen des Consumers an die \gls{API} des Providers auch der Contract aktualisiert und vom Provider neu verifiziert werden muss~\cite{cruzContractTestingAction2025}.
-% TODO: Bezug zu ?? herstellen wegen Aufwand
+Wie dieses Contract Management funktionieren kann, wird in \cref{subsec:frameworks_criterion_contractmanagement} und \cref{subsec:frameworks_criterion_versioning} näher erläutert.
 
 Das Verwalten der Contracts ist aufwändig, da es für eine \gls{API} viele verschiedene Consumer und Versionsstände geben kann~\cite{haroMicroserviceAPIs2023}.
 Welche Unterschiede und Varianten es für die Speicherung der Contracts gibt, wird in \cref{sec:frameworks_overview} genauer betrachtet.

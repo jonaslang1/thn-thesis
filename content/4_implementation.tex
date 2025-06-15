@@ -40,15 +40,15 @@ Diese Kommunikationsbeziehungen bilden die Grundlage für die Definition der Con
 \begin{table}[htbp]
     \centering
     \vspace{1ex}
-    \begin{tabular}{@{}l|ll@{}}
+    \begin{tabular}{@{}l|cc@{}}
         \toprule
-        Service            & Provider & Consumer \\
+        Service            & Provider         & Consumer           \\
         \midrule
-        Instanz-Management & Ja       & Ja       \\
-        Regel              & Ja       & Nein     \\
-        Reporting          & Ja       & Nein     \\
-        Proxy              & Ja       & Ja       \\
-        Nutzeroberfläche   & Nein     & Ja       \\
+        Instanz-Management & \checkmark       & \checkmark       \\
+        Regel              & \checkmark       & \times         \\
+        Reporting          & \checkmark       & \times         \\
+        Proxy              & \checkmark       & \checkmark       \\
+        Nutzeroberfläche   & \times           & \checkmark       \\
         \bottomrule
     \end{tabular}
     \vspace{2ex}
