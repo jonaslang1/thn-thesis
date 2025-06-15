@@ -98,7 +98,14 @@ Ein Beispiel für einen solchen \texttt{Pact}-Contract ist in \cref{lst:pact_con
 
 \lstinputlisting[language=JSON, caption=Beispiel für einen \texttt{Pact}-Contract, label=lst:pact_contract_example]{listings/example-contract.json}
 
-Zur Ausführung der Tests kam das Test-Framework \texttt{Jasmine} zum Einsatz, welches in dieser \texttt{\gls{Angular}}-Anwendung bereits für andere Testarten verwendet wird.
+Der vorliegende Pact Contract beschreibt eine vertraglich definierte Interaktion zwischen dem Consumer \textquote{frontend\_component} und dem Provider \textquote{instance\_management\_component}.
+Dabei fordert der Consumer per \gls{HTTP}-\texttt{GET}-Anfrage unter dem Pfad \texttt{/customers/1} einen bestimmten Kunden an.
+Als Voraussetzung gilt der Zustand \textquote{I have a customer}, was bedeutet, dass der Provider zu diesem Zeitpunkt einen Kunden mit entsprechender ID bereithalten muss.
+Die erwartete Antwort mit Kundendaten ist hinsichtlich der \gls{JSON}-Struktur und dem \gls{HTTP}-Statuscode \texttt{200} definiert.
+Die Antwortstruktur wird durch Typ-basierte Validierungsregeln überprüft, wodurch sichergestellt wird, dass der Provider die erwarteten Datenformate liefert.
+Außerdem sind noch Metadaten wie die Version der Pact-Spezifikation enthalten.
+
+Zur Ausführung der Tests im Nutzeroberfläche-Service kam das Test-Framework \texttt{Jasmine} zum Einsatz, welches in dieser \texttt{\gls{Angular}}-Anwendung bereits für andere Testarten verwendet wird.
 Es ermöglicht die Definition von Testklassen und Testfällen, die in der \texttt{Node.js}-Umgebung von \texttt{\gls{Angular}} ausgeführt werden können.
 Nach erfolgreicher Definition und Ausführung der Consumer-Tests wurde der erstellte \texttt{Pact}-Contract unter Angabe der Service-Version über die \texttt{Pact}-\gls{CLI} an den \texttt{Pact Broker} publiziert.
 

@@ -46,7 +46,7 @@ Zudem wären nachträgliche Contract Tests auf historische Implementierungen wen
 
 Neben der Fehlererkennung ist die Effizienz ein entscheidender Aspekt beim Vergleich von Contract Tests mit klassischen Integrationstests.
 Im Rahmen dieser Arbeit wurden konkrete Messungen zur Ausführungsdauer der Test-Pipelines durchgeführt, um die Auswirkungen auf den Entwicklungsprozess zu bewerten.
-Die Messungen wurden auf einem Dell Inspiron ... mit ... durchgeführt, auf dem die \gls{CI}-Umgebung \texttt{Drone CI} mit mehreren Containern für die einzelnen Pipelineschritte lief.
+Die Messungen wurden auf einem Dell Latitude 5521 mit Intel Core i7-11850H und 64 Gigabyte Arbeitsspeicher durchgeführt, auf dem die \gls{CI}-Umgebung \texttt{Drone CI} mit mehreren Containern für die einzelnen Pipelineschritte lief.
 Auch wenn absolute Zeitangaben je nach Infrastruktur und Testumgebung variieren können, ist der relative Vergleich der Messungen zwischen Contract Tests und Integrationstests aufschlussreich.
 
 Das Balkendiagramm in \cref{fig:testing_duration_comparison} zeigt jeweils die durchschnittliche Ausführungsdauer der \gls{CI}-Pipelines für Contract Tests und Integrationstests für die fünf Microservices der Anwendung.
@@ -64,7 +64,7 @@ Die gesamten Messungen sind in \cref{app:testing_duration} detailliert aufgefüh
 Die Ergebnisse zeigen, dass Contract Tests signifikant schneller ausgeführt werden können als Integrationstests.
 Dies liegt insbesondere daran, dass Contract Tests unabhängig von anderen Services laufen, also ohne die vollständige Inbetriebnahme aller beteiligten Services und deren Technologiestacks.
 Dadurch entfällt ein großer Teil des technischen Mehraufwandes, der bei klassischen Integrationstests anfällt, etwa durch das Starten von Containern, Datenbankinitialisierungen oder Netzwerkkonfigurationen.
-Technische Details und strukturelle Unterschiede dieser zwei Test-Pipelines sind in Anhang \cref{app:test_pipelines} detailliert dargestellt.
+Technische Details und strukturelle Unterschiede dieser zwei Test-Pipelines sind in \cref{app:test_pipelines} detailliert dargestellt.
 
 Ein wesentlicher Vorteil ergibt sich aus der Möglichkeit, Contract Tests frühzeitig und häufiger im Entwicklungszyklus auszuführen – etwa direkt beim Commit oder beim Prüfen eines Pull Requests~\cite{cruzContractTestingAction2025}.
 Durch die Unabhängigkeit von anderen Services können Contract Tests sogar lokal auf den Entwicklerrechnern ausgeführt werden, ohne dass die komplexe Infrastruktur für die Integrationstests aufwändig gestartet werden muss.
