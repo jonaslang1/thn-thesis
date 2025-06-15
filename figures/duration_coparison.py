@@ -59,3 +59,34 @@ plt.tight_layout()
 plt.savefig("figures/testing_duration_comparison.png", dpi=300)
 # Diagramm anzeigen
 #plt.show()
+
+# Latex Tabelle erstellen
+# Contract Measurements Table
+print("\\begin{table}[ht]")
+print("\\centering")
+print("\\caption{Contract-Test-Messwerte pro Service}")
+print("\\label{tab:contract_measurements}")
+print("\\begin{tabular}{l|" + "c" * 10 + "}")
+print("\\toprule")
+print("Service & " + " & ".join([f"M{i+1}" for i in range(10)]) + " \\\\")
+print("\\midrule")
+for s, row in zip(services, contract_measurements):
+    print(f"{s} & " + " & ".join(str(val) for val in row) + " \\\\")
+print("\\bottomrule")
+print("\\end{tabular}")
+print("\\end{table}\n")
+
+# Integration Measurements Table
+print("\\begin{table}[ht]")
+print("\\centering")
+print("\\caption{Integrationstest-Messwerte pro Service}")
+print("\\label{tab:integration_measurements}")
+print("\\begin{tabular}{l|" + "c" * 10 + "}")
+print("\\toprule")
+print("Service & " + " & ".join([f"M{i+1}" for i in range(10)]) + " \\\\")
+print("\\midrule")
+for s, row in zip(services, integration_measurements):
+    print(f"{s} & " + " & ".join(str(val) for val in row) + " \\\\")
+print("\\bottomrule")
+print("\\end{tabular}")
+print("\\end{table}")
