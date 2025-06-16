@@ -13,7 +13,7 @@ Ein wesentliches Merkmal der Microservice-Architektur ist die Unabhängigkeit de
 Jeder Microservice kann eigenständig entwickelt, getestet, bereitgestellt und skaliert werden.
 Das Zusammenspiel zwischen den Diensten wird durch klar definierte \glspl{API} sichergestellt~\cite{richardsonMicroservicesPatterns2018}.
 Zudem wird die funktionale Trennung betont, da jeder Service einen klar definierten Anwendungsteil abdeckt und von einem eigenen Entwicklungsteam verwaltet werden kann.
-Diese Struktur ermöglicht es, unterschiedliche Technologien oder Programmiersprachen für verschiedene Services einzusetzen, wodurch eine technologische Vielfalt innerhalb eines Systems entsteht.
+Diese Struktur ermöglicht es, unterschiedliche Technologien oder Programmiersprachen für verschiedene Services einzusetzen, wodurch eine technologische Vielfalt innerhalb eines Systems entsteht~\cite{dowalilGrundlagenModularenSoftwareentwurfs2018a}.
 So entstehen mehrere kleine Anwendungen, die überschaubarer und einfacher zu warten sind als ein großer
 Technologie-Stack, wie~\zB in einer monolithischen Architektur~\cite{cruzContractTestingAction2025}, bei der alle Komponenten einer Anwendung in einer unteilbaren Einheit integriert sind.
 Diese Eigenschaften machen die Microservice-Architektur besonders attraktiv für moderne, dynamische Softwaresysteme.
@@ -85,7 +85,7 @@ Sie beschreibt die kontinuierliche und nicht manuelle Durchführung von Software
 
 Solche Praktiken und Tools werden unter dem Begriff \gls{DevOps} zusammengefasst.
 \gls{DevOps} beschreibt eine kulturelle und technische Bewegung, die darauf abzielt, die Zusammenarbeit zwischen Entwicklungs- (Development) und Betriebsteams (Operation) zu verbessern~\cite{vijayakumaranDevOpsFrameworksTechniques2025}.
-Ziel ist es, den gesamten Software-Lebenszyklus zu optimieren, von der Entwicklung über das Testen bis hin zu \gls{Deployment} und Betrieb.
+Ziel ist es, den gesamten Software-Lebenszyklus zu optimieren, von der Entwicklung über das Testen bis hin zu \gls{Deployment} und Betrieb~\cite{moeContinuousSoftwareTesting2015}.
 Dazu zählen Aufgaben wie Kollaboration zwischen den Teams, Automatisierung von regelmäßigen Aufgaben, Überwachung von Anwendungsinfrastruktur und Auswertung von Nutzerfeedback~\cite{hemonInnovativePracticesKnowledge2020}.
 
 Einige dieser Tätigkeiten werden mithilfe von \gls{CI} automatisiert.
@@ -95,7 +95,7 @@ Dies steht im Einklang mit der sogenannten \textit{Cost of Failure}-Kurve, die z
 
 \Gls{CD} geht noch einen Schritt weiter: Nach der erfolgreichen Integration und dem Bestehen bestimmter Qualitätsziele wird die Anwendung automatisiert für die Auslieferung vorbereitet und bereitgestellt.
 Dies schließt Prozesse wie das Verpacken, Bereitstellen und Testen der Anwendung in produktionsnahen Umgebungen ein~\cite{humbleContinuousDelivery2012}.
-In der weitergehenden Form erfolgt sogar die automatische Auslieferung der Anwendung in die Produktionsumgebung, was Continuous Deployment genannt wird.
+In der weitergehenden Form erfolgt sogar die automatische Auslieferung der Anwendung in die Produktionsumgebung, was Continuous Deployment genannt wird~\cite{doncaMethodContinuousIntegration2022}.
 
 Testautomatisierung ist dabei das Rückgrat dieser Abläufe~\cite{vijayakumaranDevOpsFrameworksTechniques2025}.
 Sie ermöglicht nicht nur die schnelle und zuverlässige Durchführung von Unit-, Integrations- oder Systemtests, sondern auch die Validierung nichtfunktionaler Anforderungen wie Performance oder Sicherheit~\cite{cruzContractTestingAction2025}.
@@ -105,7 +105,7 @@ Dabei werden die einzelnen Automatisierungsschritte und deren Abfolge definiert 
 Wie in \cref{sec:foundation_microservices} erläutert, ist besonders in Microservice-Architekturen die Testautomatisierung sinnvoll, da hier viele unabhängige Komponenten miteinander interagieren~\cite{haroMicroserviceAPIs2023}.
 Ohne automatisierte Tests würde das Risiko fehlerhafter Integrationen oder regressiver Effekte drastisch steigen~\cite{vanmerodeContinuousIntegrationCI2023} und damit auch der monetäre Aufwand zur Behebung~\cite{boehmSoftwareEngineeringEconomics1984}.
 
-Insgesamt trägt Testautomatisierung in Verbindung mit \gls{DevOps} und \gls{CI}/\gls{CD} entscheidend dazu bei, die Qualität, die Sicherheit und die Stabilität moderner Softwareprodukte zu gewährleisten.
+Insgesamt trägt Testautomatisierung in Verbindung mit \gls{DevOps} und \gls{CI}/\gls{CD} entscheidend dazu bei, die Qualität, die Sicherheit und die Stabilität moderner Softwareprodukte zu gewährleisten~\cite{shahinContinuousIntegrationDelivery2017}.
 Im Kontext von Microservices gewinnen automatisierte Tests und insbesondere Contract Tests an Bedeutung, da sie die Kommunikation zwischen Diensten absichern und frühzeitig Fehler in der Interaktion erkennen lassen~\cite{cruzContractTestingAction2025}.
 Die besondere Testart Contract Testing wird im Folgenden näher erläutert und bildet die Grundlage für den praktischen Teil dieser Arbeit.
 
@@ -230,7 +230,7 @@ Dies führt zu einem schnelleren Feedback für die Entwicklungsteams und reduzie
 Insbesondere im Rahmen von \gls{CI}/\gls{CD}-Pipelines kann Contract Testing dazu beitragen, Fehlerquellen automatisch zu identifizieren, frühzeitig zu eliminieren und die Qualität der Software kontinuierlich sicherzustellen~\cite{duvallContinuousIntegrationImproving2007}.
 
 Ein weiterer bedeutender Vorteil liegt in der Reduzierung der Abhängigkeit von klassischen Systemtests.
-Während Systemtests häufig ressourcenintensiv und fehleranfällig sind, ermöglicht Contract Testing eine gezielte Überprüfung der Schnittstellenkompatibilität, ohne dass das gesamte System integriert und getestet werden muss~\cite{fowlerTestingStrategiesMicroservice2014}.
+Während Systemtests häufig ressourcenintensiv und fehleranfällig sind, ermöglicht Contract Testing eine gezielte Überprüfung der Schnittstellenkompatibilität, ohne dass das gesamte System integriert und getestet werden muss~\cite{clemsonTestingStrategiesMicroservice2014}.
 Dadurch werden die Testzyklen verkürzt und die Entwicklung beschleunigt, da Teams unabhängig voneinander an ihren Komponenten arbeiten können, solange die definierten Contracts eingehalten werden.
 Dies fördert eine parallele Entwicklung und steigert die Agilität, vornehmlich in großen Projekten mit mehreren Teams~\cite{cruzContractTestingAction2025}.
 
@@ -249,7 +249,7 @@ Ein weiterer Nachteil ist die begrenzte Testtiefe von Contract Tests.
 Sie überprüfen in erster Linie die Einhaltung der syntaktischen und strukturellen Vorgaben der Schnittstellen, bieten jedoch keine Garantie für die korrekte semantische Umsetzung der Funktionalität~\cite{morganTestingMicroservicesConsumerdriven2019}.
 So kann es beispielsweise vorkommen, dass ein Service zwar formal korrekte Daten liefert, diese aber inhaltlich fehlerhaft sind.
 Solche Probleme werden durch Contract Testing allein nicht erkannt und erfordern ergänzende Testmethoden, wie etwa Unit- oder Integrationstests, wie in \cref{sec:foundation_testing} beschrieben, die die Geschäftslogik und die funktionalen Anforderungen abdecken.
-Contract Testing sollte daher nicht als Ersatz für andere Testmethoden betrachtet werden, sondern vielmehr als ergänzende Maßnahme, die in eine umfassende Teststrategie integriert werden sollte~\cite{fowlerTestingStrategiesMicroservice2014}.
+Contract Testing sollte daher nicht als Ersatz für andere Testmethoden betrachtet werden, sondern vielmehr als ergänzende Maßnahme, die in eine umfassende Teststrategie integriert werden sollte~\cite{clemsonTestingStrategiesMicroservice2014}.
 
 Nicht zuletzt ist der initiale Implementierungsaufwand für Contract Testing nicht zu unterschätzen.
 Die Einführung entsprechender Tools, die Schulung der Teams und die Anpassung bestehender Entwicklungs- und Testprozesse können insbesondere in gewachsenen, großen Systemlandschaften herausfordernd sein~\cite{cruzContractTestingAction2025}.
