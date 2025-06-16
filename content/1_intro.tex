@@ -15,7 +15,7 @@ Contract Testing hat sich als eine potenziell leistungsfähige Testmethode etabl
 Es ermöglicht eine gezielte Validierung von Service-Schnittstellen, indem Contracts zwischen Consumer- und Provider-Services definiert und automatisch überprüft werden~\cite{cruzContractTestingAction2025}.
 Allerdings gibt es bisher nur begrenzte wissenschaftliche Untersuchungen zur praktischen Umsetzung und Wirksamkeit dieser Methodik.
 
-Daher ist es essenziell, eine detaillierte Untersuchung zur Anwendung von Contract Testing in \gls{CI}-Pipelines durchzuführen, um herauszufinden, ob und inwieweit diese Testmethode eine nachhaltige Verbesserung der Interoperabilität in einer Microservice-Architektur gewährleisten kann.
+Daher ist es essenziell, eine detaillierte Untersuchung zur Anwendung von Contract Testing in \gls{CI}/\gls{CD}-Pipelines durchzuführen, um herauszufinden, ob und inwieweit diese Testmethode eine nachhaltige Verbesserung der Interoperabilität in einer Microservice-Architektur gewährleisten kann.
 
 \section{Zielsetzung der Arbeit}\label{sec:intro_objective}
 
@@ -26,7 +26,7 @@ Auf dieser Basis sollen folgende Fragestellungen beantwortet werden:
 
 \begin{itemize}
 \item Welche konkreten Vorteile ergeben sich durch die Einführung von Contract Testing im Vergleich zu klassischen Softwaretests?
-\item Inwieweit trägt Contract Testing zur frühzeitigen Fehlererkennung und Effizienzsteigerung in \gls{CI}-Pipelines bei?
+\item Inwieweit trägt Contract Testing zur frühzeitigen Fehlererkennung und Effizienzsteigerung in \gls{CI}/\gls{CD}-Pipelines bei?
 \item Welche Contract-Testing-Frameworks sind für die Integration in bestehende Anwendungsumgebungen geeignet und welche Kriterien sind bei der Auswahl zu berücksichtigen?
 \item Welche Herausforderungen treten bei der praktischen Umsetzung auf und wie lassen sich diese bewältigen?
 \item Welche Handlungsempfehlungen lassen sich daraus für andere Projekte ableiten?
@@ -46,7 +46,7 @@ Im darauffolgenden \cref{ch:frameworks} werden verschiedene Contract-Testing-Fra
 Anhand definierter Kriterien erfolgt ein systematischer Vergleich, auf dessen Grundlage ein geeignetes Werkzeug für die Implementierung ausgewählt wird.
 
 \Cref{ch:implementation} widmet sich der praktischen Umsetzung.
-Es beschreibt die konkrete Anwendungsumgebung, die technischen Voraussetzungen sowie die schrittweise Integration der Contract-Tests in eine bestehende Microservice-Infrastruktur und deren \gls{CI}-Umgebung.
+Es beschreibt die konkrete Anwendungsumgebung, die technischen Voraussetzungen sowie die schrittweise Integration der Contract-Tests in eine bestehende Microservice-Infrastruktur und deren \gls{CI}/\gls{CD}-Umgebung.
 
 Die Wirksamkeit dieser Integration wird in \cref{ch:evaluation} analysiert.
 Hier werden die Ergebnisse anhand quantitativer Messungen und qualitativer Beobachtungen bewertet – insbesondere in Bezug auf Fehlererkennung, Testeffizienz und potenzielle Einsparungen gemäß der \textit{Cost-of-Failure}-Kurve.

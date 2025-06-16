@@ -12,7 +12,8 @@ Zwei Bedingungen wurden dabei als zwingend erforderlich festgelegt:
 Zum einen sollte das jeweilige Tool unter einer Open-Source-Lizenz stehen, um eine transparente Einsicht in den Quellcode sowie die Unabhängigkeit von einem Anbieter zu gewährleisten.
 Zum anderen wurde gefordert, dass das Framework explizit die \gls{CDCT}-Prinzipien unterstützt, da dieses Modell im vorliegenden Anwendungskontext einer Microservice-Architektur eingesetzt werden soll.
 
-Im Verlauf dieser Recherche konnten fünf von insgesamt zwölf untersuchten Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von \gls{CDCT} bieten, welche im Folgenden vorgestellt werden.
+Im Verlauf dieser Recherche konnten fünf von insgesamt zwölf untersuchten Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von \gls{CDCT} bieten.
+Diese werden im Folgenden vorgestellt.
 Die in die nähere Analyse einbezogenen Tools sind \texttt{Pact}, \texttt{Spring Cloud Contract}, \texttt{Specmatic}, \texttt{Karate} und \texttt{ContractCase}.
 Diese Tools bilden die Grundlage für die nachfolgende vergleichende Analyse und Auswahl in \cref{sec:frameworks_comparison}.
 
@@ -61,7 +62,7 @@ Diese fünf Frameworks wurden hinsichtlich ihrer Relevanz für Contract Testing 
 
 Die Auswahl geeigneter Contract-Testing-Frameworks setzt eine methodisch fundierte Bewertung voraus, die sich an spezifischen Anforderungen und Zielsetzungen des Contract-Testing orientiert.
 Im Rahmen dieser Arbeit wurden die Kriterien in enger Zusammenarbeit mit dem betreuenden Unternehmen entwickelt, um sicherzustellen, dass sowohl technische als auch betriebliche Aspekte angemessen berücksichtigt werden.
-Die Kriterien sollen dabei nicht nur die Funktionalität eines Tools erfassen, sondern auch Aspekte wie Wartbarkeit, Zukunftssicherheit und organisatorische Integration reflektieren.
+Die Kriterien sollen dabei nicht nur die Funktionalitäten eines Tools erfassen, sondern auch Aspekte wie Wartbarkeit, Zukunftssicherheit und organisatorische Integration reflektieren.
 Außerdem wurden die einzelnen Kriterien zusätzlich gewichtet, um deren relative Bedeutung für die Toolbewertung zu verdeutlichen.
 Die einzelnen Gewichtungsfaktoren sind in \cref{sec:frameworks_comparison} in \cref{tab:framework_evaluation} zu finden.
 Die nachfolgenden Ausführungen erläutern die einzelnen Kriterien im Detail und legen deren Relevanz für die Toolbewertung dar.
@@ -81,7 +82,7 @@ Frameworks, die Multi-Language-Support oder spezifische Integrationen für Java,
 \subsection{Initialer Aufwand}\label{subsec:frameworks_criterion_initialeffort}
 
 Der Aufwand zur erstmaligen Implementierung eines Contract-Testing-Tools ist ein wesentlicher Faktor bei der Bewertung.
-Er umfasst sowohl den technischen Integrationsaufwand in bestehende Anwendungen und \gls{CI}-Umgebungen als auch die Komplexität der Erstellung der Contract Tests an sich.
+Er umfasst sowohl den technischen Integrationsaufwand in bestehende Anwendungen und \gls{CI}/\gls{CD}-Umgebungen als auch die Komplexität der Erstellung der Contract Tests an sich.
 Dazu zählen \zB die Einarbeitung in die Funktionsweise des Tools, das Installieren und Konfigurieren der Plugins, das Definieren von Mock-Servern sowie die Erstellung von Überprüfungskriterien.
 Tools mit einfacher Einstiegshilfe, klarer Struktur und guter Dokumentation zur Erstkonfiguration bieten in diesem Bereich Vorteile.
 
@@ -90,7 +91,7 @@ Tools mit einfacher Einstiegshilfe, klarer Struktur und guter Dokumentation zur 
 Neben dem initialen Aufwand ist auch der laufende Wartungsaufwand zu berücksichtigen.
 Dieser umfasst etwa die Aktualisierung von Contracts bei Änderungen der Schnittstellen, das Nachziehen von Tests und die Pflege von Testdaten.
 Ein gutes Tool sollte Mechanismen zur Reduktion dieses Aufwands bieten, beispielsweise durch automatische Generierung von Tests aus bestehenden Contracts oder durch unterstützende Integration in die Entwicklungsumgebung.
-Geringer kontinuierlicher Wartungsaufwand verbessert die langfristige Wirtschaftlichkeit und Nachhaltigkeit des Tools im Betrieb.
+Ein geringer kontinuierlicher Wartungsaufwand verbessert die langfristige Wirtschaftlichkeit und Nachhaltigkeit des Tools im Betrieb.
 
 \subsection{Lizenz und Kosten}\label{subsec:frameworks_criterion_license}
 
@@ -113,7 +114,7 @@ Eine gut strukturierte und vollständige Dokumentation erleichtert sowohl den Ei
 \subsection{Contract-Verwaltung}\label{subsec:frameworks_criterion_contractmanagement}
 
 Ein zentrales Element des Contract Testings ist das Management von Contracts zwischen Consumer und Provider.
-Tools wurden dahingehend bewertet, ob sie Funktionen zur zentralen Speicherung, Versionierung, Prüfung und Verteilung von Contracts anbieten.
+Die Tools wurden dahingehend bewertet, ob sie Funktionen zur zentralen Speicherung, Versionierung, Prüfung und Verteilung von Contracts anbieten.
 Berücksichtigt wurde auch, ob es Unterstützung für die Verwaltung von Contracts gibt.
 Einige Frameworks bieten integrierte Broker-Funktionalitäten, die eine zentrale Anlaufstelle für alle Contracts darstellen und den Austausch zwischen Consumer und Provider erleichtern.
 Bei diesem Kriterium wurde vor allem die Schnittstelle zwischen den Tests und dem Broker betrachtet.
@@ -141,7 +142,7 @@ Ein hoher Grad an Verbindlichkeit stärkt das Vertrauen in die Tests und reduzie
 
 Ein weiteres zentrales Ziel des Einsatzes eines Frameworks ist die möglichst nahtlose Integration in automatisierte Entwicklungs- und Deployment-Prozesse.
 Daher wurde untersucht, inwieweit die einzelnen Frameworks eine Automatisierung der Vertragserstellung und -überprüfung im Rahmen von \gls{CI}/\gls{CD}-Pipelines ermöglichen.
-Besonderes Augenmerk galt hierbei der Unterstützung gängiger Build-Tools (\zB\texttt{\gls{Maven}}, \texttt{\gls{Gradle}},  \texttt{\gls{npm}}), \gls{CI}-Server (\zB \texttt{Jenkins}, \texttt{Drone CI}, \texttt{GitHub Actions}) sowie der Möglichkeit, Validierungsprozesse durch Webhooks oder \gls{CLI}-Befehle zu automatisieren.
+Besonderes Augenmerk galt hierbei der Unterstützung gängiger Build-Tools (\zB\texttt{\gls{Maven}}, \texttt{\gls{Gradle}},  \texttt{\gls{npm}}), \gls{CI}/\gls{CD}-Server (\zB \texttt{Jenkins}, \texttt{Drone CI}, \texttt{GitHub Actions}) sowie der Möglichkeit, Validierungsprozesse durch Webhooks oder \gls{CLI}-Befehle zu automatisieren.
 
 \subsection{Skalierbarkeit}\label{subsec:frameworks_criterion_scalability}
 
@@ -189,9 +190,9 @@ Zudem können verschiedene und auch neue Contract-Versionen durch den Broker (vo
 Darüber hinaus lässt sich eine Übersicht über die Abhängigkeiten zwischen Consumer und Provider generieren~\cite{pactfoundationPactDocs2022}.
 
 \textbf{\nameref{subsec:frameworks_criterion_reliability}:} \texttt{Pact} liefert detaillierte Fehlermeldungen und bietet eine zuverlässige Erkennung von Vertragsbrüchen.
-Durch das separate \texttt{can-i-deploy}-Feature kann die Verbindlichkeit von Consumer- und Provider-Contracts überprüft werden, bevor Deployments durchgeführt werden~\cite{pactfoundationPactDocs2022}.
+Durch das separate \texttt{can-i\-deploy}-Feature kann die Verbindlichkeit von Consumer- und Provider-Contracts überprüft werden, bevor Deployments durchgeführt werden~\cite{pactfoundationPactDocs2022}.
 
-\textbf{\nameref{subsec:frameworks_criterion_automability}:} \texttt{Pact} unterstützt \gls{CI}/\gls{CD}-Integrationen durch gute Kompatibilität mit typischen Build-Tools und einem CLI-Tool~\cite{pactfoundationPactDocs2022}.
+\textbf{\nameref{subsec:frameworks_criterion_automability}:} \texttt{Pact} unterstützt \gls{CI}/\gls{CD}-Integrationen durch gute Kompatibilität mit typischen Build-Tools und einem \gls{CLI}-Tool~\cite{pactfoundationPactDocs2022}.
 
 \textbf{\nameref{subsec:frameworks_criterion_scalability}:} Mit der Cloudfähigkeit und strukturierter Contract-Verwaltung des \texttt{Pact Brokers} lassen sich auch größere Projekte gut abbilden und effizient testen~\cite{pactfoundationPactDocs2022}.
 

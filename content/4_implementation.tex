@@ -15,7 +15,7 @@ Die Erfassung erfolgt über Sensoren, deren Signale durch ein lokales Gerät mit
 Diese Plattform übernimmt die zentrale Steuerung und Regelverarbeitung sowie die Bereitstellung grafischer Dashboards und Reporting-Funktionalitäten.
 Durch Regeldefinitionen kann festgelegt werden, bei welchen Sensorzuständen welche Aktionen ausgelöst werden, etwa das Herunterregeln eines Heizungsthermostats bei geöffnetem Fenster.
 
-Die Anwendung ist in einer Microservice-Architektur aufgebaut, wobei die Microservices jeweils eine spezifische Funktionalität bereitstellt und über Schnittstellen miteinander kommuniziert.
+Die Anwendung ist in einer Microservice-Architektur aufgebaut, wobei jeder Microservice jeweils eine spezifische Funktionalität bereitstellt und über Schnittstellen miteinander kommuniziert.
 Insgesamt ist die Anwendung in fünf verschiedene Microservices aufgeteilt:
 \begin{itemize}
     \item \textbf{Instanz-Management-Service:} Dieser Service ist für die Erfassung und Verarbeitung von Stammdaten zuständig.
@@ -76,7 +76,7 @@ Der Broker wird in einem \texttt{Docker}-Container betrieben, um eine einfache H
 \subsection{Consumer-Contract als Ausgangspunkt}\label{subsec:implementation_execution_consumer-contract}
 
 Getreu nach den Prinzipien von \gls{CDCT}, die in \cref{subsec:foundation_contracttesting_variants} vorgestellt wurden, erfolgte der Einstieg in die Contract-Test-Implementierung bei einem Consumer-Service.
-Hier wurde zuerst die Nutzeroberfläche gewählt, welche siehe \cref{tab:consumer_provider_matrix} nur als Consumer einiger Backend-\glspl{API} fungiert.
+Hier wurde zuerst die Nutzeroberfläche gewählt, welche gemäß \cref{tab:consumer_provider_matrix} nur als Consumer einiger Backend-\glspl{API} fungiert.
 Zuerst musste eines der Integrations-Plugins für \texttt{Pact} ausgewählt werden, welches Consumer-Tests in TypeScript unterstützt.
 Die Wahl fiel letztendlich auf \texttt{pact-js}, welches von der offiziellen \texttt{Pact} Dokumentation empfohlen wird~\cite{pactfoundationPactDocs2022}.
 Damit wurden die Tests im Nutzeroberflächen-Service-Repository in TypeScript formuliert.
@@ -111,7 +111,7 @@ Nach erfolgreicher Definition und Ausführung der Consumer-Tests wurde der erste
 
 \subsection{Provider-Verifizierung}\label{subsec:implementation_execution_provider-verification}
 
-Im Anschluss wurde der zugehörige Provider-Test aufseiten des Instanz-Management-Service implementiert.
+Im Anschluss wurde der zugehörige Provider-Test aufseiten des Instanz-Management-Services implementiert.
 Die auf Spring-Boot basierenden Services verwenden \texttt{Junit5} für die Ausführung von bestehenden Tests, weshalb dieses Framework auch für die Contract-Tests verwendet wurde.
 Die Verifizierung der Consumer-Contracts erfolgte dem \texttt{pact-jvm-junit5}-Provider-Framework, welches speziell für die Integration mit \texttt{Junit5} entwickelt wurde.
 Dazu wurde die entsprechende Abhängigkeit mithilfe von \texttt{\gls{Maven}} in das Projekt eingebunden und Konfigurationen, wie \zB das Eintragen der Broker-URL durchgeführt.
@@ -159,9 +159,9 @@ Die Automatisierung dieser Schritte ermöglicht eine nahtlose Integration der Co
 Die Einführung von Contract-Tests im Projektumfeld brachte eine Reihe technischer und konzeptioneller Herausforderungen mit sich, wie schon in \cref{sec:implementation_execution} angedeutet, die im Verlauf der Implementierung identifiziert und schrittweise gelöst wurden.
 Die folgenden Abschnitte skizzieren die zentralen Problemfelder und beschreiben, wie diesen begegnet wurde.
 
-\subsection{\gls{CI}-Infrastrukturkomplexität}\label{subsec:implementation_problems_ci-infrastructure}
+\subsection{\gls{CI}/\gls{CD}-Infrastrukturkomplexität}\label{subsec:implementation_problems_ci-infrastructure}
 
-Eine zentrale Hürde zu Beginn der Umsetzung war die Einrichtung einer funktionsfähigen lokalen Testumgebung, die alle beteiligten Komponenten – insbesondere den \texttt{Pact Broker} und das \gls{CI}-System \texttt{Drone CI} und die Versionsverwaltung \texttt{Gitea} – umfasst.
+Eine zentrale Hürde zu Beginn der Umsetzung war die Einrichtung einer funktionsfähigen lokalen Testumgebung, die alle beteiligten Komponenten – insbesondere den \texttt{Pact Broker} und das \gls{CI}/\gls{CD}-System \texttt{Drone CI} und die Versionsverwaltung \texttt{Gitea} – umfasst.
 Die drei Dienste sollten so konfiguriert werden, dass die vollständige Kommunikationskette zwischen Consumer-Tests, \texttt{Pact}-Veröffentlichung und Provider-Verifikation ohne manuelle Zwischenschritte möglich ist.
 
 Da für die prototypische Implementierung keine zentrale \texttt{Pact Broker}-Instanz zur Verfügung stand, musste eine lokale Instanz aufgesetzt werden.
@@ -170,10 +170,10 @@ Ein Server kann nicht direkt auf einen lokalen Rechner zugreifen, da dies durch 
 Lokale Rechner befinden sich zum Schutz idealerweise hinter Firewalls und nutzen private IP-Adressen, die durch Network Address Translation vom öffentlichen Internet abgeschirmt sind~\cite{moskowitzAddressAllocationPrivate1996}.
 
 Bei der Verbindung der zentralen \texttt{Gitea}-Instanz mit der lokalen \texttt{Drone CI}-Instanz kam es ebenfalls zu Herausforderungen.
-Die meisten Interaktionen zwischen \texttt{Gitea} und \texttt{Drone CI} gehen von der \gls{CI}-Pipeline aus, die auf \texttt{Gitea} zugreift, um Repositories zu klonen und so den aktuellen Stand des Codes zu erhalten.
+Die meisten Interaktionen zwischen \texttt{Gitea} und \texttt{Drone CI} gehen von der \gls{CI}/\gls{CD}-Pipeline aus, die auf \texttt{Gitea} zugreift, um Repositories zu klonen und so den aktuellen Stand des Codes zu erhalten.
 Allerdings erfolgt die Benachrichtigung der \texttt{Drone CI}-Instanz über neue Commits oder Pull-Requests mittels Webhooks von \texttt{Gitea} aus~\cite{DroneCICD}, was in diesem Fall nicht möglich war, da die lokale \texttt{Drone CI}-Instanz nicht von \texttt{Gitea} erreicht werden konnte.
 So konnten die Pipelines nicht automatisch ausgelöst werden und mussten manuell gestartet werden.
-Dieses Vorgehen bei der prototypischen Implementierung beeinträchtigt aber nicht die grundsätzliche Funktionsweise der Contract-Tests und deren Integration in die \gls{CI}-Pipeline, da die manuelle Auslösung der Pipelines lediglich eine Einschränkung in der Automatisierung darstellt und nicht die Funktionsweise beeinflusst.
+Dieses Vorgehen bei der prototypischen Implementierung beeinträchtigt aber nicht die grundsätzliche Funktionsweise der Contract-Tests und deren Integration in die \gls{CI}/\gls{CD}-Pipeline, da die manuelle Auslösung der Pipelines lediglich eine Einschränkung in der Automatisierung darstellt und nicht die Funktionsweise beeinflusst.
 Bei der Implementierung in der realen Infrastruktur des Unternehmens wäre die zentrale \texttt{Drone CI}-Instanz direkt mit der zentralen \texttt{Gitea}-Instanz verbunden, sodass das automatische Auslösen der Pipelines funktioniert.
 Die \texttt{Gitea}-Instanz ebenfalls manuell zu installieren wäre zwar möglich gewesen, war in diesem Fall aber nicht zielführend, da dies eine erhebliche Umstellung der Infrastruktur und Redundanz bedeutet hätte.
 Aus diesem Grund wurde die Lösung mit dem zentralen \texttt{Gitea}-Server, der lokalen \texttt{Drone CI}-Instanz und dem lokalen \texttt{Pact Broker} gewählt.
