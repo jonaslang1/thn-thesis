@@ -31,4 +31,10 @@ It will be included in the final `thesis.pdf`.
 ```bash
 checkcites thesis.aux
 ```
+For current setup use the following commands:
+```bash
+cp refs.bib out/refs.bib
+checkcites out/thesis --backend biber
+rm out/refs.bib
+```
 - Tabellen gernerieren mit [Tables Genarator](https://www.tablesgenerator.com/latex_tables)
