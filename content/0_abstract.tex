@@ -1,9 +1,15 @@
 \thispagestyle{empty}
-\section*{Kurzdarstellung}
-\label{sec:kurzdarstellung}
-Kurze Zusammenfassung der Arbeit, höchstens halbe Seite.
-Deutsche Fassung auch nötig, wenn die Arbeit auf Englisch angefertigt wird.
+\section*{Kurzdarstellung}\label{sec:kurzdarstellung}
 
-\section*{Abstract}
-\label{sec:abstract}
-\emph{Only if thesis is written in English.}
+Entwicklungsteams setzen zunehmend auf Microservice-Architekturen, um die Flexibilität und Skalierbarkeit ihrer Anwendungen zu erhöhen.
+Dabei ist aufgrund komplexerer Entwicklungsprozesse und kürzerer Release-Zyklen die Sicherstellung der Softwarequalität durch regelmäßige Softwaretest eine zentrale Herausforderung.
+Klassische Testmethoden wie Integrationstests stoßen hierbei an ihre Grenzen, da sie oft zeitintensiv und fehleranfällig sind.
+Diese Arbeit hat das Ziel die Eignung von Contract Testing zur Verbesserung der Schnittstelleninteroperabilität, Testeffizienz und Fehlererkennung systematisch zu untersuchen.
+
+Zunächst erfolgte eine vergleichende Bewertung von fünf relevanten Contract-\-Testing-\-Frame\-works (\texttt{Pact}, \texttt{Spring Cloud Contract}, \texttt{Specmatic}, \texttt{Karate}, \texttt{ContractCase}) anhand definierter technischer, organisatorischer und funktionaler Kriterien.
+Im Anschluss wurde das Framework \texttt{Pact} für die prototypische Implementierung von Contract Testing ausgewählt und in der realen Microservice-Anwendung \textit{msg.Sensorik} umgesetzt.
+Die Implementierung wurde hinsichtlich ihrer Fähigkeit zur Fehlererkennung, ihrer Effizienz im Vergleich zu klassischen Integrationstests sowie ihres Beitrags zur Reduktion der Fehlerkosten evaluiert.
+Die Ergebnisse zeigen, dass Contract Testing als ergänzende Testmethode signifikant zur Verbesserung der Softwarequalität und zur frühzeitigen Fehlererkennung beitragen kann, insbesondere in CI/CD-gestützten Entwicklungsprozessen.
+
+\section*{Abstract}\label{sec:abstract}
+
