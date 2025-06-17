@@ -1,9 +1,14 @@
 \chapter{Prototypische Implementierung}\label{ch:implementation}
 
+\added[comment={Moved}]{
+Die prototypische Integration von Contract Testing in die Microservice-Anwendung \textit{msg.Sensorik} erfolgt in mehreren Schritten, die in diesem Kapitel detailliert beschrieben werden.
+Bevor die konkrete Implementierung des ausgewählten Contract-Testing-Frameworks \texttt{Pact} erfolgen kann, ist ein Überblick über die zugrunde liegende Anwendungsumgebung notwendig.
+}
+
+
 \section{Anwendungsumgebung}\label{sec:implementation_environment}
 
-Bevor die konkrete Implementierung des ausgewählten Contract-Testing-Frameworks erfolgen kann, ist ein Überblick über die zugrunde liegende Anwendungsumgebung notwendig.
-Diese umfasst sowohl die technische Infrastruktur als auch die verwendeten Werkzeuge, Frameworks und Systemkomponenten, in welche die Contract-Tests eingebettet werden sollen.
+\replaced{Die Beschreibung der Umgebung }{Diese }umfasst sowohl die technische Infrastruktur als auch die verwendeten Werkzeuge, Frameworks und Systemkomponenten, in welche die Contract-Tests eingebettet werden sollen.
 Hier werden die Rahmenbedingungen dargestellt, unter denen die Integration und die Ausführung der Tests erfolgen wird.
 Dazu zählen insbesondere die eingesetzten Programmiersprachen, Build- und Test-Pipelines, relevante Dienste sowie die Architektur der Kommunikationsbeziehungen zwischen Consumer und Provider.
 Ein Verständnis für die Anwendungsumgebung ist essenziell, um die getroffenen Implementierungsentscheidungen nachvollziehbar zu machen und die spätere Übertragbarkeit der Ergebnisse auf andere Projekte realistisch einschätzen zu können.
@@ -98,7 +103,7 @@ Ein Beispiel für einen solchen \texttt{Pact}-Contract ist in \cref{lst:pact_con
 
 \lstinputlisting[language=JSON, caption=Beispiel für einen \texttt{Pact}-Contract, label=lst:pact_contract_example]{listings/example-contract.json}
 
-Der vorliegende Pact Contract beschreibt eine vertraglich definierte Interaktion zwischen dem Consumer \textquote{frontend\_component} und dem Provider \textquote{instance\_management\_component}.
+Der vorliegende Pact Contract beschreibt eine vertraglich definierte Interaktion zwischen dem Consumer \textquote{frontend\_\-component} und dem Provider \textquote{instance\_\-management\_\-component}.
 Dabei fordert der Consumer per \gls{HTTP}-\texttt{GET}-Anfrage unter dem Pfad \texttt{/customers/1} einen bestimmten Kunden an.
 Als Voraussetzung gilt der Zustand \textquote{I have a customer}, was bedeutet, dass der Provider zu diesem Zeitpunkt einen Kunden mit entsprechender ID bereithalten muss.
 Die erwartete Antwort mit Kundendaten ist hinsichtlich der \gls{JSON}-Struktur und dem \gls{HTTP}-Statuscode \texttt{200} definiert.
