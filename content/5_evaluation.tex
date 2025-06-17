@@ -62,6 +62,8 @@ Die gesamten Messungen sind in \cref{sec:app:test-pipeline-differences} detailli
 \end{figure}
 
 Die Ergebnisse zeigen, dass Contract Tests signifikant schneller ausgeführt werden können als Integrationstests.
+Der Unterschied ist besonders ausgeprägt bei den Microservices, die als Consumer fungieren, da sie mehr Abhängigkeiten zu anderen Services haben.
+Die durchschnittliche Ausführungsdauer der Integrationstest-Pipline ist bis zu 10-mal länger als die der Contract Tests.
 Dies liegt insbesondere daran, dass Contract Tests unabhängig von anderen Services laufen, also ohne die vollständige Inbetriebnahme aller beteiligten Services und deren Technologiestacks.
 Dadurch entfällt ein großer Teil des technischen Mehraufwandes, der bei klassischen Integrationstests anfällt, etwa durch das Starten von Containern, Datenbankinitialisierungen oder Netzwerkkonfigurationen.
 Technische Details und strukturelle Unterschiede dieser zwei Test-Pipelines sind in \cref{sec:app:test-pipeline-differences} detailliert dargestellt.
