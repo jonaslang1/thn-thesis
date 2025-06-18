@@ -4,7 +4,7 @@ Wie in \cref{ch:implementation} beschrieben, konnten die Contract Tests innerhal
 Bei der konkreten Umsetzung der Architektur ergaben sich jedoch Herausforderungen.
 Wie in \cref{sec:implementation_challenges} dargelegt wurde, konnten diese im Verlauf der vorliegenden Arbeit erfolgreich gelöst werden.
 
-Nach der prototypischen Implementierung der Contract-Tests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
+Nach der prototypischen Implementierung der Contract ests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
 Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele, insbesondere die Reduktion von Integrationsproblemen und die Steigerung der Testeffizienz, durch den Einsatz von Contract Testing erreicht werden konnten.
 
 \section{Bewertung der Fehlererkennung}\label{sec:evaluation_errordetection}
@@ -15,13 +15,13 @@ Dazu wurden absichtlich Änderung mit Kompatibilitätsbruch in den \gls{API}-Sch
 Beim Ändern der Schnittstellen wurde darauf geachtet, dass teilweise auch die Contract Tests des jeweiligen Services angepasst wurden, um sowohl unabsichtliche Änderungen als auch praktische Anpassungen einer Schnittstelle durch ein Umsetzungsteam zu simulieren.
 Im Folgenden werden exemplarisch drei Arten aller Änderungen dargestellt, die zu Kompatibilitätsproblemen führen können und im Rahmen dieser Arbeit durchgeführt und untersucht wurden.
 
-Die Änderungen erfolgten schrittweise und wurden nach jeder Anpassung einzeln getestet, um die Reaktion der Contract-Tests gezielt zu überprüfen.
+Die Änderungen erfolgten schrittweise und wurden nach jeder Anpassung einzeln getestet, um die Reaktion der Contract Tests gezielt zu überprüfen.
 Zum Einen wurde ein vorhandener \gls{API}-Pfad beim Consumer umbenannt, sodass Anfragen an den neuen Pfad gesendet wurden.
-Wie erwartet, schlugen die entsprechenden Contract-Tests fehl, da die Anfragen nicht mehr dem definierten Contract entsprachen.
+Wie erwartet, schlugen die entsprechenden Contract Tests fehl, da die Anfragen nicht mehr dem definierten Contract entsprachen.
 Anschließend wurde in einem Testlauf das verwendete \gls{HTTP}-Verb eines bestehenden Endpunkts auf Provider-Seite geändert, hier von \texttt{POST} auf \texttt{PUT}.
 In diesem Fall wurden die Requests vom Consumer wie ursprünglich gesendet, was zu Fehlern in der Provider-Verifizierung führte, da keine übereinstimmende Schnittstelle vorhanden war.
 Außerdem wurden Änderungen an der erwarteten \gls{JSON}-Struktur der Nutzdaten vorgenommen durch das Entfernen und Umbenennen einzelner Felder in der Request- oder Response-Payload.
-Zusätzlich wurden auch die entsprechenden Contract-Tests auf der Consumer-Seite angepasst, um die Tätigkeit eines Entwicklers zu simulieren.
+Zusätzlich wurden auch die entsprechenden Contract Tests auf der Consumer-Seite angepasst, um die Tätigkeit eines Entwicklers zu simulieren.
 Hier zeigte sich, dass auch semantische Änderungen innerhalb der Datenformate durch den \texttt{can-i-deploy}-Schritt korrekt durch mangelnde Verifizierung des neu erstellten Vertrags erkannt wurden.
 
 Nach Abschluss der Änderungen an einem Service wurde die jeweiligen Test-Pipelines, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurde, automatisiert ausgeführt.

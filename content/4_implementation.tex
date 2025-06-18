@@ -5,12 +5,12 @@ Bevor die konkrete Implementierung des ausgewählten Contract-Testing-Frameworks
 
 \section{Anwendungsumgebung}\label{sec:implementation_environment}
 
-Die Beschreibung der Umgebung umfasst sowohl die technische Infrastruktur als auch die verwendeten Werkzeuge, Frameworks und Systemkomponenten, in welche die Contract-Tests eingebettet werden sollen.
+Die Beschreibung der Umgebung umfasst sowohl die technische Infrastruktur als auch die verwendeten Werkzeuge, Frameworks und Systemkomponenten, in welche die Contract Tests eingebettet werden sollen.
 Hier werden die Rahmenbedingungen dargestellt, unter denen die Integration und die Ausführung der Tests erfolgen wird.
 Dazu zählen insbesondere die eingesetzten Programmiersprachen, Build- und Test-Pipelines, relevante Dienste sowie die Architektur der Kommunikationsbeziehungen zwischen Consumer und Provider.
 Ein Verständnis für die Anwendungsumgebung ist essenziell, um die getroffenen Implementierungsentscheidungen nachvollziehbar zu machen und die spätere Übertragbarkeit der Ergebnisse auf andere Projekte realistisch einschätzen zu können.
 
-Die Anwendung mit dem Namen \textit{msg.Sensorik} ist ein internes Projekt der msg systems ag, das als Grundlage für die Implementierung der Contract-Tests dient.
+Die Anwendung mit dem Namen \textit{msg.Sensorik} ist ein internes Projekt der msg systems ag, das als Grundlage für die Implementierung der Contract Tests dient.
 Ziel der Anwendung ist die Erfassung und automatisierte Verarbeitung von Umgebungsdaten in betreuungsintensiven Wohn- oder Pflegeeinrichtungen.
 Dabei kommen Sensoren zum Einsatz, die beispielsweise geöffnete Fenster oder Türen detektieren und definierte Reaktionen auslösen können.
 Die Erfassung erfolgt über Sensoren, deren Signale durch ein lokales Gerät mit Smarthome-Schnittstelle gesammelt und an eine cloudbasierte Verwaltungsplattform weitergegeben werden.
@@ -70,8 +70,8 @@ Genau wie \texttt{Gitea} sind auch \texttt{Drone CI} und \texttt{SonarQube} in d
 
 \section{Technische Umsetzung}\label{sec:implementation_execution}
 
-Die Umsetzung der Contract-Tests erfolgte iterativ in einer lokalen Entwicklungsumgebung, um eine möglichst isolierte und kontrollierte Integration der einzelnen Frameworks zu gewährleisten.
-Zunächst musste die lokale Testumgebung der Microservice-Anwendung vorbereitet werden, um die Contract-Tests ausführen zu können.
+Die Umsetzung der Contract Tests erfolgte iterativ in einer lokalen Entwicklungsumgebung, um eine möglichst isolierte und kontrollierte Integration der einzelnen Frameworks zu gewährleisten.
+Zunächst musste die lokale Testumgebung der Microservice-Anwendung vorbereitet werden, um die Contract Tests ausführen zu können.
 Ein zentrales Element der Implementierung war die Einrichtung eines lokalen \texttt{Pact Brokers}, der als zentrales Austauschsystem zwischen Consumer- und Provider-Services dienen soll.
 Der Broker wird in einem \texttt{Docker}-Container betrieben, um eine einfache Handhabung und Portabilität für eine eventuelle Migration in die Infrastruktur des Unternehmens sicherzustellen.
 
@@ -83,7 +83,7 @@ Zuerst musste eines der Integrations-Plugins für \texttt{Pact} ausgewählt werd
 Die Wahl fiel letztendlich auf \texttt{pact-js}, welches von der offiziellen \texttt{Pact} Dokumentation empfohlen wird~\cite{pactfoundationPactDocs2022}.
 Damit wurden die Tests im Nutzeroberflächen-Service-Repository in TypeScript formuliert.
 Die Testklassen wurden in einem separaten Verzeichnis als die \texttt{\gls{Angular}}-Anwendung innerhalb des Repositories abgelegt, da die \texttt{\gls{Angular}}-Anwendung Schwierigkeiten mit Abhängigkeiten der \texttt{pact-js}-Bibliothek hatte.
-Nähere Informationen zu den Herausforderungen der Einrichtung von Contract-Tests in \texttt{\gls{Angular}} sind in \cref{subsec:implementation_problems_angular-integration} zu finden.
+Nähere Informationen zu den Herausforderungen der Einrichtung von Contract Tests in \texttt{\gls{Angular}} sind in \cref{subsec:implementation_problems_angular-integration} zu finden.
 
 Für die Erstellung der Testfälle wurde sich an den Methoden der Service-Klassen der \texttt{\gls{Angular}}-Anwendung orientiert, da diese die tatsächlichen Interaktionen mit den Backend-Services im Code abbilden.
 Für jede der genutzten \gls{HTTP}-Verben (\texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{DELETE} \usw) der einzelnen \gls{API}-Pfade wurde ein separater Consumer-Test definiert, der die erwarteten Interaktionen mit dem zugehörigen Provider-Service beschreibt.
@@ -115,7 +115,7 @@ Nach erfolgreicher Definition und Ausführung der Consumer-Tests wurde der erste
 \subsection{Provider-Verifizierung}\label{subsec:implementation_execution_provider-verification}
 
 Im Anschluss wurde der zugehörige Provider-Test aufseiten des Instanz-Management-Services implementiert.
-Die auf Spring-Boot basierenden Services verwenden \texttt{Junit5} für die Ausführung von bestehenden Tests, weshalb dieses Framework auch für die Contract-Tests verwendet wurde.
+Die auf Spring-Boot basierenden Services verwenden \texttt{Junit5} für die Ausführung von bestehenden Tests, weshalb dieses Framework auch für die Contract Tests verwendet wurde.
 Die Verifizierung der Consumer-Contracts erfolgte dem \texttt{pact-jvm-junit5}-Provider-Framework, welches speziell für die Integration mit \texttt{Junit5} entwickelt wurde.
 Dazu wurde die entsprechende Abhängigkeit mithilfe von \texttt{\gls{Maven}} in das Projekt eingebunden und Konfigurationen, wie \zB das Eintragen der Broker-URL durchgeführt.
 Dieses Framework ermöglicht es, die im \texttt{Pact}-Contract definierten Interaktionen gegen die tatsächliche Implementierung des Providers automatisiert zu prüfen.
@@ -124,13 +124,13 @@ Um die erwarteten Zustände für die Vertragsprüfung (\zB vorhandene Entitäten
 Dazu musste für jeden Zustand eine Status-Methode definiert werden, die den Provider in den erwarteten Zustand versetzt, bevor der entsprechende Test ausgeführt wird.
 Nach erfolgreicher Durchführung der Provider-Tests wird der Contract im \texttt{Pact Broker} automatisch als verifiziert markiert und Services, die mit diesem Contract kompatibel sind, können deployt werden.
 
-Nach erfolgreicher Implementierung der Contract-Tests für die Kommunikation der Nutzer\-ober\-fläche mit dem Instanz-Management-Service wurde der Prozess sukzessive für die anderen Microservices wiederholt, wobei nun die Consumer-Seite auch mit dem \texttt{pact-jvm-junit5}-Framework implementiert wurde.
+Nach erfolgreicher Implementierung der Contract Tests für die Kommunikation der Nutzer\-ober\-fläche mit dem Instanz-Management-Service wurde der Prozess sukzessive für die anderen Microservices wiederholt, wobei nun die Consumer-Seite auch mit dem \texttt{pact-jvm-junit5}-Framework implementiert wurde.
 Bei der in \cref{tab:consumer_provider_matrix} aufgelisteten Services erfolgte diese Durchführung nach dem gleichen Prozess wie bei der Nutzeroberfläche.
 Jedoch wurde die Syntax und die spezifischen Implementierungsdetails auf die in diesen Services verwendete Programmiersprache Java angepasst.
 Für die Veröffentlichung der Contracts wurde dann im Anschluss das \gls{CLI}-Plugin über \texttt{Maven} installiert, um die \texttt{Pact}-Contracts an den \texttt{Pact Broker} zu übermitteln.
 
 Jede Service-Interaktion durchlief dabei denselben Zyklus: Erst die Definition der Consumer-Seite, danach die Veröffentlichung zum \texttt{Pact Broker}, die Implementierung und Ausführung des Provider-Tests und zuletzt die Veröffentlichung des Verifizierungsstatus.
-Die Contract-Tests wurden für alle relevanten Interaktionen zwischen den Microservices implementiert, um die Interoperabilität und Konsistenz der Kommunikation sicherzustellen.
+Die Contract Tests wurden für alle relevanten Interaktionen zwischen den Microservices implementiert, um die Interoperabilität und Konsistenz der Kommunikation sicherzustellen.
 Dabei sind insgesamt sechs Contracts zwischen den fünf Microservices entstanden, die die Interaktionen zwischen den Services abbilden.
 Diese sind mithilfe eines Abhängigkeitsgraphen in \cref{fig:service_dependecies} visualisiert, welcher durch Nutzung des \texttt{Pact Brokers} automatisch generiert wurde.
 
@@ -144,8 +144,8 @@ Diese sind mithilfe eines Abhängigkeitsgraphen in \cref{fig:service_dependecies
 \subsection{CI-Integration und Automatisierung}\label{subsec:implementation_execution_ci-integration}
 
 Um die vollständige \gls{CI}/\gls{CD}-Pipeline auch abbilden zu können, musste zusätzlich ein lokales \texttt{Drone CI}-System aufgesetzt und mit dem \texttt{Pact Broker} verbunden werden.
-Eine Durchführung der Contract-Tests in der lokalen Umgebung war notwendig, da die zentrale \texttt{Drone CI}-Instanz des Unternehmens aus netzwerktechnischen Gründen nicht ohne Weiteres mit einem lokalen \texttt{Pact Broker} verbunden werden kann.
-Mit dieser lokalen \texttt{Drone CI}-Instanz konnte für jeden Microservice eine Pipeline konfiguriert werden, die die Contract-Tests automatisch ausführt und deren Ergebnisse im \texttt{Pact Broker} speichert.
+Eine Durchführung der Contract Tests in der lokalen Umgebung war notwendig, da die zentrale \texttt{Drone CI}-Instanz des Unternehmens aus netzwerktechnischen Gründen nicht ohne Weiteres mit einem lokalen \texttt{Pact Broker} verbunden werden kann.
+Mit dieser lokalen \texttt{Drone CI}-Instanz konnte für jeden Microservice eine Pipeline konfiguriert werden, die die Contract Tests automatisch ausführt und deren Ergebnisse im \texttt{Pact Broker} speichert.
 Die Pipeline umfasst je nach Service die folgenden Schritte:
 \begin{itemize}
     \item Ausführen der Consumer-Tests, um den \texttt{Pact}-Contract zu generieren.
@@ -155,11 +155,11 @@ Die Pipeline umfasst je nach Service die folgenden Schritte:
     \item \texttt{can-i-deploy}-Abfrage an den \texttt{Pact Broker}, um zu prüfen, ob der Service mit den aktuellen Contracts kompatibel ist.
 \end{itemize}
 
-Die Automatisierung dieser Schritte ermöglicht eine nahtlose Integration der Contract-Tests in den Entwicklungsprozess und stellt sicher, dass Änderungen an den Services sofort auf ihre Interoperabilität geprüft werden.
+Die Automatisierung dieser Schritte ermöglicht eine nahtlose Integration der Contract Tests in den Entwicklungsprozess und stellt sicher, dass Änderungen an den Services sofort auf ihre Interoperabilität geprüft werden.
 
 \section{Aufgetretene Herausforderungen}\label{sec:implementation_challenges}
 
-Die Einführung von Contract-Tests im Projektumfeld brachte eine Reihe technischer und konzeptioneller Herausforderungen mit sich, wie schon in \cref{sec:implementation_execution} angedeutet, die im Verlauf der Implementierung identifiziert und schrittweise gelöst wurden.
+Die Einführung von Contract Tests im Projektumfeld brachte eine Reihe technischer und konzeptioneller Herausforderungen mit sich, wie schon in \cref{sec:implementation_execution} angedeutet, die im Verlauf der Implementierung identifiziert und schrittweise gelöst wurden.
 Die folgenden Abschnitte skizzieren die zentralen Problemfelder und beschreiben, wie diesen begegnet wurde.
 
 \subsection{\gls{CI}/\gls{CD}-Infrastrukturkomplexität}\label{subsec:implementation_problems_ci-infrastructure}
@@ -183,7 +183,7 @@ Aus diesem Grund wurde die Lösung mit dem zentralen \texttt{Gitea}-Server, der 
 
 \subsection{Angular-Integration}\label{subsec:implementation_problems_angular-integration}
 
-Die Integration der Contract-Tests in die \texttt{\gls{Angular}}-Anwendung stellte eine besondere Herausforderung dar, da die \texttt{\gls{Angular}}-Entwicklungsumgebung und die verwendeten Abhängigkeiten nicht optimal mit den \texttt{pact-js}-Bibliotheken harmonierten.
+Die Integration der Contract Tests in die \texttt{\gls{Angular}}-Anwendung stellte eine besondere Herausforderung dar, da die \texttt{\gls{Angular}}-Entwicklungsumgebung und die verwendeten Abhängigkeiten nicht optimal mit den \texttt{pact-js}-Bibliotheken harmonierten.
 
 Viele Anleitungen und Beispiele für den \texttt{Angular}-Context beziehen sich auf die Plugin-Kombination von \texttt{pact-web}, \texttt{pact-node} \bzw \texttt{karma-pact}~\cite{hendricksenConsumerDrivenContractTesting2020, hombergsCreatingConsumerDrivenContract2017}.
 Diese werden allerdings nicht mehr aktiv gepflegt~\cite{PactfoundationPactweb2022, PactfoundationKarmapactPact}.
