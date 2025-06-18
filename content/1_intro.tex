@@ -1,18 +1,10 @@
 \chapter{Einführung}\label{ch:intro}
 
-\added[comment={Moved}]{
 Microservice-Architekturen haben sich in den letzten Jahren als architektonisches Paradigma für moderne Softwaresysteme etabliert~\cite{haroMicroserviceAPIs2023}.
 Sie bieten eine Vielzahl von Vorteilen, \zB eine erhöhte Skalierbarkeit, modulare Wartbarkeit sowie die Möglichkeit, einzelne Dienste unabhängig voneinander zu entwickeln und zu deployen.
 Gleichzeitig bringen sie jedoch neue Herausforderungen mit sich – insbesondere im Bereich der Qualitätssicherung und der Sicherstellung der Interoperabilität zwischen den einzelnen Services~\cite{newmanMonolithMicroservices2019}.
-}
 
 \section{Problemstellung und Motivation}\label{sec:intro_problem}
-
-\deleted[comment={Moved}]{
-    Microservice-Architekturen haben sich in den letzten Jahren als architektonisches Paradigma für moderne Softwaresysteme etabliert~\cite{haroMicroserviceAPIs2023}.
-    Sie bieten eine Vielzahl von Vorteilen, \zB eine erhöhte Skalierbarkeit, modulare Wartbarkeit sowie die Möglichkeit, einzelne Dienste unabhängig voneinander zu entwickeln und zu deployen.
-    Gleichzeitig bringen sie jedoch neue Herausforderungen mit sich – insbesondere im Bereich der Qualitätssicherung und der Sicherstellung der Interoperabilität zwischen den einzelnen Services~\cite{newmanMonolithMicroservices2019}.
-}
 
 Eine zentrale Problemstellung liegt darin, dass Änderungen an einzelnen Microservices potenziell unerwartete Seiteneffekte auf abhängige Services haben können~\cite{clemsonTestingStrategiesMicroservice2014}.
 Klassische Testmethoden wie Systemtests und Integrationstests sind zwar in der Lage, solche Probleme aufzudecken, jedoch sind diese oft mit hohen Kosten, langen Ausführungszeiten und einer erhöhten Komplexität in der Wartung verbunden.
@@ -33,7 +25,7 @@ Im Zentrum steht die prototypische Integration von Contract Testing in die reale
 Auf dieser Basis sollen folgende Fragestellungen beantwortet werden:
 
 \begin{itemize}
-\item Welche konkreten Vorteile ergeben sich durch die Einführung von Contract Testing im Vergleich zu \added{der Verwendung von ausschließlich} klassischen Softwaretests?
+\item Welche konkreten Vorteile ergeben sich durch die Einführung von Contract Testing im Vergleich zu der Verwendung von ausschließlich klassischen Softwaretests?
 \item Inwieweit trägt Contract Testing zur frühzeitigen Fehlererkennung und Effizienzsteigerung in \gls{CI}/\gls{CD}-Pipelines bei?
 \item Welche Contract-Testing-Frameworks sind für die Integration in bestehende Anwendungsumgebungen geeignet und welche Kriterien sind bei der Auswahl zu berücksichtigen?
 \item Welche Herausforderungen treten bei der praktischen Umsetzung auf und wie lassen sich diese bewältigen?
