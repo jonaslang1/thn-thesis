@@ -1,14 +1,11 @@
 \chapter{Prototypische Implementierung}\label{ch:implementation}
 
-\added[comment={Moved}]{
 Die prototypische Integration von Contract Testing in die Microservice-Anwendung \textit{msg.Sensorik} erfolgt in mehreren Schritten, die in diesem Kapitel detailliert beschrieben werden.
 Bevor die konkrete Implementierung des ausgewählten Contract-Testing-Frameworks \texttt{Pact} erfolgen kann, ist ein Überblick über die zugrunde liegende Anwendungsumgebung notwendig.
-}
-
 
 \section{Anwendungsumgebung}\label{sec:implementation_environment}
 
-\replaced{Die Beschreibung der Umgebung }{Diese }umfasst sowohl die technische Infrastruktur als auch die verwendeten Werkzeuge, Frameworks und Systemkomponenten, in welche die Contract-Tests eingebettet werden sollen.
+Die Beschreibung der Umgebung umfasst sowohl die technische Infrastruktur als auch die verwendeten Werkzeuge, Frameworks und Systemkomponenten, in welche die Contract-Tests eingebettet werden sollen.
 Hier werden die Rahmenbedingungen dargestellt, unter denen die Integration und die Ausführung der Tests erfolgen wird.
 Dazu zählen insbesondere die eingesetzten Programmiersprachen, Build- und Test-Pipelines, relevante Dienste sowie die Architektur der Kommunikationsbeziehungen zwischen Consumer und Provider.
 Ein Verständnis für die Anwendungsumgebung ist essenziell, um die getroffenen Implementierungsentscheidungen nachvollziehbar zu machen und die spätere Übertragbarkeit der Ergebnisse auf andere Projekte realistisch einschätzen zu können.
@@ -99,16 +96,17 @@ Diese Angaben dienen als Grundlage für den Provider-Mock, gegen den die Aufrufe
 Außerdem werden Erwartungen definiert, die bei der Ausführung der Consumer-Tests gegen den Provider-Mock erfüllt sein müssen, um die simulierte Interaktion zu überprüfen.
 So kann sichergestellt werden, dass die \texttt{\gls{Angular}}-Anwendung die erwarteten Antworten korrekt verarbeitet.
 Nach erfolgreicher Ausführung der Consumer-Tests wird ein \texttt{Pact}-Contract generiert, der diese definierten Interaktionen zwischen Consumer und Provider beschreibt und als \gls{JSON}-Datei speichert.
-Ein Beispiel für einen solchen \texttt{Pact}-Contract ist in \cref{lst:pact_contract_example} zu finden.
+Darin werden der beteiligte Consumer, der Provider, die erwarteten Interaktionen mit den Anfragen und deren entsprechenden Antworten sowie Metadaten festgehalten.
+Ein Beispiel für einen solchen \texttt{Pact}-Contract ist in \cref{lst:pact_contract_example} zu finden und wird anschließend näher erläutert.
 
 \lstinputlisting[language=JSON, caption=Beispiel für einen \texttt{Pact}-Contract, label=lst:pact_contract_example]{listings/example-contract.json}
 
-Der vorliegende Pact Contract beschreibt eine vertraglich definierte Interaktion zwischen dem Consumer \textquote{frontend\_\-component} und dem Provider \textquote{instance\_\-management\_\-component}.
+Der vorliegende Pact Contract beschreibt eine vertraglich definierte Interaktion zwischen dem Consumer \texttt{frontend\_component} und dem Provider \texttt{instance\_management\_component}.
 Dabei fordert der Consumer per \gls{HTTP}-\texttt{GET}-Anfrage unter dem Pfad \texttt{/customers/1} einen bestimmten Kunden an.
-Als Voraussetzung gilt der Zustand \textquote{I have a customer}, was bedeutet, dass der Provider zu diesem Zeitpunkt einen Kunden mit entsprechender ID bereithalten muss.
+Als Voraussetzung gilt der Zustand \textquote{I have a customer}, was bedeutet, dass der Provider zu dem Zeitpunkt des \gls{API}-Aufrufs durch die Contract Tests auf Provider-Seite einen Kunden mit entsprechender ID bereithalten muss.
 Die erwartete Antwort mit Kundendaten ist hinsichtlich der \gls{JSON}-Struktur und dem \gls{HTTP}-Statuscode \texttt{200} definiert.
 Die Antwortstruktur wird durch Typ-basierte Validierungsregeln überprüft, wodurch sichergestellt wird, dass der Provider die erwarteten Datenformate liefert.
-Außerdem sind noch Metadaten wie die Version der Pact-Spezifikation enthalten.
+Außerdem sind noch Metadaten wie \zB die Version der Pact-Spezifikation enthalten.
 
 Zur Ausführung der Tests im Nutzeroberfläche-Service kam das Test-Framework \texttt{Jasmine} zum Einsatz, welches in dieser \texttt{\gls{Angular}}-Anwendung bereits für andere Testarten verwendet wird.
 Es ermöglicht die Definition von Testklassen und Testfällen, die in der \texttt{Node.js}-Umgebung von \texttt{\gls{Angular}} ausgeführt werden können.
@@ -167,18 +165,18 @@ Die folgenden Abschnitte skizzieren die zentralen Problemfelder und beschreiben,
 \subsection{\gls{CI}/\gls{CD}-Infrastrukturkomplexität}\label{subsec:implementation_problems_ci-infrastructure}
 
 Eine zentrale Hürde zu Beginn der Umsetzung war die Einrichtung einer funktionsfähigen lokalen Testumgebung, die alle beteiligten Komponenten – insbesondere den \texttt{Pact Broker} und das \gls{CI}/\gls{CD}-System \texttt{Drone CI} und die Versionsverwaltung \texttt{Gitea} – umfasst.
-Die drei Dienste sollten so konfiguriert werden, dass die vollständige Kommunikationskette zwischen Consumer-Tests, \texttt{Pact}-Veröffentlichung und Provider-Verifikation ohne manuelle Zwischenschritte möglich ist.
+Die drei Dienste sollten so konfiguriert werden, dass die vollständige Kommunikationskette zwischen Consumer-Tests, \texttt{Pact}-Veröffentlichung und Provider-Verifizierung ohne manuelle Zwischenschritte möglich ist.
 
-Da für die prototypische Implementierung keine zentrale \texttt{Pact Broker}-Instanz zur Verfügung stand, musste eine lokale Instanz aufgesetzt werden.
-Um die Integration in die \texttt{Drone CI}-Pipeline zu ermöglichen, musste auch die \texttt{Drone CI}-Instanz lokal betrieben werden, da die zentrale \texttt{Drone CI}-Instanz des Unternehmens standardmäßig nicht auf den lokalen \texttt{Pact Broker} zugreifen kann.
+Da für die prototypische Implementierung keine zentrale \texttt{Pact Broker}-Instanz zur Verfügung stand, wurde eine lokale Instanz aufgesetzt.
+Um die Integration in die \texttt{Drone CI}-Pipeline zu ermöglichen, wurde auch die \texttt{Drone CI}-Instanz lokal betrieben, da die zentrale \texttt{Drone CI}-Instanz des Unternehmens standardmäßig nicht auf den lokalen \texttt{Pact Broker} zugreifen kann.
 Ein Server kann nicht direkt auf einen lokalen Rechner zugreifen, da dies durch grundlegende Prinzipien der Netzwerksicherheit und -architektur verhindert wird.
 Lokale Rechner befinden sich zum Schutz idealerweise hinter Firewalls und nutzen private IP-Adressen, die durch Network Address Translation vom öffentlichen Internet abgeschirmt sind~\cite{moskowitzAddressAllocationPrivate1996}.
 
-Bei der Verbindung der zentralen \texttt{Gitea}-Instanz mit der lokalen \texttt{Drone CI}-Instanz kam es ebenfalls zu Herausforderungen.
+Die Kommunikation zwischen der zentralen \texttt{Gitea}-Instanz und der lokalen \texttt{Drone CI}-Instanz ist nötig, um den aktuellen Stand der Repositories zu erhalten und auf Ereignisse reagieren zu können.
 Die meisten Interaktionen zwischen \texttt{Gitea} und \texttt{Drone CI} gehen von der \gls{CI}/\gls{CD}-Pipeline aus, die auf \texttt{Gitea} zugreift, um Repositories zu klonen und so den aktuellen Stand des Codes zu erhalten.
 Allerdings erfolgt die Benachrichtigung der \texttt{Drone CI}-Instanz über neue Commits oder Pull-Requests mittels Webhooks von \texttt{Gitea} aus~\cite{DroneCICD}, was in diesem Fall nicht möglich war, da die lokale \texttt{Drone CI}-Instanz nicht von \texttt{Gitea} erreicht werden konnte.
-So konnten die Pipelines nicht automatisch ausgelöst werden und mussten manuell gestartet werden.
-Dieses Vorgehen bei der prototypischen Implementierung beeinträchtigt aber nicht die grundsätzliche Funktionsweise der Contract-Tests und deren Integration in die \gls{CI}/\gls{CD}-Pipeline, da die manuelle Auslösung der Pipelines lediglich eine Einschränkung in der Automatisierung darstellt und nicht die Funktionsweise beeinflusst.
+So konnten die Pipelines nicht automatisch ausgelöst werden und wurden deshalb manuell gestartet.
+Dieses Vorgehen bei der prototypischen Implementierung beeinträchtigt aber nicht die grundsätzliche Funktionsweise der Contract Tests und deren Integration in die \gls{CI}/\gls{CD}-Pipeline, da die manuelle Auslösung der Pipelines lediglich eine Einschränkung in der Automatisierung darstellt und nicht die Funktionsweise beeinflusst.
 Bei der Implementierung in der realen Infrastruktur des Unternehmens wäre die zentrale \texttt{Drone CI}-Instanz direkt mit der zentralen \texttt{Gitea}-Instanz verbunden, sodass das automatische Auslösen der Pipelines funktioniert.
 Die \texttt{Gitea}-Instanz ebenfalls manuell zu installieren wäre zwar möglich gewesen, war in diesem Fall aber nicht zielführend, da dies eine erhebliche Umstellung der Infrastruktur und Redundanz bedeutet hätte.
 Aus diesem Grund wurde die Lösung mit dem zentralen \texttt{Gitea}-Server, der lokalen \texttt{Drone CI}-Instanz und dem lokalen \texttt{Pact Broker} gewählt.
@@ -191,18 +189,20 @@ Viele Anleitungen und Beispiele für den \texttt{Angular}-Context beziehen sich 
 Diese werden allerdings nicht mehr aktiv gepflegt~\cite{PactfoundationPactweb2022, PactfoundationKarmapactPact}.
 Deshalb wurde auf die Implementierung mithilfe von \texttt{pact-js} gesetzt, welches die Consumer-Tests in TypeScript unterstützt und von der \texttt{Pact Foundation} empfohlen wird~\cite{pactfoundationPactDocs2022}.
 
-Bei der Integration von \texttt{pact-js} in die \texttt{\gls{Angular}}-Anwendung traten zunächst Abhängigkeitskonflikte auf, die eine direkte Verwendung der Bibliothek in der \texttt{\gls{Angular}}-Umgebung verhinderten.
-Da die direkte Integration in die \texttt{\gls{Angular}}-Anwendung nicht nötig war, wurde stattdessen ein separates Verzeichnis innerhalb des Repositories erstellt, in dem die Consumer-Tests unabhängig von der \texttt{\gls{Angular}}-Anwendung ausgeführt werden konnten.
-Dort musste dadurch eine neue \texttt{Node.js}-Umgebung eingerichtet werden, die die Abhängigkeiten für \texttt{pact-js}, \texttt{Jasmine} \usw verwaltet.
+Eine direkte Verwendung der Bibliothek in der \texttt{\gls{Angular}}-Umgebung war nicht möglich, da es zu Abhängigkeitskonflikten kam.
+Um diese bei der Integration von \texttt{pact-js} in die \texttt{\gls{Angular}}-Anwendung zu lösen, wurde ein separates Verzeichnis innerhalb des Repositories erstellt.
+Darin konnten die Consumer-Tests unabhängig von der \texttt{\gls{Angular}}-Anwendung ausgeführt werden.
+ Für die Verwaltung der Abhängigkeiten für \texttt{pact-js}, \texttt{Jasmine} \usw, wurde eine neue \texttt{Node.js}-Umgebung im Verzeichnis der Contract Tests eingerichtet.
 So konnte die Ausführung der Consumer-Tests unabhängig von der \texttt{\gls{Angular}}-Anwendung erfolgen.
 
 \subsection{Provider-Verifizierung}\label{subsec:implementation_problems_provider-verification}
 
-Auch bei der Implementierung der Provider-Verifizierungstests musste eine kleine Hürde überwunden werden.
-Die Tests wurden nicht direkt gegen die reale Implementierung des Providers ausgeführt.
-Die im Contract definierten Requests wurden zu Beginn an einen zufälligen Port gesendet, der nicht mit dem Port des laufenden Providers übereinstimmte.
+Bei der Implementierung der Provider-Verifizierungstests wurden die Tests zunächst nicht direkt gegen die reale Implementierung des Providers ausgeführt.
+Die im Contract definierten Requests wurden an einen zufälligen Port gesendet, der nicht mit dem Port des laufenden Providers übereinstimmte.
 Dies führte dazu, dass die Tests fehlschlugen, da auf dem angesprochenen Port nicht die erwartete Antwort zurückgegeben wurde.
-Dieses ungewollte Verhalten wurde zunächst nicht bemerkt, da auf dem angesprochenen Port ein anderer undefinierter Server lief und mit seinen \gls{HTTP}-Responses antwortete.
+Der Grund für dieses ungewollte Verhalten wurde zunächst nicht bemerkt, da auf dem angesprochenen Port ein anderer undefinierter Server lief und mit seinen \gls{HTTP}-Responses antwortete.
+Dadurch verlängerte sich die Dauer des Debugging, bevor die Ursache identifiziert werden konnte.
 
-Die Lösung bestand darin, den Port des Providers in der Testkonfiguration explizit anzugeben, sodass die Anfragen an den richtigen Port gesendet wurden.
-Es wurde eine Konfiguration in der Testklasse erstellt, die den Port des laufenden Providers ermittelt und für die Tests als Zielport spezifiziert.
+Die Lösung bestand darin, den Port des Providers in der Testkonfiguration explizit anzugeben, sodass die Anfragen an den richtigen Port gesendet wurden und die richtigen Antworten zurückkamen.
+Durch eine Konfiguration in der Testklasse wird der Port des laufenden Providers ermittelt und dieser für die Tests als Zielport spezifiziert.
+Durch diese Maßnahme wurde sichergestellt, dass alle Tests tatsächlich gegen die beabsichtigte Provider-Implementierung ausgeführt werden und damit die korrekte Verifizierung der vertraglich vereinbarten Schnittstellen erfolgt.

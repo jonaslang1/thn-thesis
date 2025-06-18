@@ -12,16 +12,22 @@ Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele, insbesondere die Redukt
 Ein zentrales Ziel von Contract Testing ist es, Integrationsfehler zuverlässig und automatisiert zu erkennen.
 Um die Wirksamkeit der implementierten Tests im Rahmen dieser Arbeit zu evaluieren, wurde ein gezieltes Testszenario entworfen.
 Dazu wurden absichtlich Änderung mit Kompatibilitätsbruch in den \gls{API}-Schnittstellen einzelner Services vorgenommen, um zu prüfen, ob diese durch die eingerichteten Contract Tests zuverlässig erkannt werden.
-Die Änderungen umfassten sowohl Anpassungen an \gls{API}-Pfaden, \gls{HTTP}-Verben als auch an den \gls{JSON}-Daten der Anfragen und Antworten.
-Beim Ändern der Schnittstellen wurde darauf geachtet, dass teilweise auch die Contract Tests des jeweiligen Services angepasst wurden, um sowohl unabsichtliche Änderungen als auch praktische Anpassungen einer Schnittstelle durch ein  Umsetzungsteam zu simulieren.
+Beim Ändern der Schnittstellen wurde darauf geachtet, dass teilweise auch die Contract Tests des jeweiligen Services angepasst wurden, um sowohl unabsichtliche Änderungen als auch praktische Anpassungen einer Schnittstelle durch ein Umsetzungsteam zu simulieren.
+Im Folgenden werden exemplarisch drei Arten aller Änderungen dargestellt, die zu Kompatibilitätsproblemen führen können und im Rahmen dieser Arbeit durchgeführt und untersucht wurden.
 
-Nach Abschluss der Änderungen an einem Service wurde die jeweilige Test-Pipeline, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurde, automatisiert ausgeführt.
+Die Änderungen erfolgten schrittweise und wurden nach jeder Anpassung einzeln getestet, um die Reaktion der Contract-Tests gezielt zu überprüfen.
+Zum Einen wurde ein vorhandener \gls{API}-Pfad beim Consumer umbenannt, sodass Anfragen an den neuen Pfad gesendet wurden.
+Wie erwartet, schlugen die entsprechenden Contract-Tests fehl, da die Anfragen nicht mehr dem definierten Contract entsprachen.
+Anschließend wurde in einem Testlauf das verwendete \gls{HTTP}-Verb eines bestehenden Endpunkts auf Provider-Seite geändert, hier von \texttt{POST} auf \texttt{PUT}.
+In diesem Fall wurden die Requests vom Consumer wie ursprünglich gesendet, was zu Fehlern in der Provider-Verifizierung führte, da keine übereinstimmende Schnittstelle vorhanden war.
+Außerdem wurden Änderungen an der erwarteten \gls{JSON}-Struktur der Nutzdaten vorgenommen durch das Entfernen und Umbenennen einzelner Felder in der Request- oder Response-Payload.
+Zusätzlich wurden auch die entsprechenden Contract-Tests auf der Consumer-Seite angepasst, um die Tätigkeit eines Entwicklers zu simulieren.
+Hier zeigte sich, dass auch semantische Änderungen innerhalb der Datenformate durch den \texttt{can-i-deploy}-Schritt korrekt durch mangelnde Verifizierung des neu erstellten Vertrags erkannt wurden.
+
+Nach Abschluss der Änderungen an einem Service wurde die jeweiligen Test-Pipelines, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurde, automatisiert ausgeführt.
 Dabei wurden die Änderungen erwartungsgemäß als Fehler erkannt, da die vorgenommenen Änderungen gegen die definierten Contracts verstießen.
 Entweder schlug die Ausführung der Contract Tests fehl oder die \texttt{can-i-deploy}-Überprüfung war nicht erfolgreich, weil die neu erstellten Contracts nicht verifiziert werden konnten.
-Der Ablauf der Fehlererkennung bei der Ausführung der Test-Pipline ist mit den verschiedenen Varianten der Untersuchung in \cref{fig:error_injection_flow} dargestellt.
-Bei der Ausführung der Test-Pipeline gilt die Fehlererkennung als erfolgreich, wenn die Pipeline aufgrund der enthaltenen Überprüfungen nicht erfolgreich abgeschlossen werden kann.
-Dieses Fehlschlagen der Pipeline wird dann in der \gls{CI}/\gls{CD}-Umgebung protokolliert, dem jeweiligen Entwicklerteam gemeldet und sorgt dadurch dafür, dass weitere Schritte, wie das Deployment, unterbunden werden.
-So können Integrationsprobleme frühzeitig erkannt und behoben werden, bevor sie sich in nachfolgenden Phasen des Entwicklungsprozesses negativ auswirken.
+Der Ablauf der Fehlererkennung für Änderungen auf der Consumer-Seite bei der Ausführung der Test-Pipelines ist mit den verschiedenen Varianten der Untersuchung in \cref{fig:error_injection_flow} dargestellt.
 
 \begin{figure}[htbp]
     \centering
@@ -30,6 +36,10 @@ So können Integrationsprobleme frühzeitig erkannt und behoben werden, bevor si
     \label{fig:error_injection_flow}
 \end{figure}
 
+Bei der Ausführung der Test-Pipeline gilt die Fehlererkennung als erfolgreich, wenn die Pipeline aufgrund der enthaltenen Überprüfungen nicht erfolgreich abgeschlossen werden kann.
+Dieses Fehlschlagen der Pipeline wird dann in der \gls{CI}/\gls{CD}-Umgebung protokolliert, dem jeweiligen Entwicklerteam gemeldet und sorgt dadurch dafür, dass weitere Schritte, wie das Deployment, unterbunden werden.
+So können Integrationsprobleme frühzeitig erkannt und behoben werden, bevor sie sich in nachfolgenden Phasen des Entwicklungsprozesses negativ auswirken.
+
 Die Ergebnisse dieses kontrollierten Testszenarios zeigen eindeutig, dass alle eingebauten Abweichungen von den vertraglich vereinbarten Schnittstelleninteraktionen durch die Contract Tests identifiziert wurden.
 Die Fehler wurden jeweils unmittelbar im Rahmen der Consumer- oder Provider-Tests erkannt, wodurch der Integrationsbruch frühzeitig sichtbar wurde und die Interoperabilität zwischen den Services gewährleistet wird.
 Bei der Analyse der Ergebnisse zeigte sich, dass die Contract Tests sogar in der Lage sind, auch auf der Provider-Seite Fehler zu erkennen, die bei Integrationstests nur durch die Ausführung der Tests auf der Consumer-Seite sichtbar werden.
@@ -37,7 +47,8 @@ So konnte gezeigt werden, dass Contract Tests Inkompatibilitäten zwischen Consu
 Dadurch wird die modulare Wartbarkeit und Unabhängigkeit in der Entwicklung von Microservices gefördert.
 
 Ob durch den Einsatz von Contract Testing insgesamt mehr Fehler entdeckt werden als durch herkömmliche Integrationstests, lässt sich im Rahmen dieser Arbeit jedoch nicht abschließend bewerten.
-Eine belastbare Aussage dazu würde eine längerfristige Beobachtung über mehrere Entwicklungszyklen und verschiedene Anwendungen hinweg erfordern, idealerweise mit quantitativen Vergleichsdaten über mehrere Releases oder Sprints hinweg.
+Die eingebauten Änderungen mit Kompatibilitätsbrüchen, die in dieser Arbeit testweise durchgeführt wurden, wurden auch durch die Integrationstests erkannt.
+Eine belastbare Aussage zur Steigerung der Fehlererkennungsrate durch Contract Tests würde eine längerfristige Beobachtung über mehrere Entwicklungszyklen und verschiedene Anwendungen hinweg erfordern, idealerweise mit quantitativen Vergleichsdaten über mehrere Releases oder Sprints hinweg.
 
 Ein Rückgriff auf historische Fehlerdaten ist hierbei nicht zielführend, da frühere \gls{API}-Implementierungen teils stark von der aktuellen Architektur abweichen.
 Zudem wären nachträgliche Contract Tests auf historische Implementierungen wenig aussagekräftig, da sie retrospektiv auf bereits bekannten Code angepasst werden würden und somit keine objektive Fehlererkennung ermöglichen.
