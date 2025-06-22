@@ -10,9 +10,9 @@ Ziel ist es, einen fundierten Überblick über die verfügbaren Lösungen zu geb
 Die Identifikation geeigneter Frameworks für die prototypische Umsetzung der Contract Tests erfolgte auf Basis definierter Anforderungen, die in Abstimmung mit dem betreuenden Unternehmen \textit{msg systems ag} erarbeitet wurden.
 Zwei Bedingungen wurden dabei als zwingend erforderlich festgelegt:
 Zum einen sollte das jeweilige Tool unter einer Open-Source-Lizenz stehen, um eine transparente Einsicht in den Quellcode sowie die Unabhängigkeit von einem Anbieter zu gewährleisten.
-Zum anderen wurde gefordert, dass das Framework explizit die \gls{CDCT}-Prinzipien \added{aus \cref{subsec:foundation_contracttesting_variants} }unterstützt, da dieses Modell im vorliegenden Anwendungskontext einer Microservice-Architektur eingesetzt werden soll.
+Zum anderen wurde gefordert, dass das Framework explizit die \gls{CDCT}-Prinzipien aus \cref{subsec:foundation_contracttesting_variants} unterstützt, da dieses Modell im vorliegenden Anwendungskontext einer Microservice-Architektur eingesetzt werden soll.
 
-Im Verlauf dieser Recherche konnten fünf \added{der} untersuchten Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von \gls{CDCT} bieten.
+Im Verlauf dieser Recherche konnten fünf der untersuchten Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von \gls{CDCT} bieten.
 Diese werden im Folgenden vorgestellt.
 Die in die nähere Analyse einbezogenen Tools sind \texttt{Pact}, \texttt{Spring Cloud Contract}, \texttt{Specmatic}, \texttt{Karate} und \texttt{ContractCase}.
 Diese Tools bilden die Grundlage für die nachfolgende vergleichende Analyse und Auswahl in \cref{sec:frameworks_comparison}.
@@ -24,7 +24,7 @@ Das Tool wurde erstmals im Jahr 2013 veröffentlicht und ist ein Open-Source-Pro
 Ziel war es, eine leichtgewichtige und praktikable Lösung für \gls{API}-Testing in einer Microservice-Architektur bereitzustellen~\cite{pactfoundationPactDocs2022}.
 Die Entwicklung wird heute von der gemeinnützigen \texttt{Pact Foundation} koordiniert, die eine wachsende Open-Source-Community unterstützt.
 Es existieren offizielle Implementierungen für mehrere Programmiersprachen und einen zentralen Broker zur Verwaltung von Contracts~\cite{pactfoundationPactDocs2022}.
-Es gibt auch ein eigenes Hosting-Angebot des \texttt{Pact Brokers} namens \texttt{Pactflow}, welches allerdings kommerziell \added{lizenziert ist und nicht quelloffen zur Verfügung steht}~\cite{MicroservicesAPITesting} und deshalb nicht in der funktionellen Analyse berücksichtigt wurde.
+Es gibt auch ein eigenes Hosting-Angebot des \texttt{Pact Brokers} namens \texttt{Pactflow}, welches allerdings kommerziell lizenziert ist und nicht quelloffen zur Verfügung steht~\cite{MicroservicesAPITesting} und deshalb nicht in der funktionellen Analyse berücksichtigt wurde.
 
 \subsection*{Spring Cloud Contract}
 
@@ -158,9 +158,7 @@ Basierend auf den in \cref{sec:frameworks_criteria} definierten Kriterien wurde 
 Die Bewertung erfolgt für jedes Tool entlang der einzelnen Kriterien, um eine fundierte Entscheidungsgrundlage für die spätere Implementierung bereitzustellen.
 Für jedes Kriterium wurde eine Bewertungspunktzahl von 1 bis 5 vergeben, wobei 1 für eine unzureichende Erfüllung des Kriteriums und 5 für eine hervorragende Erfüllung steht.
 Durch Multiplizieren der Punktzahl des Kriteriums mit dem Gewichtungsfaktor ergibt sich eine gewichtete Bewertung, die als Summe die Relevanz des Frameworks für Contract Testing im Anwendungskontext dieser Arbeit widerspiegelt.
-\added{
-    Die Gewichtungsfaktoren wurden durch frimeninterne Abstimmungen bestimmt und spiegeln somit die Wichtigkeit der einzelnen Kriterien für das Unternehmen wider, in dem die Contract Tests eingesetzt werden sollen.
-}
+Die Gewichtungsfaktoren wurden durch frimeninterne Abstimmungen bestimmt und spiegeln somit die Wichtigkeit der einzelnen Kriterien für das Unternehmen wider, in dem die Contract Tests eingesetzt werden sollen.
 
 \subsection*{Pact}
 
