@@ -10,9 +10,9 @@ Ziel ist es, einen fundierten Überblick über die verfügbaren Lösungen zu geb
 Die Identifikation geeigneter Frameworks für die prototypische Umsetzung der Contract Tests erfolgte auf Basis definierter Anforderungen, die in Abstimmung mit dem betreuenden Unternehmen \textit{msg systems ag} erarbeitet wurden.
 Zwei Bedingungen wurden dabei als zwingend erforderlich festgelegt:
 Zum einen sollte das jeweilige Tool unter einer Open-Source-Lizenz stehen, um eine transparente Einsicht in den Quellcode sowie die Unabhängigkeit von einem Anbieter zu gewährleisten.
-Zum anderen wurde gefordert, dass das Framework explizit die \gls{CDCT}-Prinzipien unterstützt, da dieses Modell im vorliegenden Anwendungskontext einer Microservice-Architektur eingesetzt werden soll.
+Zum anderen wurde gefordert, dass das Framework explizit die \gls{CDCT}-Prinzipien \added{aus \cref{subsec:foundation_contracttesting_variants} }unterstützt, da dieses Modell im vorliegenden Anwendungskontext einer Microservice-Architektur eingesetzt werden soll.
 
-Im Verlauf dieser Recherche konnten fünf von insgesamt zwölf untersuchten Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von \gls{CDCT} bieten.
+Im Verlauf dieser Recherche konnten fünf \added{der} untersuchten Frameworks identifiziert werden, die sowohl den Open-Source-Ansatz verfolgen als auch eine explizite Unterstützung von \gls{CDCT} bieten.
 Diese werden im Folgenden vorgestellt.
 Die in die nähere Analyse einbezogenen Tools sind \texttt{Pact}, \texttt{Spring Cloud Contract}, \texttt{Specmatic}, \texttt{Karate} und \texttt{ContractCase}.
 Diese Tools bilden die Grundlage für die nachfolgende vergleichende Analyse und Auswahl in \cref{sec:frameworks_comparison}.
@@ -21,10 +21,10 @@ Diese Tools bilden die Grundlage für die nachfolgende vergleichende Analyse und
 
 \texttt{Pact}\footnote{\url{https://pact.io}} ist eines der verbreitetsten Frameworks im Bereich des Contract Testing.
 Das Tool wurde erstmals im Jahr 2013 veröffentlicht und ist ein Open-Source-Projekt, das von der australischen Softwarefirma DiUS ins Leben gerufen wurde.
-Ziel war es, eine leichtgewichtige und praktikable Lösung für \gls{API}-Testing in einer Microservice Architektur bereitzustellen~\cite{pactfoundationPactDocs2022}.
+Ziel war es, eine leichtgewichtige und praktikable Lösung für \gls{API}-Testing in einer Microservice-Architektur bereitzustellen~\cite{pactfoundationPactDocs2022}.
 Die Entwicklung wird heute von der gemeinnützigen \texttt{Pact Foundation} koordiniert, die eine wachsende Open-Source-Community unterstützt.
 Es existieren offizielle Implementierungen für mehrere Programmiersprachen und einen zentralen Broker zur Verwaltung von Contracts~\cite{pactfoundationPactDocs2022}.
-Es gibt auch ein eigenes Hosting-Angebot des \texttt{Pact Brokers} namens \texttt{Pactflow}, welches allerdings kommerziell ist~\cite{MicroservicesAPITesting} und deshalb nicht in der funktionellen Analyse berücksichtigt wurde.
+Es gibt auch ein eigenes Hosting-Angebot des \texttt{Pact Brokers} namens \texttt{Pactflow}, welches allerdings kommerziell \added{lizenziert ist und nicht quelloffen zur Verfügung steht}~\cite{MicroservicesAPITesting} und deshalb nicht in der funktionellen Analyse berücksichtigt wurde.
 
 \subsection*{Spring Cloud Contract}
 
@@ -56,7 +56,7 @@ Die Bekanntheit des Tools hat sich in den letzten Jahren durch gute Dokumentatio
 Es wird von einer Einzelperson inspiriert von \texttt{Pact} entwickelt und zielt darauf ab, Contract Testing in einer modernen, leichtgewichtigen Weise zu ermöglichen~\cite{CasecontracttestingContractcase2025}.
 Obwohl \texttt{ContractCase} bislang weniger verbreitet ist als andere Frameworks, zeigt die wachsende Nutzerbasis ein zunehmendes Interesse in der Entwicklergemeinschaft~\cite{ContractcaseContractcasejest2025}.
 
-Diese fünf Frameworks wurden hinsichtlich ihrer Relevanz für Contract Testing unter nachfolgend beschriebenen Kriterien analysiert und werden dann in \cref{sec:frameworks_comparison} vergleichend gegenübergestellt.
+Für die Untersuchung hinsichtlich ihrer Relevanz für Contract Testing werden im Folgenden die Kriterien beschrieben, welche der vergleichenden Gegenüberstellung der fünf Frameworks in \cref{sec:frameworks_comparison} als Grundlage dienen.
 
 \section{Auswahlkriterien}\label{sec:frameworks_criteria}
 
@@ -158,6 +158,9 @@ Basierend auf den in \cref{sec:frameworks_criteria} definierten Kriterien wurde 
 Die Bewertung erfolgt für jedes Tool entlang der einzelnen Kriterien, um eine fundierte Entscheidungsgrundlage für die spätere Implementierung bereitzustellen.
 Für jedes Kriterium wurde eine Bewertungspunktzahl von 1 bis 5 vergeben, wobei 1 für eine unzureichende Erfüllung des Kriteriums und 5 für eine hervorragende Erfüllung steht.
 Durch Multiplizieren der Punktzahl des Kriteriums mit dem Gewichtungsfaktor ergibt sich eine gewichtete Bewertung, die als Summe die Relevanz des Frameworks für Contract Testing im Anwendungskontext dieser Arbeit widerspiegelt.
+\added{
+    Die Gewichtungsfaktoren wurden durch frimeninterne Abstimmungen bestimmt und spiegeln somit die Wichtigkeit der einzelnen Kriterien für das Unternehmen wider, in dem die Contract Tests eingesetzt werden sollen.
+}
 
 \subsection*{Pact}
 
@@ -338,6 +341,7 @@ Eine Vorverifizierung von neuen Contract-Versionen wie bei \texttt{Pact} ist \zB
 
 \textbf{\nameref{subsec:frameworks_criterion_scalability}:} Die Skalierbarkeit ist aufgrund der Unterstützung für den \texttt{Pact Broker} gegeben, der eine zentrale Verwaltung und Veröffentlichung von Contracts ermöglicht~\cite{CasecontracttestingContractcase2025}.
 
+\pagebreak
 Die nachfolgende \cref{tab:framework_evaluation} fasst die Bewertung der einzelnen Frameworks anhand der definierten, gewichteten Kriterien zusammen.
 Die Namen der Tools sind aus Platzgründen abgekürzt:
 \texttt{Pact} (\textbf{P}), \texttt{Spring Cloud Contract} (\textbf{SCC}), \texttt{Specmatic} (\textbf{S}), \texttt{Karate} (\textbf{K}) und \texttt{ContractCase} (\textbf{CC}).

@@ -4,7 +4,7 @@ Wie in \cref{ch:implementation} beschrieben, konnten die Contract Tests innerhal
 Bei der konkreten Umsetzung der Architektur ergaben sich jedoch Herausforderungen.
 Wie in \cref{sec:implementation_challenges} dargelegt wurde, konnten diese im Verlauf der vorliegenden Arbeit erfolgreich gelöst werden.
 
-Nach der prototypischen Implementierung der Contract ests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
+Nach der prototypischen Implementierung der Contract Tests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
 Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele, insbesondere die Reduktion von Integrationsproblemen und die Steigerung der Testeffizienz, durch den Einsatz von Contract Testing erreicht werden konnten.
 
 \section{Bewertung der Fehlererkennung}\label{sec:evaluation_errordetection}
@@ -88,12 +88,14 @@ Diese verkürzte Fehlererkennungszeit ist besonders im Kontext der sogenannten \
 Demnach steigen die Kosten zur Behebung eines Fehlers exponentiell mit dem Fortschreiten des Softwareentwicklungsprozesses – von der Anforderungsanalyse über die Implementierung bis hin zum Betrieb~\cite{boehmSoftwareEngineeringEconomics1981}, wie in \cref{fig:cost_of_failure} dargestellt.
 Ein Fehler, der bereits in der Implementierungsphase entdeckt und behoben wird, verursacht einen Bruchteil der Kosten im Vergleich zu einem Fehler, der erst in einer fortgeschrittenen Prozessstufe oder sogar in der Produktionsumgebung auftritt~\cite{boehmSoftwareEngineeringEconomics1984}.
 
+\vspace{3em}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/cost_of_failure}
     \caption{Cost of Failure-Kurve nach~\cite{boehmSoftwareEngineeringEconomics1981}}
     \label{fig:cost_of_failure}
 \end{figure}
+\vspace{3em}
 
 Diese Faktoren machen deutlich, wie wichtig es ist, bereits in frühen Phasen des Entwicklungsprozesses potenzielle Fehler zu identifizieren und zu beheben.
 Diese wird durch Contract Tests begünstigt, da sie eine schnelle und effiziente Überprüfung der Interoperabilität von Schnittstellen erlauben.

@@ -206,3 +206,7 @@ Dadurch verlängerte sich die Dauer des Debugging, bevor die Ursache identifizie
 Die Lösung bestand darin, den Port des Providers in der Testkonfiguration explizit anzugeben, sodass die Anfragen an den richtigen Port gesendet wurden und die richtigen Antworten zurückkamen.
 Durch eine Konfiguration in der Testklasse wird der Port des laufenden Providers ermittelt und dieser für die Tests als Zielport spezifiziert.
 Durch diese Maßnahme wurde sichergestellt, dass alle Tests tatsächlich gegen die beabsichtigte Provider-Implementierung ausgeführt werden und damit die korrekte Verifizierung der vertraglich vereinbarten Schnittstellen erfolgt.
+
+Die Schnittstelleninteraktionen zwischen den Microservices der Anwendung \textit{msg.Sensorik} können nun nach der Implementierung der Contract Tests und dem Lösen der technischen Herausforderungen validiert werden.
+Durch die Integration der Contract Tests in die \gls{CI}/\gls{CD}-Pipeline ist sichergestellt, dass Änderungen an den Services kontinuierlich überprüft werden und die Interoperabilität der Microservices gewährleistet ist.
+Im nächsten Kapitel werden die Auswirkungen und Vorteile dieser Implementierung bezüglich der Fehlererkennung und Testeffizienz evaluiert.
