@@ -35,6 +35,8 @@
 
 \newacronym{URL}{URL}{Uniform Resource Locator}
 
+\newacronym{MQTT}{MQTT}{Message Queuing Telemetry Transport}
+
 \newglossaryentry{Build}{
     name=Build,
     description={
@@ -85,16 +87,16 @@
 \newglossaryentry{OpenAPI}{
     name=OpenAPI,
     description={
-        Eine Spezifikation für \gls{REST}ful \gls{API}s, die es Entwicklern ermöglicht, \gls{API}s zu beschreiben, zu erstellen und zu dokumentieren.
-        \gls{OpenAPI} verwendet eine standardisierte Syntax, um \gls{API}-Endpunkte, Parameter und Datenformate zu definieren
+        Eine Spezifikation für \gls{REST}-\gls{API}s, die es Entwicklern ermöglicht, \gls{API}s zu beschreiben, zu erstellen und zu dokumentieren.
+        OpenAPI verwendet eine standardisierte Syntax, um \gls{API}-Endpunkte, Parameter und Datenformate zu definieren
     },
 }
 
 \newglossaryentry{AsyncAPI}{
     name=AsyncAPI,
     description={
-        Eine Spezifikation für asynchrone \gls{API}s, die es Entwicklern ermöglicht, asynchrone Nachrichtenprotokolle zu beschreiben und zu dokumentieren.
-        \gls{AsyncAPI} ist besonders nützlich für Systeme, die auf Ereignissen basieren
+        Eine Spezifikation für asynchrone \glspl{API}, die es Entwicklern ermöglicht, asynchrone Nachrichtenprotokolle zu beschreiben und zu dokumentieren.
+        AsyncAPI ist besonders nützlich für Systeme, die auf Ereignissen basieren
     },
 }
 
@@ -102,7 +104,7 @@
     name=Spring,
     description={
         Ein weit verbreitetes Framework für die Entwicklung von Java-Anwendungen, das eine Vielzahl von Modulen und Funktionen bietet, um die Entwicklung zu erleichtern.
-        \gls{Spring} ist besonders bekannt für seine Unterstützung von \gls{API}-Entwicklung und Microservices
+        Spring ist besonders bekannt für seine Unterstützung von \gls{API}-Entwicklung und Microservices
     },
 }
 
@@ -110,7 +112,7 @@
     name=Maven,
     description={
         Ein Build-Management-Tool für Java-Projekte, das die Verwaltung von Abhängigkeiten, das Erstellen von Artefakten und die Ausführung von Tests automatisiert.
-        \gls{Maven} ist ein wichtiger Bestandteil des Java-Ökosystems
+        Maven ist ein wichtiger Bestandteil des Java-Ökosystems
     },
 }
 
@@ -118,7 +120,7 @@
     name=Gradle,
     description={
         Ein Build-Management-Tool, das eine flexible Konfiguration von Build-Prozessen ermöglicht.
-        \gls{Gradle} wird häufig in Java-Projekten verwendet, bietet aber auch Unterstützung für andere Programmiersprachen
+        Gradle wird häufig in Java-Projekten verwendet, bietet aber auch Unterstützung für andere Programmiersprachen
     },
 }
 
@@ -126,7 +128,7 @@
     name=Angular,
     description={
         Ein weit verbreitetes Framework für die Entwicklung von Webanwendungen, das auf TypeScript basiert und eine komponentenbasierte Architektur bietet.
-        \gls{Angular} wird häufig für die Entwicklung von Single-Page-Anwendungen verwendet
+        Angular wird häufig für die Entwicklung von Single-Page-Anwendungen verwendet
     },
 }
 
@@ -134,7 +136,7 @@
     name=Docker,
     description={
         Eine Plattform zur Automatisierung der Bereitstellung von Anwendungen in Containern, die eine konsistente und isolierte Ausführungsumgebung bieten.
-        \gls{Docker} ermöglicht es Entwicklern, Anwendungen und ihre Abhängigkeiten in Containern zu verpacken und zu verteilen
+        Docker ermöglicht es Entwicklern, Anwendungen und ihre Abhängigkeiten in Containern zu verpacken und zu verteilen
     },
 }
 
@@ -142,15 +144,15 @@
     name=NoSQL,
     description={
         Eine Klasse von Datenbanken, die nicht auf dem relationalen Modell basieren und für unstrukturierte oder semi-strukturierte Daten geeignet sind.
-        \gls{NoSQL}-Datenbanken bieten Flexibilität und Skalierbarkeit für moderne Anwendungen
+        NoSQL-Datenbanken bieten Flexibilität und Skalierbarkeit für moderne Anwendungen
     },
 }
 
 \newglossaryentry{GraphQL}{
     name=GraphQL,
     description={
-        Eine Abfragesprache für \gls{API}s, die es Clients ermöglicht, genau die Daten abzufragen, die sie benötigen.
-        \gls{GraphQL} bietet eine flexible und effiziente Möglichkeit, Daten von Servern abzurufen und zu manipulieren
+        Eine Abfragesprache für \glspl{API}, die es Clients ermöglicht, genau die Daten abzufragen, die sie benötigen.
+        GraphQL bietet eine flexible und effiziente Möglichkeit, Daten von Servern abzurufen und zu manipulieren
     },
 }
 
@@ -158,7 +160,7 @@
     name=gRPC,
     description={
         Ein modernes, leistungsfähiges Remote Procedure Call (RPC)-Framework, das auf HTTP basiert und eine effiziente Kommunikation zwischen Diensten ermöglicht.
-        \gls{gRPC} unterstützt mehrere Programmiersprachen und bietet Funktionen wie Streaming und bidirektionale Kommunikation
+        gRPC unterstützt mehrere Programmiersprachen und bietet Funktionen wie Streaming und bidirektionale Kommunikation
     },
 }
 
@@ -166,6 +168,22 @@
     name=Junit5,
     description={
         Eine weit verbreitete Testbibliothek für Java, die eine einfache und flexible Möglichkeit bietet, Tests zu schreiben und auszuführen
+    },
+}
+
+\newglossaryentry{Kafka}{
+    name=Kafka,
+    description={
+        Eine verteilte Datenstrom-Plattform, die es ermöglicht, große Mengen an Daten in Echtzeit zu verarbeiten und zu speichern.
+        Kafka wird häufig für Event-Streaming und Messaging in Microservice-Architekturen verwendet
+    },
+}
+
+\newglossaryentry{WebSocket}{
+    name=WebSocket,
+    description={
+        Ein Protokoll, das eine bidirektionale Kommunikation zwischen Client und Server über eine einzelne, dauerhafte Verbindung ermöglicht.
+        WebSocket wird häufig für Echtzeitanwendungen wie Chat-Apps oder Live-Daten-Updates verwendet
     },
 }
 
