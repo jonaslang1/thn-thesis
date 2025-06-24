@@ -2,17 +2,22 @@
 
 \section{Komplexitätsunterschied der untersuchten Testpipelines}\label{sec:app:test-pipeline-differences}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/pipeline_integration_tests}
-    \caption{Ablauf der Integrationstest-Pipeline des Instanz-Management-Services}
-    \label{fig:integration-test-pipeline}
-\end{figure}
-
-In \cref{fig:integration-test-pipeline} ist die Pipeline für die Integrationstests des Instanz-Management-Services dargestellt.
+In \cref{fig:integration-test-pipeline} ist die \gls{Pipeline} für die Integrationstests des Instanz-Management-Services dargestellt.
 Die Integrationstests benötigen alle abhängigen Services und deren Technologiestack, um korrekt zu funktionieren und die Interaktion zwischen den Services zu testen.
 Dies macht sie komplexer in Bezug auf Setup-Zeit und Wartbarkeit.
 Jeder Dienst muss gestartet und korrekt konfiguriert sein, bevor Tests sinnvoll durchgeführt werden können.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pipeline_integration_tests}
+    \caption{Ablauf der Integrationstest-\gls{Pipeline} des Instanz-Management-Services}
+    \label{fig:integration-test-pipeline}
+\end{figure}
+
+Im Vergleich dazu ist die in \cref{fig:contract-test-pipeline} dargestellte Contract-Test-\gls{Pipeline} deutlich schlanker.
+Sie testet gezielt die \gls{API}-Interaktionen zwischen Services anhand der definierten Contracts.
+Dadurch entfällt das \gls{Deployment} sämtlicher Dienste, was zu kürzeren Ausführungszeiten und geringerer Komplexität führt.
+Die Wartung ist ebenfalls einfacher, da nur die jeweiligen Contracts und nicht die eigentlichen Komponenten berücksichtigt werden.
 
 \begin{figure}[htbp]
     \centering
@@ -21,19 +26,14 @@ Jeder Dienst muss gestartet und korrekt konfiguriert sein, bevor Tests sinnvoll 
     \label{fig:contract-test-pipeline}
 \end{figure}
 
-Im Vergleich dazu ist die in \cref{fig:contract-test-pipeline} dargestellte Contract-Test-Pipeline deutlich schlanker.
-Sie testet gezielt die \gls{API}-Interaktionen zwischen Services anhand der definierten Contracts.
-Dadurch entfällt das Deployment sämtlicher Dienste, was zu kürzeren Ausführungszeiten und geringerer Komplexität führt.
-Die Wartung ist ebenfalls einfacher, da nur die jeweiligen Contracts und nicht die eigentlichen Komponenten berücksichtigt werden.
-
-Die Integrationstest-Pipeline ist in der Regel komplexer, da sie alle abhängigen Services und deren Bestandteile abbildet.
+Die Integrationstest-\gls{Pipeline} ist in der Regel komplexer, da sie alle abhängigen Services und deren Bestandteile abbildet.
 Dies erhöht sowohl die Pipelinedauer als auch den Wartungsaufwand.
-Die Contract-Test-Pipeline hingegen hat weniger Abhängigkeiten und somit auch weniger Pipelineschritte.
+Die Contract-Test-\gls{Pipeline} hingegen hat weniger Abhängigkeiten und somit auch weniger Pipelineschritte.
 Dadurch ist sie schneller und eignet sich für häufige Ausführungen und für frühzeitige Fehlererkennung.
 
 \section{Tatsächliche Messwerte der Testpipeline-\-Ausführungszeiten}\label{sec:app:test-pipeline-execution-times}
 
-Die tatsächlichen Messwerte der Testpipeline-Ausführungszeiten sind für die Contract-Test-Pipeline in \cref{tab:contract_measurements} und für die Integrationstest-Pipeline in \cref{tab:integration_measurements} detailliert aufgelistet.
+Die tatsächlichen Messwerte der Testpipeline-Ausführungszeiten sind für die Contract-Test-\gls{Pipeline} in \cref{tab:contract_measurements} und für die Integrationstest-\gls{Pipeline} in \cref{tab:integration_measurements} detailliert aufgelistet.
 
 \begin{table}[ht]
     \centering

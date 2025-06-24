@@ -30,7 +30,7 @@ Trotz der vielen Vorteile bringt die Microservice-Architektur auch Herausforderu
 Die Kommunikation zwischen den einzelnen Diensten erfordert robuste Schnittstellen und ein zuverlässiges \gls{API}-Management, um eine reibungslose Interaktion zu gewährleisten.
 Die Verwaltung von Nutzdaten kann komplex sein, da die Konsistenz zwischen verschiedenen Microservices sichergestellt
 werden muss, \dahe die Schnittstellen der einzelnen Dienste müssen aufeinander abgestimmt sein.
-Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige Deployment- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten~\cite{newmanMonolithMicroservices2019}.
+Darüber hinaus erfordert die Vielzahl kleiner Dienste leistungsfähige \gls{Deployment}- und Monitoring-Tools, um deren Verwaltung effizient zu gestalten~\cite{newmanMonolithMicroservices2019}.
 
 Die Microservice-Architektur in ihrer Gesamtheit bildet die Grundlage für moderne verteilte Systeme und spielt eine zentrale Rolle für Cloud-Umgebungen, weil sie eine flexible und skalierbare Infrastruktur bietet.
 Cloud-Umgebungen ermöglichen den Betrieb und die Bereitstellung von IT-Ressourcen unabhängig von physischer Hardware und bieten dabei ein hohes Maß an Flexibilität~\cite{freewheelbiz-uiteamCloudNativeApplicationArchitecture2024}.
@@ -125,15 +125,16 @@ Der Provider verarbeitet diese Anfrage, führt eventuell zugehörige Aktionen au
 Auf der Consumer-Seite wird die Antwort nach Erhalt verarbeitet, um die gewünschten Informationen zu extrahieren und zu verwenden.
 Um diese Verarbeitung zu ermöglichen, trifft der Consumer eine Annahme über die Struktur der zur Anfrage gehörigen Antwort.
 In einer idealen Welt würde die Antwort immer der Struktur entsprechen, die der Consumer erwartet, doch das kann in der Praxis nicht immer garantiert werden~\cite{waseemDesignMonitoringTesting2021}.
-Wenn die Antwort nicht mit der Annahme übereinstimmt, kann es zu Fehlern kommen, was zu ungewünschtem Verhalten oder sogar zum Serviceausfall aufseiten des Consumers führen kann.
-Contract Testing wird eingesetzt, damit diese Annahmen auch tatsächlich eintreffen werden und somit Fehler in der Kommunikation zwischen den Diensten vermieden werden~\cite{cruzContractTestingAction2025}.
+Wenn die Antwort nicht mit der Annahme übereinstimmt, kann es zu Fehlern kommen.
+Dies kann zu ungewünschtem Verhalten oder sogar zum Serviceausfall aufseiten des Consumers führen.
+Contract Testing wird eingesetzt, damit die getroffenen Annahmen tatsächlich eintreffen werden und somit Fehler in der Kommunikation zwischen den Diensten vermieden werden~\cite{cruzContractTestingAction2025}.
 
 Bei der Ausführung der Contract Tests wird ein sogenannter \textquote{Contract} definiert – ein Vertrag, der beschreibt, wie die Kommunikation zwischen Consumer und Provider ablaufen soll.
 Dieser Contract legt fest, welche Anfragen der Consumer an den Provider stellt und welche Antworten er im Gegenzug erwartet.
 Der entscheidende Vorteil dabei ist, dass beide Seiten unabhängig voneinander testen können, ob sie diesen Contract einhalten~\cite{newmanBuildingMicroservices2021}.
 Beim Contract Testing wird der Fokus also nicht auf die vollständige Funktionalität des Systems gelegt, sondern auf die Schnittstelle und die Erwartungen, die damit einhergehen.
 
-In einem Contract werden die Anfragen des Consumers festgehalten mit den zugehörigen Details, wie dem \gls{HTTP}-Verb und den Headern usw.
+In einem Contract werden die Anfragen des Consumers mit den zugehörigen Details, wie dem \gls{HTTP}-Verb, den Headern \usw festgehalten.
 Eine stark vereinfachte Anfrage wäre zum Beispiel ein \texttt{GET}-Request an den Pfad \texttt{/user/1}.
 Zu dieser Anfrage wird die zugehörige Antwort definiert, die der Provider liefern soll, wenn der Consumer diese Anfrage stellt.
 Auch hier werden verschiedene Details festgehalten, wie der \gls{HTTP}-Statuscode, die Header und der Inhalt der Antwort.
@@ -156,6 +157,13 @@ Wenn der Consumer den Contract erstellt und ihn anschließend mit dem Provider t
 Diese Variante ist besonders geeignet für organisationsinterne Anwendungen und für verteilte Software über mehrere Teams hinweg, wie \zB bei Microservice-Architekturen~\cite{richardsonMicroservicesPatterns2018}.
 Dabei kann der Provider genau auf die Anforderungen des Consumers zuschnitten werden, da der Consumer die Anfragen im Vorhinein definiert, die er an den Provider stellen möchte~\cite{cruzContractTestingAction2025}.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/consumer-side}
+    \caption{Ablauf eines Contract Tests auf der Consumer-Seite beim \gls{CDCT} nach \cite{cruzContractTestingAction2025}}
+    \label{fig:cdct-consumer-side}
+\end{figure}
+
 Ein Contract Test auf der Consumer-Seite beim \gls{CDCT}, wie in \cref{fig:cdct-consumer-side} anhand des oben genannten Beispiels dargestellt, lässt sich in drei Schritte unterteilen:
 \begin{enumerate}
     \item Es wird ein \gls{Mock}-Provider erstellt, der die \gls{API} des Providers simuliert, damit der Test vom tatsächlichen Provider unabhängig ist.
@@ -167,13 +175,6 @@ Ein Contract Test auf der Consumer-Seite beim \gls{CDCT}, wie in \cref{fig:cdct-
     Die verschiedenen Arten der Speicherung werden in~\cref{ch:frameworks} näher beschrieben.
 \end{enumerate}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/consumer-side}
-    \caption{Ablauf eines Contract Tests auf der Consumer-Seite beim \gls{CDCT} nach \cite{cruzContractTestingAction2025}}
-    \label{fig:cdct-consumer-side}
-\end{figure}
-
 Auf der Provider-Seite wird der Contract dann verwendet, um sicherzustellen, dass die \gls{API} tatsächlich die erwarteten Antworten liefert.
 Auch der Provider kommuniziert nicht mit dem echten Consumer, sondern mit einem \gls{Mock}-Consumer, der die Anfragen simuliert, um die Unabhängigkeit der Tests zu gewährleisten~\cite{cruzContractTestingAction2025}.
 Für jede Anfrage im Contract wird ein Testfall generiert, in dem der \gls{Mock}-Consumer die Anfrage an die Provider-Anwendung sendet.
@@ -181,12 +182,14 @@ Der Provider verarbeitet die Anfrage und sendet eine entsprechende Antwort zurü
 Der Test überprüft dann, ob die Antwort des Providers mit der im Contract definierten Antwort übereinstimmt, und verifiziert somit, dass die \gls{API} des Providers den Contract erfüllt~\cite{morganTestingMicroservicesConsumerdriven2019}.
 Dieser Ablauf eines Contract Tests auf der Provider-Seite beim \gls{CDCT} ist in~\cref{fig:cdct-provider-side} beispielhaft dargestellt.
 
+\vspace{2em}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/provider-side}
     \caption{Ablauf eines Contract Tests auf der Provider-Seite beim \gls{CDCT} nach \cite{cruzContractTestingAction2025}}
     \label{fig:cdct-provider-side}
 \end{figure}
+\vspace{2em}
 
 Nun wurde der Contract auf der Consumer-Seite erstellt und auf der Provider-Seite verifiziert.
 Das bedeutet, dass beide Seiten unabhängig voneinander auch nach Änderungen ihre Contract Tests durchführen und die Services ohne Kompatibilitätsprobleme deployt werden können, wenn sie den Contract einhalten~\cite{waseemSystematicMappingStudy2020}.
@@ -203,7 +206,7 @@ Allerdings erfordert das auch eine gute Kommunikation und idealerweise eine gete
 
 \subsubsection{\glsdesc{PDCT}}
 
-In Szenarien, bei denen \zB kein Zugriff auf die Testpipeline des Providers besteht, kann auf das \gls{PDCT} zurückgegriffen werden.
+In Szenarien, bei denen \zB kein Zugriff auf die Test-\gls{Pipeline} des Providers besteht, kann auf das \gls{PDCT} zurückgegriffen werden.
 Dies kann vorkommen, wenn der Provider eine öffentliche \gls{API} bereitstellt, die von vielen verschiedenen Consumer genutzt wird, oder wenn der Provider und der Consumer von unterschiedlichen Organisationen entwickelt werden~\cite{cruzContractTestingAction2025}.
 Dabei werden vom Provider und vom Consumer jeweils ein Contract erstellt, die dann automatisiert miteinander verglichen werden.
 Deshalb wird \gls{PDCT} auch als bidirektionales Contract Testing bezeichnet~\cite{cruzContractTestingAction2025}.
@@ -213,10 +216,10 @@ Auf der Consumer-Seite geschieht die Contract-Erstellung analog zum \gls{CDCT}.
 Danach werden die beiden Contracts typischerweise mithilfe eines Brokers verglichen, die sogenannte cross-contract validation.
 Durch diese Validierung ist die Interoperabilität der beiden Services sichergestellt.
 Der Broker fungiert dabei als Speicherort, der die Contracts der Consumer und Provider verwaltet und die Validierung durchführt~\cite{cruzContractTestingAction2025}.
-Wie beim \gls{CDCT} ist es notwendig, dass beim Deployment-Prozess überprüft wird, ob die entsprechenden Contracts gegenseitig validiert wurden~\cite{pactflowBiDirectionalContractTesting2023}.
+Wie beim \gls{CDCT} ist es notwendig, dass beim \gls{Deployment}-Prozess überprüft wird, ob die entsprechenden Contracts gegenseitig validiert wurden~\cite{pactflowBiDirectionalContractTesting2023}.
 Der Ablauf beim \gls{PDCT} ist in~\cref{fig:pdct} dargestellt.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/pdct}
     \caption{Ablauf eines Contract Tests beim \gls{PDCT} nach \cite{cruzContractTestingAction2025}}
@@ -233,7 +236,7 @@ Contract Testing hat sich als effektive Methode etabliert, um die Kommunikation 
 Ein wesentlicher Vorteil von Contract Testing besteht in der frühzeitigen Erkennung von Integrationsfehlern.
 Da die erwarteten Interaktionen bereits während der Entwicklung definiert und automatisiert überprüft werden, lassen sich Abweichungen zwischen Consumer und Provider schnell identifizieren und beheben.
 Dies führt zu einem schnelleren Feedback für die Entwicklungsteams und reduziert das Risiko, dass Integrationsprobleme erst in späteren Testphasen oder sogar im Produktivbetrieb auftreten~\cite{cruzContractTestingAction2025}.
-Insbesondere im Rahmen von \gls{CI}/\gls{CD}-Pipelines kann Contract Testing dazu beitragen, Fehlerquellen automatisch zu identifizieren, frühzeitig zu eliminieren und die Qualität der Software durch das fehlerfreie Zusammenspiel verschiedener Softwarekomponenten kontinuierlich sicherzustellen~\cite{duvallContinuousIntegrationImproving2007}.
+Insbesondere im Rahmen von \gls{CI}/\gls{CD}-\glspl{Pipeline} kann Contract Testing dazu beitragen, Fehlerquellen automatisch zu identifizieren, frühzeitig zu eliminieren und die Qualität der Software durch das fehlerfreie Zusammenspiel verschiedener Softwarekomponenten kontinuierlich sicherzustellen~\cite{duvallContinuousIntegrationImproving2007}.
 
 Ein weiterer bedeutender Vorteil liegt in der Reduzierung der Abhängigkeit von klassischen Systemtests.
 Während Systemtests häufig ressourcenintensiv und fehleranfällig sind, ermöglicht Contract Testing eine gezielte Überprüfung der Schnittstellenkompatibilität, ohne dass das gesamte System integriert und getestet werden muss~\cite{clemsonTestingStrategiesMicroservice2014}.
@@ -259,8 +262,8 @@ Solche Probleme werden durch Contract Testing allein nicht erkannt und erfordern
 Contract Testing sollte daher nicht als Ersatz für andere Testmethoden betrachtet werden, sondern vielmehr als ergänzende Maßnahme, die in eine umfassende Teststrategie integriert werden sollte~\cite{clemsonTestingStrategiesMicroservice2014}.
 
 Nicht zuletzt ist der initiale Implementierungsaufwand für Contract Testing nicht zu unterschätzen.
-Die Einführung entsprechender Tools, die Schulung der Teams und die Anpassung bestehender Entwicklungs- und Testprozesse können insbesondere in gewachsenen, großen Systemlandschaften herausfordernd sein~\cite{cruzContractTestingAction2025}.
-Auch die Integration von Contract Testing in bestehende \gls{CI}/\gls{CD}-Pipelines und die regelmäßige Aktualisierung der Tests erfordern zusätzliche Ressourcen und Disziplin im Entwicklungsalltag.
+Die Einführung entsprechender Tools, die Schulung der Teams und die Anpassung bestehender Entwicklungs- und Testprozesse können insbesondere in großen, gewachsenen Systemlandschaften herausfordernd sein~\cite{cruzContractTestingAction2025}.
+Auch die Integration von Contract Testing in bestehende \gls{CI}/\gls{CD}-\glspl{Pipeline} und die regelmäßige Aktualisierung der Tests erfordern zusätzliche Ressourcen und Disziplin im Entwicklungsalltag.
 
 Zusammenfassend lässt sich festhalten, dass Contract Testing einen wertvollen Beitrag zur Qualitätssicherung von \gls{API}-Kommunikation leisten kann.
 Die Methode ermöglicht eine frühzeitige Fehlererkennung, fördert die Dokumentation und beschleunigt Entwicklungsprozesse.

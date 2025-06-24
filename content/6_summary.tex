@@ -1,7 +1,7 @@
 \chapter{Fazit und Ausblick}\label{ch:summary}
 
 In diesem Kapitel werden die zentralen Ergebnisse der vorliegenden Arbeit zusammengefasst und im Hinblick auf die anfangs formulierten Zielsetzungen reflektiert.
-Hierzu wurde Contract Testing in eine reale Microservice-Anwendung prototypisch integriert.
+Hierbei wurde Contract Testing in eine reale Microservice-Anwendung prototypisch integriert.
 Anhand des Ergebnisses wird bewertet, inwiefern die angestrebten Verbesserungen hinsichtlich Testbarkeit, Effizienz und Fehlertoleranz erreicht wurden.
 
 Darüber hinaus wird ein Ausblick auf mögliche zukünftige Forschungsvorhaben gegeben.
@@ -14,11 +14,11 @@ Außerdem ergeben sich Potenziale und offene Fragestellungen, die über den im R
 Ziel dieser Arbeit war die prototypische Integration von Contract Testing in eine bestehende Microservice-Anwendung.
 Zu diesem Zweck wurden zunächst mehrere etablierte Frameworks systematisch analysiert.
 Auf Basis definierter Bewertungskriterien erfolgte eine vergleichende Bewertung der Werkzeuge, die sowohl qualitative als auch quantitative Aspekte berücksichtigte.
-Durch die Auswertung der gewichteten Bewertungskriterien konnte eine Rangfolge der untersuchten Frameworks hinsichtlich ihrer Eignung für das vorliegende Anwendungsszenario abgeleitet werden.
+Durch die Auswertung der unternehmensspezifisch gewichteten Bewertungskriterien konnte eine Rangfolge der untersuchten Frameworks hinsichtlich ihrer Eignung für das vorliegende Anwendungsszenario abgeleitet werden.
 Auf dieser Grundlage fiel die Entscheidung zugunsten des Frameworks \texttt{Pact}, das im weiteren Verlauf prototypisch in die reale Anwendung \textit{msg.Sensorik} integriert wurde.
 
 Die praktische Umsetzung der Contract Tests konnte – trotz einiger technischer Herausforderungen – im Rahmen dieser Arbeit erfolgreich abgeschlossen werden.
-Es zeigte sich, dass \texttt{Pact} eine gut integrierbare Lösung darstellt, die sich sowohl in bestehende \gls{CI}/\gls{CD}-Pipelines einfügt als auch frühzeitiges Feedback bei \gls{API}-Änderungen ermöglicht.
+Es zeigte sich, dass \texttt{Pact} eine gut integrierbare Lösung darstellt, die sich sowohl in bestehende \gls{CI}/\gls{CD}-\glspl{Pipeline} einfügt als auch frühzeitiges Feedback bei \gls{API}-Änderungen ermöglicht.
 
 Die Evaluation der Implementierung hat gezeigt, dass Contract Testing eine wirksame Methode zur Qualitätssicherung von Schnittstellen insbesondere in Microservice-Architekturen darstellt.
 Durch die automatisierte Prüfung der vertraglich definierten Interaktionen zwischen Consumer und Provider lassen sich Schnittstelleninkompatibilitäten zuverlässig identifizieren.
@@ -40,7 +40,7 @@ Beide Testarten ergänzen sich gegenseitig, was zu einer robusteren Teststrategi
 Für zukünftige Projekte, die Contract Testing in die jeweilige Anwendungsumgebung integrieren möchten, lassen sich auf Basis der Erkenntnisse dieser Arbeit mehrere Handlungsempfehlungen ableiten.
 Die Einführung sollte möglichst frühzeitig erfolgen, damit sich das volle Potenzial zur Fehlerprävention entfalten kann.
 Der Einsatz eines zentralen Contract Brokers ist empfehlenswert, um die Verwaltung und den Austausch der Verträge zwischen Consumer und Provider zu erleichtern.
-Die Integration in \gls{CI}/\gls{CD}-Pipelines sollte von Anfang an berücksichtigt werden, um die Tests automatisiert und regelmäßig ausführen zu können.
+Die Integration in \gls{CI}/\gls{CD}-\glspl{Pipeline} sollte von Anfang an berücksichtigt werden, um die Tests automatisiert und regelmäßig ausführen zu können.
 Die Auswahl des richtigen Frameworks sollte auf Basis der spezifischen Anforderungen und Gegebenheiten des Projekts erfolgen, wobei die in dieser Arbeit definierten Bewertungskriterien als Orientierung dienen können.
 Allgemein hat sich \texttt{Pact} durch die flexible Einsetzbarkeit, praktische Contract-Verwaltung durch den \texttt{Pact Broker} und die aktive Gemeinschaft als eine robuste und sinnvolle Lösung erwiesen, die Integration von Contract Testing zu unterstützen.
 

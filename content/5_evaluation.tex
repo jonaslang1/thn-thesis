@@ -2,7 +2,7 @@
 
 Wie in \cref{ch:implementation} beschrieben, konnten die Contract Tests innerhalb der Anwendung \linebreak\textit{msg.Sensorik} erfolgreich implementiert werden.
 Bei der konkreten Umsetzung der Architektur ergaben sich jedoch Herausforderungen.
-Wie in \cref{sec:implementation_challenges} dargelegt wurde, konnten diese im Verlauf der vorliegenden Arbeit erfolgreich gelöst werden.
+Wie in \cref{sec:implementation_challenges} dargelegt wurde, konnten diese im Verlauf der vorliegenden Arbeit erfolgreich bewältigt werden.
 
 Nach der prototypischen Implementierung der Contract Tests werden in diesem Kapitel die erzielten Ergebnisse evaluiert.
 Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele, insbesondere die Reduktion von Integrationsproblemen und die Steigerung der Testeffizienz, durch den Einsatz von Contract Testing erreicht werden konnten.
@@ -10,11 +10,11 @@ Ziel ist es, zu bewerten, inwieweit die gesetzten Ziele, insbesondere die Redukt
 \section{Bewertung der Fehlererkennung}\label{sec:evaluation_errordetection}
 
 Ein zentrales Ziel von Contract Testing ist es, Integrationsfehler zuverlässig und automatisiert zu erkennen.
-Um die Wirksamkeit der implementierten Tests im Rahmen dieser Arbeit zu evaluieren, wurde ein gezieltes Testszenario entworfen.
-Dazu wurden absichtlich Änderung mit Kompatibilitätsbruch in den \gls{API}-Schnittstellen einzelner Services vorgenommen, um zu prüfen, ob diese durch die eingerichteten Contract Tests zuverlässig erkannt werden.
+Um die Wirksamkeit der implementierten Tests zu evaluieren, wurde ein gezieltes Testszenario entworfen.
+Dazu wurden im Rahmen dieser Arbeit absichtlich Änderung mit Kompatibilitätsbruch in den \gls{API}-Schnittstellen einzelner Services vorgenommen, um zu prüfen, ob diese durch die eingerichteten Contract Tests zuverlässig erkannt werden.
 Beim Ändern der Schnittstellen wurde darauf geachtet, dass teilweise auch die Contract Tests des jeweiligen Services angepasst wurden, um sowohl unabsichtliche Änderungen als auch praktische Anpassungen einer Schnittstelle durch ein Umsetzungsteam zu simulieren.
-Im Folgenden werden exemplarisch drei Arten aller Änderungen dargestellt, die zu Kompatibilitätsproblemen führen können und im Rahmen dieser Arbeit durchgeführt und untersucht wurden.
 
+Im Folgenden werden exemplarisch drei Arten aller durchgeführten Änderungen dargestellt, die zu Kompatibilitätsproblemen führen können und im Rahmen dieser Arbeit untersucht wurden.
 Die Änderungen erfolgten schrittweise und wurden nach jeder Anpassung einzeln getestet, um die Reaktion der Contract Tests gezielt zu überprüfen.
 Zum Einen wurde ein vorhandener \gls{API}-Pfad beim Consumer umbenannt, sodass Anfragen an den neuen Pfad gesendet wurden.
 Wie erwartet, schlugen die entsprechenden Contract Tests fehl, da die Anfragen nicht mehr dem definierten Contract entsprachen.
@@ -24,10 +24,10 @@ Außerdem wurden Änderungen an der erwarteten \gls{JSON}-Struktur der Nutzdaten
 Zusätzlich wurden auch die entsprechenden Contract Tests auf der Consumer-Seite angepasst, um die Tätigkeit eines Entwicklers zu simulieren.
 Hier zeigte sich, dass auch semantische Änderungen innerhalb der Datenformate durch den \texttt{can-i-deploy}-Schritt korrekt durch mangelnde Verifizierung des neu erstellten Vertrags erkannt wurden.
 
-Nach Abschluss der Änderungen an einem Service wurde die jeweiligen Test-Pipelines, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurde, automatisiert ausgeführt.
+Nach Abschluss der Änderungen an einem Service wurde die jeweiligen Test-\glspl{Pipeline}, deren Aufbau bereits in \cref{sec:implementation_execution} beschrieben wurde, automatisiert ausgeführt.
 Dabei wurden die Änderungen erwartungsgemäß als Fehler erkannt, da die vorgenommenen Änderungen gegen die definierten Contracts verstießen.
 Entweder schlug die Ausführung der Contract Tests fehl oder die \texttt{can-i-deploy}-Überprüfung war nicht erfolgreich, weil die neu erstellten Contracts nicht verifiziert werden konnten.
-Der Ablauf der Fehlererkennung für Änderungen auf der Consumer-Seite bei der Ausführung der Test-Pipelines ist mit den verschiedenen Varianten der Untersuchung in \cref{fig:error_injection_flow} dargestellt.
+Der Ablauf der Fehlererkennung für Änderungen auf der Consumer-Seite bei der Ausführung der Test-\glspl{Pipeline} ist mit den verschiedenen Varianten der Untersuchung in \cref{fig:error_injection_flow} dargestellt.
 
 \begin{figure}[htbp]
     \centering
@@ -36,8 +36,8 @@ Der Ablauf der Fehlererkennung für Änderungen auf der Consumer-Seite bei der A
     \label{fig:error_injection_flow}
 \end{figure}
 
-Bei der Ausführung der Test-Pipeline gilt die Fehlererkennung als erfolgreich, wenn die Pipeline aufgrund der enthaltenen Überprüfungen nicht erfolgreich abgeschlossen werden kann.
-Dieses Fehlschlagen der Pipeline wird dann in der \gls{CI}/\gls{CD}-Umgebung protokolliert, dem jeweiligen Entwicklerteam gemeldet und sorgt dadurch dafür, dass weitere Schritte, wie das Deployment, unterbunden werden.
+Bei der Ausführung der Test-\gls{Pipeline} gilt die Fehlererkennung als erfolgreich, wenn die \gls{Pipeline} aufgrund der enthaltenen Überprüfungen nicht erfolgreich abgeschlossen werden kann.
+Dieses Fehlschlagen der \gls{Pipeline} wird dann in der \gls{CI}/\gls{CD}-Umgebung protokolliert, dem jeweiligen Entwicklerteam gemeldet und sorgt dadurch dafür, dass weitere Schritte, wie das \gls{Deployment}, unterbunden werden.
 So können Integrationsprobleme frühzeitig erkannt und behoben werden, bevor sie sich in nachfolgenden Phasen des Entwicklungsprozesses negativ auswirken.
 
 Die Ergebnisse dieses kontrollierten Testszenarios zeigen eindeutig, dass alle eingebauten Abweichungen von den vertraglich vereinbarten Schnittstelleninteraktionen durch die Contract Tests identifiziert wurden.
@@ -56,11 +56,11 @@ Zudem wären nachträgliche Contract Tests auf historische Implementierungen wen
 \section{Bewertung der Testeffizienz}\label{sec:evaluation_testefficiency}
 
 Neben der Fehlererkennung ist die Effizienz ein entscheidender Aspekt beim Vergleich von Contract Tests mit klassischen Integrationstests.
-Im Rahmen dieser Arbeit wurden konkrete Messungen zur Ausführungsdauer der Test-Pipelines durchgeführt, um die Auswirkungen auf den Entwicklungsprozess zu bewerten.
+Im Rahmen dieser Arbeit wurden konkrete Messungen zur Ausführungsdauer der Test-\glspl{Pipeline} durchgeführt, um die Auswirkungen auf den Entwicklungsprozess zu bewerten.
 Die Messungen wurden auf einem Dell Latitude 5521 mit Intel Core i7-11850H und 64 Gigabyte Arbeitsspeicher durchgeführt, auf dem die \gls{CI}/\gls{CD}-Umgebung \texttt{Drone CI} mit mehreren Containern für die einzelnen Pipelineschritte lief.
 Auch wenn absolute Zeitangaben je nach Infrastruktur und Testumgebung variieren können, ist der relative Vergleich der Messungen zwischen Contract Tests und Integrationstests aufschlussreich.
 
-Das Balkendiagramm in \cref{fig:testing_duration_comparison} zeigt jeweils die durchschnittliche Ausführungsdauer der \gls{CI}/\gls{CD}-Pipelines für Contract Tests und Integrationstests für die fünf Microservices der Anwendung.
+Das Balkendiagramm in \cref{fig:testing_duration_comparison} zeigt jeweils die durchschnittliche Ausführungsdauer der \gls{CI}/\gls{CD}-\glspl{Pipeline} für Contract Tests und Integrationstests für die fünf Microservices der Anwendung.
 Die Zeitangaben basieren auf jeweils zehn Einzelmessungen pro Testtyp und pro Microservice.
 Zur besseren Vergleichbarkeit wurden die Mittelwerte berechnet und auf ganze Sekunden gerundet, um Schwankungen auszugleichen.
 Die gesamten Messungen sind in \cref{sec:app:test-pipeline-differences} detailliert aufgeführt.
@@ -68,7 +68,7 @@ Die gesamten Messungen sind in \cref{sec:app:test-pipeline-differences} detailli
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/testing_duration_comparison}
-    \caption{Vergleich der durchschnittlichen Ausführungsdauer der \gls{CI}/\gls{CD}-Pipelines für Contract Tests und Integrationstests}
+    \caption{Vergleich der durchschnittlichen Ausführungsdauer der \gls{CI}/\gls{CD}-\glspl{Pipeline} für Contract Tests und Integrationstests}
     \label{fig:testing_duration_comparison}
 \end{figure}
 
@@ -77,7 +77,7 @@ Der Unterschied ist besonders ausgeprägt bei den Microservices, die als Consume
 Die durchschnittliche Ausführungsdauer der Integrationstest-Pipline ist bis zu 10-mal länger als die der Contract Tests.
 Dies liegt insbesondere daran, dass Contract Tests unabhängig von anderen Services laufen, also ohne die vollständige Inbetriebnahme aller beteiligten Services und deren Technologiestacks.
 Dadurch entfällt ein großer Teil des technischen Mehraufwandes, der bei klassischen Integrationstests anfällt, etwa durch das Starten von Containern, Datenbankinitialisierungen oder Netzwerkkonfigurationen.
-Technische Details und strukturelle Unterschiede dieser zwei Test-Pipelines sind in \cref{sec:app:test-pipeline-differences} detailliert dargestellt.
+Technische Details und strukturelle Unterschiede dieser zwei Test-\glspl{Pipeline} sind in \cref{sec:app:test-pipeline-differences} detailliert dargestellt.
 
 Ein wesentlicher Vorteil ergibt sich aus der Möglichkeit, Contract Tests frühzeitig und häufiger im Entwicklungszyklus auszuführen – etwa direkt beim Commit oder beim Prüfen eines Pull Requests~\cite{cruzContractTestingAction2025}.
 Durch die Unabhängigkeit von anderen Services können Contract Tests sogar lokal auf den Entwicklerrechnern ausgeführt werden, ohne dass die komplexe Infrastruktur für die Integrationstests aufwändig gestartet werden muss.
@@ -98,7 +98,7 @@ Ein Fehler, der bereits in der Implementierungsphase entdeckt und behoben wird, 
 \vspace{3em}
 
 Diese Faktoren machen deutlich, wie wichtig es ist, bereits in frühen Phasen des Entwicklungsprozesses potenzielle Fehler zu identifizieren und zu beheben.
-Diese wird durch Contract Tests begünstigt, da sie eine schnelle und effiziente Überprüfung der Interoperabilität von Schnittstellen erlauben.
+Dieses wird durch Contract Tests begünstigt, da diese eine schnelle und effiziente Überprüfung der Interoperabilität von Schnittstellen erlauben.
 
 Insgesamt lässt sich feststellen, dass der Einsatz von Contract Tests zu einer spürbaren Steigerung der Testeffizienz beitragen kann.
 Entwickler erhalten schneller Rückmeldung über \gls{API}-Kompatibilitätsbrüche, was die Entwicklungszyklen und die Feedback-Schleifen optimiert.
